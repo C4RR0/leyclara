@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeyClara · Legislación sanitaria para oposiciones</title>
+<meta name="description" content="Packs de estudio de la legislación sanitaria que cae en todas las OPE: ley explicada, esquema, cientos de preguntas tipo test con el artículo exacto y fichas. Actualizados con el BOE.">
+<style>
+  :root {
+    --azul: #1f4e79; --azul-2: #2e6da4; --claro: #eaf2fa; --texto: #1b2430; --suave: #5b6675;
+    --borde: #d8e2ee; --fondo: #ffffff; --tarjeta: #ffffff; --ok: #1e7d4f; --acento: #ffd400;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto: #e8eef5; --suave: #a7b3c2; --borde: #2c3a4b; --fondo: #0f1620; --tarjeta: #162130; --claro: #142235; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--texto);
+         background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .marca { font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  nav a { margin-left: 18px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .hero { padding: 64px 0 48px; background: linear-gradient(180deg, var(--claro), transparent); }
+  .hero h1 { max-width: 760px; font-size: clamp(1.7rem, 4.5vw, 3rem); line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .hero p { font-size: 1.15rem; color: var(--suave); max-width: 680px; margin: 0 0 28px; }
+  .boton { display: inline-block; padding: 13px 22px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .boton.hueco { color: var(--azul-2); margin-left: 10px; }
+  .boton[aria-disabled="true"] { opacity: .6; pointer-events: none; }
+  .sellos { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; color: var(--suave); font-size: .95rem; }
+  .sellos b { color: var(--texto); }
+  section { padding: 56px 0; }
+  h2 { font-size: 1.75rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .sub { color: var(--suave); margin: 0 0 28px; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 20px; }
+  .tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 24px;
+             display: flex; flex-direction: column; }
+  .tarjeta h3 { margin: 0 0 4px; font-size: 1.25rem; }
+  .tarjeta .que { color: var(--suave); margin: 0 0 14px; font-size: .95rem; }
+  .precio { font-size: 2rem; font-weight: 800; margin: 6px 0 2px; }
+  .precio small { font-size: 1rem; color: var(--suave); text-decoration: line-through; font-weight: 500; margin-left: 6px; }
+  .tarjeta ul { padding-left: 20px; margin: 12px 0 20px; flex: 1; }
+  .tarjeta li { margin: 4px 0; }
+  .etiqueta { align-self: flex-start; display: inline-block; font-size: .78rem; font-weight: 700; background: var(--acento); color: #222;
+              padding: 3px 9px; border-radius: 99px; margin-bottom: 10px; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 10px; }
+  .acciones .boton { flex: 1 1 140px; text-align: center; margin: 0; white-space: nowrap; padding: 12px 14px; }
+  .ventajas .rejilla { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+  .ventajas .tarjeta h3 { font-size: 1.05rem; }
+  details { border: 1px solid var(--borde); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; background: var(--tarjeta); }
+  summary { font-weight: 700; cursor: pointer; }
+  details p { margin: 10px 0 0; color: var(--suave); }
+  .proximo { color: var(--suave); }
+  footer { border-top: 1px solid var(--borde); padding: 28px 0 40px; color: var(--suave); font-size: .88rem; }
+  @media (max-width: 560px) { nav { display: none; } .boton.hueco { margin: 10px 0 0; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="envoltorio">
+    <a class="marca" href="#">Ley<span>Clara</span></a>
+    <nav><a href="#packs">Packs</a><a href="#muestras">Muestras gratis</a><a href="#preguntas">Preguntas</a></nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="envoltorio">
+    <h1>La legislación sanitaria de tu OPE, lista para estudiar y aprobar.</h1>
+    <p>Cada ley explicada artículo por artículo, con esquema, tablas de plazos y cientos de preguntas tipo test resueltas con el artículo exacto. Hecho a partir del texto oficial del BOE y actualizado con todas las reformas.</p>
+    <a class="boton lleno" href="#muestras">Descarga 20 preguntas gratis</a>
+    <a class="boton hueco" href="#packs">Ver los packs</a>
+    <div class="sellos">
+      <span>✔ <b>Actualizado</b> a la última reforma</span>
+      <span>✔ Solución con <b>artículo exacto</b></span>
+      <span>✔ <b>Actualizaciones gratis</b> si la ley cambia</span>
+      <span>✔ PDF + Word editable</span>
+    </div>
+  </div>
+</div>
+
+<section id="packs">
+  <div class="envoltorio">
+    <h2>Packs de estudio</h2>
+    <p class="sub">Para OPE de Enfermería, TCAE, Celador, Fisioterapia, Técnicos y Administrativos de los servicios de salud.</p>
+    <div class="rejilla">
+      <article class="tarjeta">
+        <span class="etiqueta">Precio de lanzamiento</span>
+        <h3>Ley 41/2002</h3>
+        <p class="que">Autonomía del paciente e información y documentación clínica</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada capítulo por capítulo (29 páginas)</li>
+          <li>Las 13 definiciones y los 16 documentos de la historia clínica</li>
+          <li><b>62 preguntas tipo test</b> con solución y artículo</li>
+          <li>30 fichas de repaso</li>
+          <li>Reformas de 2015, 2018, 2021 y 2023 incluidas</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley41">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-41-2002.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <span class="etiqueta">Precio de lanzamiento</span>
+        <h3>Ley 55/2003 · Estatuto Marco</h3>
+        <p class="que">Personal estatutario de los servicios de salud</p>
+        <div class="precio">8,90 €<small>12,90 €</small></div>
+        <ul>
+          <li>Ley completa explicada (37 páginas)</li>
+          <li>Tablas de jornada, retribuciones, situaciones, sanciones y prescripción</li>
+          <li><b>95 preguntas tipo test</b> con solución y artículo</li>
+          <li>32 fichas de repaso</li>
+          <li>Interinos y sustitutos según el <b>RDL 12/2022</b></li>
+          <li><b>Actualización gratis al nuevo Estatuto Marco</b> cuando se publique</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley55">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-55-2003.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h3>Pack legislación sanitaria completa</h3>
+        <p class="que">Todas las leyes comunes de las OPE de los servicios de salud</p>
+        <div class="precio proximo">Próximamente</div>
+        <ul>
+          <li>Ley 41/2002 y Ley 55/2003</li>
+          <li>Ley 14/1986, General de Sanidad</li>
+          <li>Ley 44/2003, de ordenación de las profesiones sanitarias</li>
+          <li>Ley 16/2003, de cohesión y calidad del SNS</li>
+          <li>Prevención de riesgos laborales, igualdad y protección de datos</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton hueco" href="#muestras">Empieza con las muestras</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="muestras" style="background: var(--claro);">
+  <div class="envoltorio">
+    <h2>Pruébalo gratis</h2>
+    <p class="sub">Cada muestra trae la tabla de datos y plazos que más caen y 20 preguntas tipo test resueltas. Sin registro.</p>
+    <div class="rejilla">
+      <article class="tarjeta">
+        <h3>Muestra Ley 41/2002</h3>
+        <p class="que">Autonomía del paciente · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-41-2002.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
+        <h3>Muestra Ley 55/2003</h3>
+        <p class="que">Estatuto Marco · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-55-2003.pdf" download>Descargar PDF</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ventajas">
+  <div class="envoltorio">
+    <h2>Por qué LeyClara</h2>
+    <p class="sub">Lo que echábamos de menos en los temarios de siempre.</p>
+    <div class="rejilla">
+      <article class="tarjeta"><h3>Texto oficial y al día</h3><p class="que">Partimos de la versión consolidada del BOE. Muchos temarios siguen con redacciones derogadas; aquí cada reforma está incluida y señalada.</p></article>
+      <article class="tarjeta"><h3>Cada solución, con su artículo</h3><p class="que">No basta con saber la letra: cada respuesta dice el artículo exacto para que lo repases en segundos.</p></article>
+      <article class="tarjeta"><h3>Lo que más cae, en tablas</h3><p class="que">Plazos, porcentajes, edades y sanciones reunidos en tablas para memorizarlos de un vistazo.</p></article>
+      <article class="tarjeta"><h3>Actualizaciones gratis</h3><p class="que">Si la ley cambia, te mandamos la versión nueva sin coste. Con el nuevo Estatuto Marco en el Congreso, esto importa.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="envoltorio">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Sirve para mi oposición?</summary><p>La legislación sanitaria básica (Ley 41/2002, Ley 55/2003, Ley General de Sanidad…) entra en el temario común de prácticamente todas las OPE de los servicios de salud. Revisa el programa de tu convocatoria: si aparece la ley, el pack te sirve.</p></details>
+    <details><summary>¿En qué formato llega?</summary><p>En PDF listo para leer o imprimir y en Word editable para que añadas tus notas. Lo descargas al momento tras la compra.</p></details>
+    <details><summary>¿Qué pasa si la ley cambia?</summary><p>Te enviamos gratis la versión actualizada al mismo correo de la compra. En el Estatuto Marco, la actualización al nuevo texto está incluida en cuanto se publique en el BOE.</p></details>
+    <details><summary>¿Es material oficial?</summary><p>No. Es material de estudio independiente elaborado a partir de la versión consolidada oficial del BOE. No está vinculado a ninguna administración, servicio de salud ni academia.</p></details>
+    <details><summary>¿Puedo devolverlo?</summary><p>Al ser contenido digital de descarga inmediata, al comprar aceptas el inicio de la descarga y renuncias al derecho de desistimiento, como en cualquier producto digital. Por eso tienes las muestras gratis: pruébalo antes.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="envoltorio">
+    <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia.</p>
+    <p>Aviso legal, privacidad y condiciones de venta: se publicarán con la apertura de la tienda.</p>
+  </div>
+</footer>
+</body>
+</html>

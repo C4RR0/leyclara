@@ -123,6 +123,7 @@ def leer(carpeta: str) -> list[dict]:
 
 
 def cabecera_html(titulo, descripcion, ruta, extra_head=""):
+    RAIZ = "../../" if ruta.count("/") == 2 else "../"
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -135,6 +136,9 @@ def cabecera_html(titulo, descripcion, ruta, extra_head=""):
 <meta property="og:description" content="{e(descripcion)}">
 <meta property="og:url" content="{URL}{ruta}">
 <meta property="og:type" content="website">
+<link rel="icon" href="{RAIZ}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{RAIZ}favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="{RAIZ}apple-touch-icon.png">
 <style>{CSS}</style>
 {extra_head}
 </head>

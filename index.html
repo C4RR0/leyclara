@@ -56,6 +56,8 @@
   summary { font-weight: 700; cursor: pointer; }
   details p { margin: 10px 0 0; color: var(--suave); }
   .proximo { color: var(--suave); }
+  .destacada { border: 2px solid var(--azul-2); }
+  #muestras .rejilla { grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); }
   footer { border-top: 1px solid var(--borde); padding: 28px 0 40px; color: var(--suave); font-size: .88rem; }
   @media (max-width: 560px) { nav { display: none; } .boton.hueco { margin: 10px 0 0; } }
 </style>
@@ -72,7 +74,7 @@
   <div class="envoltorio">
     <h1>La legislación sanitaria de tu OPE, lista para estudiar y aprobar.</h1>
     <p>Cada ley explicada artículo por artículo, con esquema, tablas de plazos y cientos de preguntas tipo test resueltas con el artículo exacto. Hecho a partir del texto oficial del BOE y actualizado con todas las reformas.</p>
-    <a class="boton lleno" href="#muestras">Descarga 20 preguntas gratis</a>
+    <a class="boton lleno" href="#muestras">Descarga muestras gratis</a>
     <a class="boton hueco" href="#packs">Ver los packs</a>
     <div class="sellos">
       <span>✔ <b>Actualizado</b> a la última reforma</span>
@@ -88,17 +90,62 @@
     <h2>Packs de estudio</h2>
     <p class="sub">Para OPE de Enfermería, TCAE, Celador, Fisioterapia, Técnicos y Administrativos de los servicios de salud.</p>
     <div class="rejilla">
+      <article class="tarjeta destacada">
+        <span class="etiqueta">El más completo · ahorras más del 50 %</span>
+        <h3>Pack legislación sanitaria completa</h3>
+        <p class="que">Las 8 leyes comunes de las OPE de los servicios de salud en un solo PDF con marcadores</p>
+        <div class="precio">24,90 €<small>57,20 €</small></div>
+        <ul>
+          <li>Leyes 14/1986, 16/2003, 41/2002, 44/2003, 55/2003 y 31/1995</li>
+          <li>LO 3/2007 de igualdad y LO 3/2018 de protección de datos</li>
+          <li><b>734 preguntas tipo test</b> con solución y artículo</li>
+          <li>266 páginas · PDF + Word editable</li>
+          <li>Actualizaciones gratis si alguna ley cambia</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="completo">Muy pronto</a>
+          <a class="boton hueco" href="#muestras">Ver muestras</a>
+        </div>
+      </article>
       <article class="tarjeta">
-        <span class="etiqueta">Precio de lanzamiento</span>
-        <h3>Ley 41/2002</h3>
-        <p class="que">Autonomía del paciente e información y documentación clínica</p>
+        <h3>Ley 14/1986 · General de Sanidad</h3>
+        <p class="que">El Sistema Nacional de Salud y sus estructuras</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada título por título (32 páginas)</li>
+          <li>Artículos derogados señalados (art. 10 y otros)</li>
+          <li><b>85 preguntas tipo test</b> con solución y artículo</li>
+          <li>28 fichas de repaso</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley14">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-14-1986.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h3>Ley 16/2003 · Cohesión y calidad del SNS</h3>
+        <p class="que">Prestaciones, cartera de servicios y Consejo Interterritorial</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada capítulo por capítulo (35 páginas)</li>
+          <li>Reformas de 2018 a 2026 incluidas</li>
+          <li><b>102 preguntas tipo test</b> con solución y artículo</li>
+          <li>28 fichas de repaso</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley16">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-16-2003.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h3>Ley 41/2002 · Autonomía del paciente</h3>
+        <p class="que">Información y documentación clínica</p>
         <div class="precio">6,90 €<small>9,90 €</small></div>
         <ul>
           <li>Ley explicada capítulo por capítulo (29 páginas)</li>
           <li>Las 13 definiciones y los 16 documentos de la historia clínica</li>
           <li><b>62 preguntas tipo test</b> con solución y artículo</li>
           <li>30 fichas de repaso</li>
-          <li>Reformas de 2015, 2018, 2021 y 2023 incluidas</li>
         </ul>
         <div class="acciones">
           <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley41">Muy pronto</a>
@@ -106,17 +153,29 @@
         </div>
       </article>
       <article class="tarjeta">
-        <span class="etiqueta">Precio de lanzamiento</span>
+        <h3>Ley 44/2003 · Profesiones sanitarias</h3>
+        <p class="que">Ejercicio, formación especializada y desarrollo profesional</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada título por título (33 páginas)</li>
+          <li>Foro Profesional, reserva del 7 % y cambios recientes</li>
+          <li><b>100 preguntas tipo test</b> con solución y artículo</li>
+          <li>30 fichas de repaso</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley44">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-44-2003.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
         <h3>Ley 55/2003 · Estatuto Marco</h3>
         <p class="que">Personal estatutario de los servicios de salud</p>
         <div class="precio">8,90 €<small>12,90 €</small></div>
         <ul>
           <li>Ley completa explicada (37 páginas)</li>
-          <li>Tablas de jornada, retribuciones, situaciones, sanciones y prescripción</li>
-          <li><b>95 preguntas tipo test</b> con solución y artículo</li>
-          <li>32 fichas de repaso</li>
           <li>Interinos y sustitutos según el <b>RDL 12/2022</b></li>
-          <li><b>Actualización gratis al nuevo Estatuto Marco</b> cuando se publique</li>
+          <li><b>95 preguntas tipo test</b> con solución y artículo</li>
+          <li><b>Actualización gratis al nuevo Estatuto Marco</b></li>
         </ul>
         <div class="acciones">
           <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley55">Muy pronto</a>
@@ -124,18 +183,48 @@
         </div>
       </article>
       <article class="tarjeta">
-        <h3>Pack legislación sanitaria completa</h3>
-        <p class="que">Todas las leyes comunes de las OPE de los servicios de salud</p>
-        <div class="precio proximo">Próximamente</div>
+        <h3>Ley 31/1995 · Prevención de Riesgos Laborales</h3>
+        <p class="que">Derechos, servicios de prevención y participación</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
         <ul>
-          <li>Ley 41/2002 y Ley 55/2003</li>
-          <li>Ley 14/1986, General de Sanidad</li>
-          <li>Ley 44/2003, de ordenación de las profesiones sanitarias</li>
-          <li>Ley 16/2003, de cohesión y calidad del SNS</li>
-          <li>Prevención de riesgos laborales, igualdad y protección de datos</li>
+          <li>Ley explicada capítulo por capítulo (36 páginas)</li>
+          <li>Tabla de Delegados de Prevención y plazos</li>
+          <li><b>102 preguntas tipo test</b> con solución y artículo</li>
+          <li>26 fichas de repaso</li>
         </ul>
         <div class="acciones">
-          <a class="boton hueco" href="#muestras">Empieza con las muestras</a>
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="ley31">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-ley-31-1995.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h3>LO 3/2007 · Igualdad</h3>
+        <p class="que">Igualdad efectiva de mujeres y hombres</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada con tablas de conceptos (29 páginas)</li>
+          <li>Todo lo que reforma en la normativa sanitaria</li>
+          <li><b>90 preguntas tipo test</b> con solución y artículo</li>
+          <li>20 fichas de repaso</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="lo3_2007">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-lo-3-2007.pdf" download>Muestra gratis</a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <h3>LO 3/2018 · Protección de datos</h3>
+        <p class="que">Protección de datos y derechos digitales (con lo esencial del RGPD)</p>
+        <div class="precio">6,90 €<small>9,90 €</small></div>
+        <ul>
+          <li>Ley explicada título por título (33 páginas)</li>
+          <li>Datos de salud, historia clínica y DPD en centros sanitarios</li>
+          <li><b>98 preguntas tipo test</b> con solución y artículo</li>
+          <li>25 fichas de repaso</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton lleno" href="#" aria-disabled="true" data-producto="lo3_2018">Muy pronto</a>
+          <a class="boton hueco" href="muestras/muestra-lo-3-2018.pdf" download>Muestra gratis</a>
         </div>
       </article>
     </div>
@@ -148,14 +237,44 @@
     <p class="sub">Cada muestra trae la tabla de datos y plazos que más caen y 20 preguntas tipo test resueltas. Sin registro.</p>
     <div class="rejilla">
       <article class="tarjeta">
+        <h3>Muestra Ley 14/1986</h3>
+        <p class="que">General de Sanidad · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-14-1986.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
+        <h3>Muestra Ley 16/2003</h3>
+        <p class="que">Cohesión y calidad del SNS · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-16-2003.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
         <h3>Muestra Ley 41/2002</h3>
         <p class="que">Autonomía del paciente · 20 preguntas + tabla de plazos</p>
         <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-41-2002.pdf" download>Descargar PDF</a></div>
       </article>
       <article class="tarjeta">
+        <h3>Muestra Ley 44/2003</h3>
+        <p class="que">Profesiones sanitarias · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-44-2003.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
         <h3>Muestra Ley 55/2003</h3>
         <p class="que">Estatuto Marco · 20 preguntas + tabla de plazos</p>
         <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-55-2003.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
+        <h3>Muestra Ley 31/1995</h3>
+        <p class="que">Prevención de Riesgos Laborales · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-ley-31-1995.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
+        <h3>Muestra LO 3/2007</h3>
+        <p class="que">Igualdad · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-lo-3-2007.pdf" download>Descargar PDF</a></div>
+      </article>
+      <article class="tarjeta">
+        <h3>Muestra LO 3/2018</h3>
+        <p class="que">Protección de datos · 20 preguntas + tabla de plazos</p>
+        <div class="acciones"><a class="boton lleno" href="muestras/muestra-lo-3-2018.pdf" download>Descargar PDF</a></div>
       </article>
     </div>
   </div>

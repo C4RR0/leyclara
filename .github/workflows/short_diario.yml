@@ -1,0 +1,59 @@
+name: Short diario de test
+
+# Una pregunta tipo test al día en el canal de YouTube de LeyClara.
+# Sin el secret YOUTUBE_TOKEN_LEYCLARA_JSON solo genera el vídeo (no sube nada).
+on:
+  schedule:
+    - cron: "0 17 * * *"   # 19:00 en España (horario de verano), cuando estudian los opositores
+  workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Solo generar el vídeo, sin subirlo"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: short-diario
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.2.8 pillow google-api-python-client google-auth
+      - name: Token del canal
+        env:
+          TOKEN: ${{ secrets.YOUTUBE_TOKEN_LEYCLARA_JSON }}
+        run: |
+          if [ -n "$TOKEN" ]; then printf '%s' "$TOKEN" > shorts/token_leyclara.json; fi
+      - name: Generar y publicar
+        working-directory: shorts
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.prueba }}" = "true" ]; then
+            python publicar_short.py --prueba
+          else
+            python publicar_short.py
+          fi
+      - name: Guardar vídeo de muestra
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: short
+          path: shorts/salidas/*.mp4
+          retention-days: 3
+      - name: Guardar estado de la cola
+        run: |
+          rm -f shorts/token_leyclara.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add shorts/cola.json
+          git diff --cached --quiet || (git commit -m "Short publicado (cola de test)" && git push)

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de legislación sanitaria para oposiciones: gratis y con solución | LeyClara</title>
+<meta name="description" content="Test online gratis de las leyes del temario común de las OPE de sanidad: Estatuto Marco, Ley 41/2002, Ley General de Sanidad, prevención de riesgos, igualdad y protección de datos. Con el artículo de cada respuesta.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/test/">
+<meta property="og:title" content="Test de legislación sanitaria para oposiciones: gratis y con solución | LeyClara">
+<meta property="og:description" content="Test online gratis de las leyes del temario común de las OPE de sanidad: Estatuto Marco, Ley 41/2002, Ley General de Sanidad, prevención de riesgos, igualdad y protección de datos. Con el artículo de cada respuesta.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/test/">
+<meta property="og:type" content="website">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235;
+            --ok-fondo:#123524; --mal-fondo:#3a1715; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .cabecera { padding: 36px 0 12px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 8px; }
+  .marcador { position: sticky; top: 0; z-index: 5; background: var(--fondo); border-bottom: 1px solid var(--borde);
+              padding: 10px 0; font-weight: 700; }
+  .marcador .envoltorio { display: flex; justify-content: space-between; gap: 12px; }
+  .pregunta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; margin: 18px 0; background: var(--tarjeta); }
+  .pregunta h2 { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.4; }
+  .pregunta h2 b { color: var(--azul-2); margin-right: 6px; }
+  .opciones { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .opciones button { width: 100%; text-align: left; font: inherit; color: inherit; background: var(--claro);
+                     border: 2px solid transparent; border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+  .opciones button:hover:not(:disabled) { border-color: var(--azul-2); }
+  .opciones button:disabled { cursor: default; }
+  .opciones button.bien { background: var(--ok-fondo); border-color: var(--ok); font-weight: 700; }
+  .opciones button.mal { background: var(--mal-fondo); border-color: var(--mal); }
+  .opciones .letra { font-weight: 800; margin-right: 8px; color: var(--azul-2); }
+  .solucion { display: none; margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--ok); background: var(--claro);
+              border-radius: 0 8px 8px 0; font-size: .95rem; }
+  .pregunta.hecha .solucion { display: block; }
+  .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .final h2 { margin: 0 0 8px; }
+  .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); margin: 6px 8px 0 0; }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
+             text-decoration: none; font-size: .92rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
+  .tarjeta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: var(--tarjeta); text-decoration: none; display: block; }
+  .tarjeta h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .93rem; }
+  footer { border-top: 1px solid var(--borde); padding: 24px 0 36px; color: var(--suave); font-size: .86rem; margin-top: 30px; }
+  @media (max-width: 520px) { header nav { display: none; } }
+</style>
+
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../">Ley<span>Clara</span></a>
+  <nav><a href="./">Todos los test</a><a href="../#packs">Packs</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Test de legislación sanitaria para oposiciones</h1>
+  <p class="intro">Test online gratis de las leyes que entran en el temario común de casi todas las OPE de los servicios de salud: TCAE, celador, enfermería, técnicos y personal de gestión. Cada respuesta indica el artículo exacto. Sin registro.</p>
+</div></section>
+<main class="envoltorio"><div class="rejilla">
+<a class="tarjeta" href="ley-55-2003/"><h2>Test Ley 55/2003</h2><p>Estatuto Marco · 20 preguntas</p></a>
+<a class="tarjeta" href="ley-41-2002/"><h2>Test Ley 41/2002</h2><p>Autonomía del paciente · 20 preguntas</p></a>
+<a class="tarjeta" href="ley-14-1986/"><h2>Test Ley 14/1986</h2><p>General de Sanidad · 20 preguntas</p></a>
+<a class="tarjeta" href="ley-44-2003/"><h2>Test Ley 44/2003</h2><p>Ordenación de las profesiones sanitarias · 20 preguntas</p></a>
+<a class="tarjeta" href="ley-16-2003/"><h2>Test Ley 16/2003</h2><p>Cohesión y calidad del SNS · 20 preguntas</p></a>
+<a class="tarjeta" href="ley-31-1995/"><h2>Test Ley 31/1995</h2><p>Prevención de riesgos laborales · 20 preguntas</p></a>
+<a class="tarjeta" href="lo-3-2007/"><h2>Test LO 3/2007</h2><p>Igualdad efectiva de mujeres y hombres · 20 preguntas</p></a>
+<a class="tarjeta" href="lo-3-2018/"><h2>Test LO 3/2018</h2><p>Protección de datos · 20 preguntas</p></a>
+</div></main>
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+</div></footer>
+<script>
+(function () {
+  function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
+  window.leyclaraContar = contar;
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  contar('visita'); if (g) contar('visita-' + g);
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://c4rr0.github.io/leyclara/sitemap.xml

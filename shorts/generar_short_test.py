@@ -32,6 +32,8 @@ AZUL, AZUL_OSCURO, ACENTO, OK = "#1f4e79", "#0f2a44", "#ffd400", "#1e7d4f"
 BLANCO, GRIS = "#ffffff", "#9fb3c8"
 VOZ = "es-ES-AlvaroNeural"
 WEB = "c4rr0.github.io/leyclara"
+SLUGS = {"ley14": "ley-14-1986", "ley16": "ley-16-2003", "ley31": "ley-31-1995", "ley41": "ley-41-2002",
+         "ley44": "ley-44-2003", "ley55": "ley-55-2003", "lo3_2007": "lo-3-2007", "lo3_2018": "lo-3-2018"}
 
 NOMBRES = {
     "ley14": ("Ley 14/1986", "General de Sanidad"),
@@ -221,7 +223,8 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
     descripcion = (f"Pregunta tipo test de la {ley[0]} ({ley[1]}), de las que caen en las OPE de los servicios "
                    f"de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…).\n\n"
                    f"Respuesta: {letra}) {q['opciones'][q['correcta']]}\n{q['explicacion']}\n\n"
-                   f"Más tests gratis, con el artículo de cada respuesta: https://{WEB}/?g=yt#muestras\n\n"
+                   f"Haz el test completo de la {ley[0]} gratis (20 preguntas, con el artículo de cada respuesta): "
+                   f"https://{WEB}/test/{SLUGS[clave]}/?g=yt\n\n"
                    "#oposiciones #opesanidad #tcae #celador #enfermeria #legislacionsanitaria")
     return {"titulo": titulo, "descripcion": descripcion, "video": str(salida),
             "duracion": round(sum(e[2] for e in escenas), 1)}

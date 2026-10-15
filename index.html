@@ -307,8 +307,29 @@
 <footer>
   <div class="envoltorio">
     <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia.</p>
-    <p>Pago seguro y entrega inmediata a través de Gumroad, que actúa como vendedor y gestiona el pago y los impuestos. Contacto y condiciones de compra en la página de cada producto.</p>
+    <p>Pago seguro y entrega inmediata a través de Gumroad, que actúa como vendedor y gestiona el pago y los impuestos. Contacto y condiciones de compra en la página de cada producto. Contamos las visitas de forma anónima y sin cookies.</p>
   </div>
 </footer>
+<script>
+// Contadores anónimos y sin cookies (hits.sh): visitas, descargas de muestras y clics en Comprar.
+// Si el enlace trae ?g=<grupo> (p. ej. ?g=sacyl), la visita se cuenta también para ese grupo.
+(function () {
+  function contar(nombre) {
+    try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + nombre + '.svg'; } catch (e) {}
+  }
+  contar('visita');
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  if (g) contar('visita-' + g);
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a');
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    var m = h.match(/^muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/);
+    if (m) contar('comprar-' + m[1]);
+  });
+})();
+</script>
 </body>
 </html>

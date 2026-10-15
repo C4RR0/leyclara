@@ -4,7 +4,7 @@ name: Short diario de test
 # Sin el secret YOUTUBE_TOKEN_LEYCLARA_JSON solo genera el vídeo (no sube nada).
 on:
   schedule:
-    - cron: "0 17 * * *"   # 19:00 en España (horario de verano), cuando estudian los opositores
+    - cron: "0 18 * * *"   # 19:00 en España en horario de invierno (desde el 25/10; antes, 20:00)
   workflow_dispatch:
     inputs:
       prueba:

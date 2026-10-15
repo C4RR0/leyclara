@@ -82,41 +82,41 @@ def banner():
 
     # Zona segura (todas las pantallas): 1546x423 centrada
     cx, cy = W // 2, H // 2
-    f_marca = fuente(150)
+    f_marca = fuente(140)
     w1, w2 = d.textlength("Ley", font=f_marca), d.textlength("Clara", font=f_marca)
     x = cx - (w1 + w2) / 2
-    d.text((x, cy - 70), "Ley", font=f_marca, fill=BLANCO, anchor="ls")
-    d.text((x + w1, cy - 70), "Clara", font=f_marca, fill=ACENTO, anchor="ls")
-    d.text((cx, cy - 5), "Una pregunta de examen cada día", font=fuente(62), fill=BLANCO, anchor="mm")
-    d.text((cx, cy + 70), "Legislación sanitaria para las OPE · con el artículo de cada respuesta",
-           font=fuente(40, False), fill=GRIS, anchor="mm")
+    d.text((x, cy - 55), "Ley", font=f_marca, fill=BLANCO, anchor="ls")
+    d.text((x + w1, cy - 55), "Clara", font=f_marca, fill=ACENTO, anchor="ls")
+    d.text((cx, cy + 10), "Una pregunta de examen cada día", font=fuente(58), fill=BLANCO, anchor="mm")
+    d.text((cx, cy + 78), "Legislación sanitaria de las OPE, con el artículo de cada respuesta",
+           font=fuente(38, False), fill=GRIS, anchor="mm")
 
-    # Fuera de la zona segura (solo escritorio/TV): tarjeta de pregunta a la derecha y leyes a la izquierda
-    tx, ty = cx + 830, cy - 230
-    d.rounded_rectangle((tx, ty, tx + 420, ty + 460), radius=30, fill=AZUL_OSCURO, outline=ACENTO, width=4)
-    d.text((tx + 30, ty + 30), "PREGUNTA DE EXAMEN", font=fuente(30), fill=ACENTO)
+    # Fuera de la zona segura (solo escritorio/TV), pero dentro de la franja visible de 423 px de alto:
+    # tarjeta de pregunta a la derecha y leyes a la izquierda.
+    tx, ty = cx + 813, cy - 190
+    d.rounded_rectangle((tx, ty, tx + 400, ty + 380), radius=28, fill=AZUL_OSCURO, outline=ACENTO, width=4)
+    d.text((tx + 28, ty + 22), "PREGUNTA DE EXAMEN", font=fuente(28), fill=ACENTO)
     for i, (letra, ok) in enumerate([("A", False), ("B", True), ("C", False), ("D", False)]):
-        y = ty + 95 + i * 88
-        d.rounded_rectangle((tx + 30, y, tx + 390, y + 70), radius=16, fill=OK if ok else AZUL)
-        d.text((tx + 55, y + 35), letra, font=fuente(36), fill=ACENTO if not ok else BLANCO, anchor="lm")
-        d.rounded_rectangle((tx + 105, y + 26, tx + (330 if ok else 290), y + 44), radius=9,
+        y = ty + 74 + i * 74
+        d.rounded_rectangle((tx + 28, y, tx + 372, y + 60), radius=14, fill=OK if ok else AZUL)
+        d.text((tx + 52, y + 30), letra, font=fuente(32), fill=ACENTO if not ok else BLANCO, anchor="lm")
+        d.rounded_rectangle((tx + 95, y + 22, tx + (310 if ok else 270), y + 38), radius=8,
                             fill="#d9e6f2" if ok else "#5a7a9a")
         if ok:
-            check(d, tx + 360, y + 35, 40, BLANCO, 7)
+            check(d, tx + 342, y + 30, 36, BLANCO, 6)
 
-    leyes = ["Estatuto Marco", "Ley 41/2002", "Ley General de Sanidad", "Prevención de riesgos",
-             "Igualdad", "Protección de datos"]
-    f_ley = fuente(34)
-    lx, ly = cx - 1250, cy - 250
-    for i, ley in enumerate(leyes):
-        y = ly + i * 84
-        w = d.textlength(ley, font=f_ley) + 60
-        d.rounded_rectangle((lx, y, lx + w, y + 62), radius=31, fill="#1d3f62", outline="#b39a1a", width=3)
-        d.text((lx + 30, y + 31), ley, font=f_ley, fill=BLANCO, anchor="lm")
+    # Leyes: una columna a la izquierda, fuera de la zona del móvil (x < cx - 773).
+    f_ley = fuente(32)
+    for fila, ley in enumerate(["Estatuto Marco", "Autonomía del paciente", "Protección de datos"]):
+        y = cy - 150 + fila * 104
+        w = d.textlength(ley, font=f_ley) + 56
+        lx = cx - 773 - 40 - w
+        d.rounded_rectangle((lx, y, lx + w, y + 60), radius=30, fill="#1d3f62", outline="#b39a1a", width=3)
+        d.text((lx + 28, y + 30), ley, font=f_ley, fill=BLANCO, anchor="lm")
 
     # Franja inferior dentro de la zona segura
-    d.rounded_rectangle((cx - 330, cy + 125, cx + 330, cy + 185), radius=30, fill=ACENTO)
-    d.text((cx, cy + 155), "NUEVA PREGUNTA CADA DÍA · 19:00", font=fuente(34), fill=NOCHE, anchor="mm")
+    d.rounded_rectangle((cx - 330, cy + 130, cx + 330, cy + 188), radius=30, fill=ACENTO)
+    d.text((cx, cy + 159), "NUEVA PREGUNTA CADA DÍA · 19:00", font=fuente(34), fill=NOCHE, anchor="mm")
     im.convert("RGB").save(AQUI / "banner.png")
 
 

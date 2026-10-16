@@ -148,7 +148,7 @@ def cabecera_html(titulo, descripcion, ruta, extra_head=""):
 <body>
 <header><div class="envoltorio">
   <a class="marca" href="{'../../' if ruta.count('/') == 2 else '../'}">Ley<span>Clara</span></a>
-  <nav><a href="{'../' if ruta.count('/') == 2 else './'}">Todos los test</a><a href="{'../../' if ruta.count('/') == 2 else '../'}#packs">Packs</a></nav>
+  <nav><a href="{RAIZ}test/">Todos los test</a><a href="{RAIZ}resumen/">Resúmenes</a><a href="{RAIZ}#packs">Packs</a></nav>
 </div></header>
 """
 
@@ -195,6 +195,7 @@ def pagina_ley(ley, todas):
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 8 leyes · 24,90 €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
+  <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
 </section>
 <h2>Más test de legislación sanitaria</h2>
@@ -258,8 +259,126 @@ def portada(todas):
     return ruta
 
 
+def md_a_html(md: str) -> str:
+    """Markdown sencillo de los pack.md (### títulos, listas, tablas, citas, ==resaltado==, **negrita**) a HTML."""
+    def linea(t):
+        t = e(t)
+        t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+        return re.sub(r"==(.+?)==", r'<mark>\1</mark>', t)
+    out, lista, tabla = [], None, []
+
+    def cerrar():
+        nonlocal lista, tabla
+        if lista:
+            out.append(f"</{lista}>")
+            lista = None
+        if tabla:
+            filas = [f for f in tabla if not re.match(r"^\|[\s\-|]+\|$", f)]
+            celdas = [[c.strip() for c in f.strip("|").split("|")] for f in filas]
+            out.append('<div class="tabla"><table><thead><tr>' + "".join(f"<th>{linea(c)}</th>" for c in celdas[0])
+                       + "</tr></thead><tbody>" + "".join("<tr>" + "".join(f"<td>{linea(c)}</td>" for c in f) + "</tr>"
+                                                          for f in celdas[1:]) + "</tbody></table></div>")
+            tabla = []
+    for l in md.splitlines():
+        s = l.strip()
+        if s.startswith("|"):
+            if lista:
+                out.append(f"</{lista}>")
+                lista = None
+            tabla.append(s)
+            continue
+        if tabla:
+            cerrar()
+        m_ul, m_ol = re.match(r"^\s*- (.*)", l), re.match(r"^\s*\d+\. (.*)", l)
+        if m_ul or m_ol:
+            tipo = "ul" if m_ul else "ol"
+            if lista != tipo:
+                cerrar()
+                out.append(f"<{tipo}>")
+                lista = tipo
+            out.append(f"<li>{linea((m_ul or m_ol).group(1))}</li>")
+            continue
+        cerrar()
+        if not s:
+            continue
+        if s.startswith("### "):
+            out.append(f"<h3>{linea(s[4:].capitalize())}</h3>")
+        elif s.startswith("> "):
+            out.append(f'<p class="clave">{linea(s[2:])}</p>')
+        else:
+            out.append(f"<p>{linea(s)}</p>")
+    cerrar()
+    return "\n".join(out)
+
+
+CSS_RESUMEN = """<style>
+  .resumen h3 { margin: 28px 0 10px; font-size: 1.15rem; color: var(--azul-2); }
+  .resumen ul, .resumen ol { padding-left: 22px; } .resumen li { margin: 4px 0; }
+  .tabla { overflow-x: auto; margin: 12px 0; } table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  th, td { border: 1px solid var(--borde); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--claro); }
+  .clave { border-left: 4px solid var(--acento); background: var(--claro); padding: 10px 14px; border-radius: 0 8px 8px 0; font-weight: 600; }
+  mark { background: #fff3b0; color: #1b2430; padding: 2px 4px; border-radius: 4px; }
+</style>"""
+
+
+def pagina_resumen(ley, todas):
+    carpeta, slug, corto, tema, completo, precio, n_pack = ley
+    md = (WEB.parent / carpeta / "pack.md").read_text(encoding="utf-8")
+    vistazo = md.split("\n## 2.")[0].split("\n", 1)[1]           # sección 1: ficha, estructura, cambios
+    vistazo = re.split(r"(?m)^### QUÉ PIDE EL TEMARIO", vistazo)[0] if "QUÉ PIDE" in vistazo else vistazo
+    datos = re.split(r"(?m)^## \d+\. DATOS Y PLAZOS QUE MÁS CAEN\s*$", md)[1].split("\n## ")[0]
+    ruta = f"resumen/{slug}/"
+    titulo = f"Resumen {corto} ({tema}): esquema y datos clave para oposiciones | LeyClara"
+    descripcion = (f"Resumen gratis de la {completo}: ficha, estructura, reformas recientes y tabla de datos y plazos "
+                   f"que más caen en las oposiciones, con el artículo de cada dato.")
+    h = [cabecera_html(titulo, descripcion, ruta, CSS_RESUMEN)]
+    h.append(f"""<section class="cabecera"><div class="envoltorio">
+  <h1>Resumen de la {e(corto)}: {e(tema)}</h1>
+  <p class="intro">{e(completo)}. Lo esencial para la oposición: ficha, estructura, cambios recientes y los datos y plazos que más caen, con su artículo.</p>
+</div></section>
+<main class="envoltorio resumen">""")
+    h.append(md_a_html(vistazo))
+    h.append(f"<h2>Datos y plazos que más caen</h2>\n{md_a_html(datos)}")
+    h.append(f"""<section class="final">
+  <h2>¿Te lo sabes? Compruébalo</h2>
+  <p>Haz el <b>test online gratis de la {e(corto)}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack completo</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
+  <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
+  <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
+  <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
+</section>""")
+    otros = "".join(f'<li><a href="../{l[1]}/">Resumen {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
+    h.append(f'<h2>Más resúmenes</h2>\n<ul class="otros">{otros}</ul>\n</main>')
+    h.append(PIE + CONTADOR + "\n</body>\n</html>\n")
+    destino = WEB / ruta
+    destino.mkdir(parents=True, exist_ok=True)
+    (destino / "index.html").write_text("\n".join(h), encoding="utf-8")
+    return ruta
+
+
+def portada_resumenes(todas):
+    ruta = "resumen/"
+    titulo = "Resúmenes de legislación sanitaria para oposiciones: esquemas y datos clave | LeyClara"
+    descripcion = ("Resúmenes gratis de las leyes del temario común de las OPE de sanidad: ficha, estructura, reformas "
+                   "y tabla de datos y plazos que más caen, con el artículo exacto.")
+    h = [cabecera_html(titulo, descripcion, ruta)]
+    h.append("""<section class="cabecera"><div class="envoltorio">
+  <h1>Resúmenes de legislación sanitaria</h1>
+  <p class="intro">Lo esencial de cada ley del temario común de las OPE de los servicios de salud: ficha, estructura, cambios recientes y los datos y plazos que más caen. Gratis y sin registro.</p>
+</div></section>
+<main class="envoltorio"><div class="rejilla">""")
+    for l in todas:
+        h.append(f'<a class="tarjeta" href="{l[1]}/"><h2>Resumen {e(l[2])}</h2><p>{e(l[3][0].upper() + l[3][1:])}</p></a>')
+    h.append("</div></main>")
+    h.append(PIE + CONTADOR + "\n</body>\n</html>\n")
+    (WEB / ruta).mkdir(exist_ok=True)
+    (WEB / ruta / "index.html").write_text("\n".join(h), encoding="utf-8")
+    return ruta
+
+
 if __name__ == "__main__":
-    rutas = ["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
+    rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
+             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES])
     mapa = "\n".join(f"  <url><loc>{URL}{r}</loc></url>" for r in rutas)
     (WEB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

@@ -193,7 +193,7 @@ def pagina_ley(ley, todas):
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 8 leyes · 24,90 €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
-  <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
+  <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
 </section>
 <h2>Más test de legislación sanitaria</h2>
 <ul class="otros">{otros}</ul>

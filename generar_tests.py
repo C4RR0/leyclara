@@ -30,6 +30,8 @@ LEYES = [  # carpeta, slug, nombre corto, tema, nombre completo, precio, nº de 
      "Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres", "6,90", 90),
     ("lo3_2018", "lo-3-2018", "LO 3/2018", "protección de datos",
      "Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales", "6,90", 98),
+    ("ley2_1998_and", "ley-2-1998-andalucia", "Ley 2/1998", "Salud de Andalucía",
+     "Ley 2/1998, de 15 de junio, de Salud de Andalucía", "6,90", 102),
 ]
 
 CSS = """

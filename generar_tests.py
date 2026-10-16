@@ -32,7 +32,21 @@ LEYES = [  # carpeta, slug, nombre corto, tema, nombre completo, precio, nº de 
      "Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales", "6,90", 98),
     ("ley2_1998_and", "ley-2-1998-andalucia", "Ley 2/1998", "Salud de Andalucía",
      "Ley 2/1998, de 15 de junio, de Salud de Andalucía", "6,90", 102),
+    ("and_igualdad", "leyes-12-13-2007-andalucia", "Leyes 12 y 13/2007", "igualdad y violencia de género en Andalucía",
+     "Ley 12/2007, para la promoción de la igualdad de género en Andalucía, y Ley 13/2007, de medidas de prevención "
+     "y protección integral contra la violencia de género (ambas de 26 de noviembre)", "6,90", 90),
+    ("ley53", "ley-53-1984", "Ley 53/1984", "incompatibilidades",
+     "Ley 53/1984, de 26 de diciembre, de Incompatibilidades del personal al servicio de las Administraciones Públicas", "6,90", 80),
 ]
+
+# Leyes autonómicas: solo entran en la OPE de su servicio de salud
+AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
+          "and_igualdad": "la OPE del Servicio Andaluz de Salud (SAS)"}
+
+
+def la(corto):
+    """Artículo para el nombre corto: «la Ley 55/2003», «las Leyes 12 y 13/2007»."""
+    return "las " + corto if corto.startswith("Leyes") else "la " + corto
 
 CSS = """
   :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
@@ -164,7 +178,7 @@ def pagina_ley(ley, todas):
     qs = leer(carpeta)
     ruta = f"test/{slug}/"
     titulo = f"Test {corto} ({tema}): {len(qs)} preguntas con solución | LeyClara"
-    descripcion = (f"Test online gratis de la {corto} de {tema} para oposiciones sanitarias (TCAE, celador, "
+    descripcion = (f"Test online gratis de {la(corto)} de {tema} para oposiciones sanitarias (TCAE, celador, "
                    f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
     datos = {"ley": slug, "correctas": [q["correcta"] for q in qs]}
     ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto} ({tema})",
@@ -176,8 +190,8 @@ def pagina_ley(ley, todas):
     h = [cabecera_html(titulo, descripcion, ruta,
                        f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
-  <h1>Test de la {e(corto)} ({e(tema)})</h1>
-  <p class="intro">{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>, una de las leyes del temario común de las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…). Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
+  <h1>Test de {e(la(corto))} ({e(tema)})</h1>
+  <p class="intro">{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
   <p class="intro">Texto actualizado con la versión consolidada del BOE.</p>
 </div></section>
 <div class="marcador"><div class="envoltorio"><span>Aciertos: <span id="aciertos">0</span> / <span id="respondidas">0</span></span><span>{len(qs)} preguntas</span></div></div>
@@ -191,7 +205,7 @@ def pagina_ley(ley, todas):
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
-  <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de la {e(corto)}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 8 leyes · 24,90 €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
@@ -334,7 +348,7 @@ def pagina_resumen(ley, todas):
                    f"que más caen en las oposiciones, con el artículo de cada dato.")
     h = [cabecera_html(titulo, descripcion, ruta, CSS_RESUMEN)]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
-  <h1>Resumen de la {e(corto)}: {e(tema)}</h1>
+  <h1>Resumen de {e(la(corto))}: {e(tema)}</h1>
   <p class="intro">{e(completo)}. Lo esencial para la oposición: ficha, estructura, cambios recientes y los datos y plazos que más caen, con su artículo.</p>
 </div></section>
 <main class="envoltorio resumen">""")
@@ -342,7 +356,7 @@ def pagina_resumen(ley, todas):
     h.append(f"<h2>Datos y plazos que más caen</h2>\n{md_a_html(datos)}")
     h.append(f"""<section class="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
-  <p>Haz el <b>test online gratis de la {e(corto)}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack completo</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
+  <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack completo</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
   <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
   <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>

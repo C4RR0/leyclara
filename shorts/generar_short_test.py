@@ -34,7 +34,8 @@ VOZ = "es-ES-AlvaroNeural"
 WEB = "c4rr0.github.io/leyclara"
 SLUGS = {"ley14": "ley-14-1986", "ley16": "ley-16-2003", "ley31": "ley-31-1995", "ley41": "ley-41-2002",
          "ley44": "ley-44-2003", "ley55": "ley-55-2003", "lo3_2007": "lo-3-2007", "lo3_2018": "lo-3-2018",
-         "ley2_1998_and": "ley-2-1998-andalucia"}
+         "ley2_1998_and": "ley-2-1998-andalucia", "and_igualdad": "leyes-12-13-2007-andalucia",
+         "ley53": "ley-53-1984"}
 
 NOMBRES = {
     "ley14": ("Ley 14/1986", "General de Sanidad"),
@@ -46,10 +47,27 @@ NOMBRES = {
     "lo3_2007": ("LO 3/2007", "Igualdad efectiva de mujeres y hombres"),
     "lo3_2018": ("LO 3/2018", "Protección de datos"),
     "ley2_1998_and": ("Ley 2/1998", "Salud de Andalucía"),
+    "and_igualdad": ("Leyes 12 y 13/2007", "Igualdad y violencia de género"),
+    "ley53": ("Ley 53/1984", "Incompatibilidades"),
 }
 
-AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)"}
-ETIQUETAS = {"ley2_1998_and": " #sas #opesas"}
+AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
+          "and_igualdad": "la OPE del Servicio Andaluz de Salud (SAS)"}
+ETIQUETAS = {"ley2_1998_and": " #sas #opesas", "and_igualdad": " #sas #opesas"}
+
+def con_articulo(ref: str) -> str:
+    """«el art. 5», «la DF 2.ª», «la Ley 12/2007…», «los arts. 3 y 4»."""
+    primera = ref.split()[0] if ref else ""
+    if primera in ("Arts.", "arts."):
+        art = "los"
+    elif primera in ("Leyes",):
+        art = "las"
+    elif primera in ("DA", "DF", "DT", "DD", "Disposición", "Exposición", "LO", "Ley"):
+        art = "la"
+    else:
+        art = "el"
+    return f"{art} {ref}"
+
 
 FUENTES_NEGRITA = ["C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arialbd.ttf",
                    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"]
@@ -149,7 +167,11 @@ def fotograma(q: dict, ley: tuple, modo: str, cuenta: int = 0) -> Image.Image:
         d.ellipse((ANCHO // 2 - 110, y + 30, ANCHO // 2 + 110, y + 250), fill=ACENTO)
         d.text((ANCHO // 2, y + 140), str(cuenta), font=fuente(150), fill=AZUL_OSCURO, anchor="mm")
     elif modo == "respuesta" and q["articulo"]:
-        d.text((ANCHO // 2, y + 70), f"Lo dice el {q['articulo']}", font=fuente(54), fill=ACENTO, anchor="mm")
+        rotulo = f"Lo dice {con_articulo(q['articulo'].split(' (')[0])}"   # en pantalla, sin el paréntesis
+        tam = 54
+        while tam > 34 and fuente(tam).getlength(rotulo) > ANCHO - 120:
+            tam -= 2
+        d.text((ANCHO // 2, y + 70), rotulo, font=fuente(tam), fill=ACENTO, anchor="mm")
     else:
         d.text((ANCHO // 2, y + 70), "¿Cuál es la correcta?", font=fuente(54), fill=ACENTO, anchor="mm")
     return im
@@ -193,7 +215,7 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
                   + " ".join(f"{'ABCD'[i]}: {op}." for i, op in enumerate(q["opciones"])))
     letra = "ABCD"[q["correcta"]]
     texto_resp = (f"La correcta es la {letra}: {q['opciones'][q['correcta']]}. "
-                  + (f"Lo dice el {q['articulo']}. " if q["articulo"] else ""))
+                  + (f"Lo dice {con_articulo(q['articulo'])}. " if q["articulo"] else ""))
     texto_cierre = "¿La sabías? Sígueme y cada día tienes una pregunta nueva."
     for nombre, texto in [("preg", texto_preg), ("resp", texto_resp), ("cierre", texto_cierre)]:
         asyncio.run(tts(texto, tmp / f"{nombre}.mp3"))
@@ -224,12 +246,15 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
                     str(salida)], check=True)
 
     corto = q["enunciado"] if len(q["enunciado"]) <= 70 else q["enunciado"][:67].rsplit(" ", 1)[0] + "…"
-    titulo = f"{corto} | Test {ley[0]} #oposiciones"[:100]
+    titulo = f"{corto} | Test {ley[0]} #oposiciones"
+    if len(titulo) > 100:                     # YouTube corta a 100: mejor sin hashtag que con medio
+        titulo = f"{corto} | Test {ley[0]}"[:100]
     # Leyes autonómicas: solo entran en la OPE de su servicio de salud
+    la = ("las " if ley[0].startswith("Leyes") else "la ") + ley[0]
     ambito = AMBITO.get(clave, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")
-    descripcion = (f"Pregunta tipo test de la {ley[0]} ({ley[1]}), de las que caen en {ambito}.\n\n"
+    descripcion = (f"Pregunta tipo test de {la} ({ley[1]}), de las que caen en {ambito}.\n\n"
                    f"Respuesta: {letra}) {q['opciones'][q['correcta']]}\n{q['explicacion']}\n\n"
-                   f"Haz el test completo de la {ley[0]} gratis (20 preguntas, con el artículo de cada respuesta): "
+                   f"Haz el test completo de {la} gratis (20 preguntas, con el artículo de cada respuesta): "
                    f"https://{WEB}/test/{SLUGS[clave]}/?g=yt\n\n"
                    "#oposiciones #opesanidad #tcae #celador #enfermeria #legislacionsanitaria"
                    + ETIQUETAS.get(clave, ""))

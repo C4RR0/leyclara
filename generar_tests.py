@@ -72,6 +72,7 @@ CSS = """
   .pregunta.hecha .solucion { display: block; }
   .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
   .final h2 { margin: 0 0 8px; }
+  .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
   .boton.lleno { background: var(--azul); color: #fff; }
@@ -192,6 +193,7 @@ def pagina_ley(ley, todas):
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 8 leyes · 24,90 €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
+  <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
 </section>
 <h2>Más test de legislación sanitaria</h2>
 <ul class="otros">{otros}</ul>

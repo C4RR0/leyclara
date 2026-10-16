@@ -33,7 +33,8 @@ BLANCO, GRIS = "#ffffff", "#9fb3c8"
 VOZ = "es-ES-AlvaroNeural"
 WEB = "c4rr0.github.io/leyclara"
 SLUGS = {"ley14": "ley-14-1986", "ley16": "ley-16-2003", "ley31": "ley-31-1995", "ley41": "ley-41-2002",
-         "ley44": "ley-44-2003", "ley55": "ley-55-2003", "lo3_2007": "lo-3-2007", "lo3_2018": "lo-3-2018"}
+         "ley44": "ley-44-2003", "ley55": "ley-55-2003", "lo3_2007": "lo-3-2007", "lo3_2018": "lo-3-2018",
+         "ley2_1998_and": "ley-2-1998-andalucia"}
 
 NOMBRES = {
     "ley14": ("Ley 14/1986", "General de Sanidad"),
@@ -44,7 +45,11 @@ NOMBRES = {
     "ley55": ("Ley 55/2003", "Estatuto Marco"),
     "lo3_2007": ("LO 3/2007", "Igualdad efectiva de mujeres y hombres"),
     "lo3_2018": ("LO 3/2018", "Protección de datos"),
+    "ley2_1998_and": ("Ley 2/1998", "Salud de Andalucía"),
 }
+
+AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)"}
+ETIQUETAS = {"ley2_1998_and": " #sas #opesas"}
 
 FUENTES_NEGRITA = ["C:/Windows/Fonts/segoeuib.ttf", "C:/Windows/Fonts/arialbd.ttf",
                    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"]
@@ -220,12 +225,14 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
 
     corto = q["enunciado"] if len(q["enunciado"]) <= 70 else q["enunciado"][:67].rsplit(" ", 1)[0] + "…"
     titulo = f"{corto} | Test {ley[0]} #oposiciones"[:100]
-    descripcion = (f"Pregunta tipo test de la {ley[0]} ({ley[1]}), de las que caen en las OPE de los servicios "
-                   f"de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…).\n\n"
+    # Leyes autonómicas: solo entran en la OPE de su servicio de salud
+    ambito = AMBITO.get(clave, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")
+    descripcion = (f"Pregunta tipo test de la {ley[0]} ({ley[1]}), de las que caen en {ambito}.\n\n"
                    f"Respuesta: {letra}) {q['opciones'][q['correcta']]}\n{q['explicacion']}\n\n"
                    f"Haz el test completo de la {ley[0]} gratis (20 preguntas, con el artículo de cada respuesta): "
                    f"https://{WEB}/test/{SLUGS[clave]}/?g=yt\n\n"
-                   "#oposiciones #opesanidad #tcae #celador #enfermeria #legislacionsanitaria")
+                   "#oposiciones #opesanidad #tcae #celador #enfermeria #legislacionsanitaria"
+                   + ETIQUETAS.get(clave, ""))
     return {"titulo": titulo, "descripcion": descripcion, "video": str(salida),
             "duracion": round(sum(e[2] for e in escenas), 1)}
 

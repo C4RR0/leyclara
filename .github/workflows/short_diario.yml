@@ -1,10 +1,14 @@
 name: Short diario de test
 
-# Una pregunta tipo test al día en el canal de YouTube de LeyClara.
+# Tres preguntas tipo test al día en el canal de YouTube de LeyClara.
 # Sin el secret YOUTUBE_TOKEN_LEYCLARA_JSON solo genera el vídeo (no sube nada).
 on:
   schedule:
-    - cron: "0 18 * * *"   # 19:00 en España en horario de invierno (desde el 25/10; antes, 20:00)
+    # 3 al día desde el 16/10/2026 (cola de 160 preguntas, ~53 días). Horas de España en
+    # invierno (desde el 25/10; antes, una hora más): 9:00, 15:00 y 19:00.
+    - cron: "0 8 * * *"
+    - cron: "0 14 * * *"
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       prueba:

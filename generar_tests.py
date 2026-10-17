@@ -47,6 +47,15 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
 LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
 TOTAL_TEST = sum(l[6] for l in LEYES)
 GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
+# leyes que deroga o modifica el proyecto del nuevo Estatuto Marco (página de estatuto_marco.py)
+AFECTADAS_EM = {"ley-55-2003": "la deroga", "ley-16-2003": "la modifica", "ley-44-2003": "la modifica"}
+
+
+def aviso_em(slug, raiz):
+    if slug not in AFECTADAS_EM:
+        return ""
+    return (f'<p class="intro">📌 El proyecto del nuevo Estatuto Marco {AFECTADAS_EM[slug]}, pero aún no está aprobado: '
+            f'<a href="{raiz}nuevo-estatuto-marco/">qué cambia y si entra en tu examen</a>.</p>')
 SUELTAS = f"{sum(float(l[5].replace(',', '.')) for l in LEYES):.2f}".replace(".", ",")
 
 # Páginas reales del pack (ventas/vistas_previas.py las genera en web/vistas/<slug>/)
@@ -247,6 +256,7 @@ def pagina_ley(ley, todas):
   <h1>Test de {e(la(corto))} ({e(tema)})</h1>
   <p class="intro">{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
   <p class="intro">Texto actualizado con la versión consolidada del BOE.{"" if slug == GRATIS else f' 🎁 ¿Quieres ver un pack completo? <a href="{TIENDA}{GRATIS}">El de la Ley 53/1984 es gratis</a>.'}</p>
+  {aviso_em(slug, "../../")}
 </div></section>
 <div class="marcador"><div class="envoltorio"><span>Aciertos: <span id="aciertos">0</span> / <span id="respondidas">0</span></span><span>{len(qs)} preguntas</span></div></div>
 <main class="envoltorio">
@@ -420,6 +430,7 @@ def pagina_resumen(ley, todas):
     h.append(f"""<section class="cabecera"><div class="envoltorio">
   <h1>Resumen de {e(la(corto))}: {e(tema)}</h1>
   <p class="intro">{e(completo)}. Lo esencial para la oposición: ficha, estructura, cambios recientes y los datos y plazos que más caen, con su artículo.</p>
+  {aviso_em(slug, "../../")}
 </div></section>
 <main class="envoltorio resumen">""")
     h.append(md_a_html(vistazo))
@@ -463,7 +474,7 @@ def portada_resumenes(todas):
 
 if __name__ == "__main__":
     rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
-             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/"])
+             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/", "nuevo-estatuto-marco/"])
     mapa = "\n".join(f"  <url><loc>{URL}{r}</loc></url>" for r in rutas)
     (WEB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

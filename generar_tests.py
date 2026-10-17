@@ -232,7 +232,8 @@ def pagina_ley(ley, todas):
     ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto} ({tema})",
           "about": {"@type": "Thing", "name": completo}, "educationalLevel": "Oposiciones",
           "inLanguage": "es", "url": URL + ruta,
-          "hasPart": [{"@type": "Question", "name": q["enunciado"], "eduQuestionType": "Multiple choice",
+          "learningResourceType": "Practice problem", "assesses": f"{corto} ({tema})",
+          "hasPart": [{"@type": "Question", "name": q["enunciado"], "text": q["enunciado"], "eduQuestionType": "Multiple choice",
                        "suggestedAnswer": [{"@type": "Answer", "text": o} for i, o in enumerate(q["opciones"]) if i != q["correcta"]],
                        "acceptedAnswer": {"@type": "Answer", "text": q["opciones"][q["correcta"]]}} for q in qs]}
     h = [cabecera_html(titulo, descripcion, ruta,

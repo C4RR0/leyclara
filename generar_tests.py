@@ -44,6 +44,10 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
           "and_igualdad": "la OPE del Servicio Andaluz de Salud (SAS)"}
 
 
+LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
+TOTAL_TEST = sum(l[6] for l in LEYES)
+
+
 def la(corto):
     """Artículo para el nombre corto: «la Ley 55/2003», «las Leyes 12 y 13/2007»."""
     return "las " + corto if corto.startswith("Leyes") else "la " + corto
@@ -87,6 +91,8 @@ CSS = """
               border-radius: 0 8px 8px 0; font-size: .95rem; }
   .pregunta.hecha .solucion { display: block; }
   .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
   .final h2 { margin: 0 0 8px; }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
@@ -205,9 +211,11 @@ def pagina_ley(ley, todas):
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
+  <p id="mensaje-final" class="mensaje-final" hidden></p>
   <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
-  <a class="boton" href="{TIENDA}pack-completo">Las 8 leyes · 24,90 €</a>
+  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 €</a>
+  <p class="lanzamiento">{LANZAMIENTO}</p>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
@@ -235,7 +243,13 @@ def pagina_ley(ley, todas):
         document.getElementById('respondidas').textContent = hechas;
         if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-' + datos.ley);
         if (hechas === total) {{
+          var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
+          msg.textContent = fallos > 0
+            ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae {n_pack} preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.'
+            : '¡Pleno! Esta ley la llevas bien. Para mantener el nivel en todo el temario, el pack completo trae {TOTAL_TEST} preguntas de las 12 leyes con su artículo.';
+          msg.hidden = false;
+          setTimeout(function () {{ document.getElementById('final').scrollIntoView({{behavior: 'smooth'}}); }}, 1500);
           if (window.leyclaraContar) leyclaraContar('test-terminado-' + datos.ley);
         }}
       }});

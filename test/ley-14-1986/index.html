@@ -52,6 +52,8 @@
               border-radius: 0 8px 8px 0; font-size: .95rem; }
   .pregunta.hecha .solucion { display: block; }
   .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
   .final h2 { margin: 0 0 8px; }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
@@ -285,9 +287,11 @@
 </article>
 <section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
+  <p id="mensaje-final" class="mensaje-final" hidden></p>
   <p>Este test son las 20 preguntas de la muestra gratis. El <b>pack de la Ley 14/1986</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y 85 preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <a class="boton lleno" href="https://carrosphere.gumroad.com/l/ley-14-1986">Pack Ley 14/1986 · 6,90 €</a>
-  <a class="boton" href="https://carrosphere.gumroad.com/l/pack-completo">Las 8 leyes · 24,90 €</a>
+  <a class="boton" href="https://carrosphere.gumroad.com/l/pack-completo">Las 12 leyes · 24,90 €</a>
+  <p class="lanzamiento">Precios de lanzamiento hasta el 31 de octubre.</p>
   <a class="boton" href="../../muestras/muestra-ley-14-1986.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/ley-14-1986/">Resumen y datos clave</a>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
@@ -318,7 +322,13 @@
         document.getElementById('respondidas').textContent = hechas;
         if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-' + datos.ley);
         if (hechas === total) {
+          var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
+          msg.textContent = fallos > 0
+            ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae 85 preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.'
+            : '¡Pleno! Esta ley la llevas bien. Para mantener el nivel en todo el temario, el pack completo trae 1006 preguntas de las 12 leyes con su artículo.';
+          msg.hidden = false;
+          setTimeout(function () { document.getElementById('final').scrollIntoView({behavior: 'smooth'}); }, 1500);
           if (window.leyclaraContar) leyclaraContar('test-terminado-' + datos.ley);
         }
       });

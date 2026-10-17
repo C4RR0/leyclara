@@ -212,6 +212,7 @@ def cabecera_html(titulo, descripcion, ruta, extra_head=""):
 
 PIE = """<footer><div class="envoltorio">
   <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
 </div></footer>
 """
 
@@ -455,7 +456,7 @@ def portada_resumenes(todas):
 
 if __name__ == "__main__":
     rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
-             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES])
+             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/"])
     mapa = "\n".join(f"  <url><loc>{URL}{r}</loc></url>" for r in rutas)
     (WEB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

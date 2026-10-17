@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actualizaciones de los packs y erratas | LeyClara</title>
+<meta name="description" content="Comprobación semanal automática contra el BOE de las leyes de los packs de LeyClara: versión en la que se basa cada pack, cambios publicados y erratas corregidas.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/actualizaciones/">
+<meta property="og:title" content="Actualizaciones de los packs y erratas | LeyClara">
+<meta property="og:description" content="Comprobación semanal automática contra el BOE de las leyes de los packs de LeyClara: versión en la que se basa cada pack, cambios publicados y erratas corregidas.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/actualizaciones/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235;
+            --ok-fondo:#123524; --mal-fondo:#3a1715; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .cabecera { padding: 36px 0 12px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 8px; }
+  .marcador { position: sticky; top: 0; z-index: 5; background: var(--fondo); border-bottom: 1px solid var(--borde);
+              padding: 10px 0; font-weight: 700; }
+  .marcador .envoltorio { display: flex; justify-content: space-between; gap: 12px; }
+  .pregunta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; margin: 18px 0; background: var(--tarjeta); }
+  .pregunta h2 { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.4; }
+  .pregunta h2 b { color: var(--azul-2); margin-right: 6px; }
+  .opciones { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .opciones button { width: 100%; text-align: left; font: inherit; color: inherit; background: var(--claro);
+                     border: 2px solid transparent; border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+  .opciones button:hover:not(:disabled) { border-color: var(--azul-2); }
+  .opciones button:disabled { cursor: default; }
+  .opciones button.bien { background: var(--ok-fondo); border-color: var(--ok); font-weight: 700; }
+  .opciones button.mal { background: var(--mal-fondo); border-color: var(--mal); }
+  .opciones .letra { font-weight: 800; margin-right: 8px; color: var(--azul-2); }
+  .solucion { display: none; margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--ok); background: var(--claro);
+              border-radius: 0 8px 8px 0; font-size: .95rem; }
+  .pregunta.hecha .solucion { display: block; }
+  .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
+  .final h2 { margin: 0 0 8px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
+  .regalo { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--acento); background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .regalo a { font-weight: 700; color: var(--azul-2); }
+  .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
+  .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); margin: 6px 8px 0 0; }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
+             text-decoration: none; font-size: .92rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
+  .tarjeta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: var(--tarjeta); text-decoration: none; display: block; }
+  .tarjeta h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .93rem; }
+  footer { border-top: 1px solid var(--borde); padding: 24px 0 36px; color: var(--suave); font-size: .86rem; margin-top: 30px; }
+  @media (max-width: 520px) { header nav { display: none; } }
+</style>
+<style>table{width:100%;border-collapse:collapse;font-size:.93rem;margin:12px 0 24px}th,td{border-bottom:1px solid var(--borde);padding:9px 8px;text-align:left;vertical-align:top}.tabla{overflow-x:auto}td.ok{color:var(--ok);font-weight:700}td.aviso{color:var(--mal);font-weight:700}.resumen-boe{font-weight:700;font-size:1.05rem;background:var(--claro);border-left:4px solid var(--ok);padding:12px 14px;border-radius:8px}</style>
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../">Ley<span>Clara</span></a>
+  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Actualizaciones y erratas</h1>
+  <p class="intro">Las leyes cambian, y un temario desactualizado cuesta puntos. Cada semana comprobamos de forma automática, con la API oficial de datos abiertos del BOE, si se ha publicado alguna modificación de las leyes de nuestros packs.</p>
+</div></section>
+<main class="envoltorio">
+  <p class="resumen-boe">✔ Las 11 leyes de los packs están al día con el BOE.<br><small>Última comprobación: 17/10/2026.</small></p>
+  <div class="tabla"><table>
+    <thead><tr><th>Ley</th><th>Versión del BOE del pack</th><th>Estado</th><th>Texto oficial</th></tr></thead>
+    <tbody><tr><td><a href="../test/ley-14-1986/">Ley 14/1986, General de Sanidad</a></td><td>26/06/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1986-10499" rel="noopener">BOE-A-1986-10499</a></td></tr><tr><td><a href="../test/ley-16-2003/">Ley 16/2003, de cohesión y calidad del SNS</a></td><td>05/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-10715" rel="noopener">BOE-A-2003-10715</a></td></tr><tr><td><a href="../test/ley-31-1995/">Ley 31/1995, de Prevención de Riesgos Laborales</a></td><td>22/06/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292" rel="noopener">BOE-A-1995-24292</a></td></tr><tr><td><a href="../test/ley-41-2002/">Ley 41/2002, de autonomía del paciente</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-22188" rel="noopener">BOE-A-2002-22188</a></td></tr><tr><td><a href="../test/ley-44-2003/">Ley 44/2003, de ordenación de las profesiones sanitarias</a></td><td>24/09/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-21340" rel="noopener">BOE-A-2003-21340</a></td></tr><tr><td><a href="../test/ley-55-2003/">Ley 55/2003, del Estatuto Marco</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-23101" rel="noopener">BOE-A-2003-23101</a></td></tr><tr><td><a href="../test/lo-3-2007/">Ley Orgánica 3/2007, de igualdad</a></td><td>19/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115" rel="noopener">BOE-A-2007-6115</a></td></tr><tr><td><a href="../test/lo-3-2018/">Ley Orgánica 3/2018, de protección de datos</a></td><td>08/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" rel="noopener">BOE-A-2018-16673</a></td></tr><tr><td><a href="../test/ley-53-1984/">Ley 53/1984, de incompatibilidades</a></td><td>16/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-151" rel="noopener">BOE-A-1985-151</a></td></tr><tr><td><a href="../test/ley-2-1998-andalucia/">Ley 2/1998, de Salud de Andalucía</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1998-18720" rel="noopener">BOE-A-1998-18720</a></td></tr><tr><td><a href="../test/leyes-12-13-2007-andalucia/">Leyes 12/2007 y 13/2007 de Andalucía</a></td><td>16/01/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2008-2492" rel="noopener">BOE-A-2008-2492</a> · <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2008-2493" rel="noopener">BOE-A-2008-2493</a></td></tr></tbody>
+  </table></div>
+  <h2>Si una ley cambia</h2>
+  <p>Revisamos la reforma, actualizamos el pack (ley explicada, esquema, test y fichas) y lo subimos de nuevo. Quien ya lo compró lo encuentra actualizado en su biblioteca de Gumroad, sin pagar nada más.</p>
+  <h2>Erratas</h2>
+  <p>Erratas comunicadas hasta ahora: ninguna. Si encuentras una, responde al correo de tu compra y la corregimos; la anotaremos aquí.</p>
+  <h2>Quién hace LeyClara</h2>
+<p>LeyClara es un proyecto independiente: no hay academia ni editorial detrás. Cada pack se elabora a partir del
+texto consolidado del BOE, artículo por artículo, y cada pregunta indica el artículo en el que se basa para que
+puedas comprobarla tú mismo en el texto oficial. Las leyes autonómicas se señalan como tales, para que sepas si
+entran en tu oposición.</p>
+<p>Si encuentras un error, lo corregimos, y quien ya compró el pack recibe la versión nueva gratis en su
+biblioteca de Gumroad. Para avisarnos, responde al correo de tu compra.</p>
+</main>
+
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
+</div></footer>
+<script>
+(function () {
+  function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
+  window.leyclaraContar = contar;
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  contar('visita'); if (g) contar('visita-' + g);
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+  });
+})();
+</script>
+</body>
+</html>

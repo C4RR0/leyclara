@@ -66,10 +66,19 @@
   #muestras .rejilla { grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); }
   footer { border-top: 1px solid var(--borde); padding: 28px 0 40px; color: var(--suave); font-size: .88rem; }
   @media (max-width: 560px) { nav { display: none; } .boton.hueco { margin: 10px 0 0; } }
-  .vistas-titulo { font-weight: 700; margin: 16px 0 6px; }
-  .vistas { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 10px; scroll-snap-type: x mandatory; }
-  .vistas a { flex: 0 0 auto; width: 112px; text-decoration: none; text-align: center; font-size: .85rem; scroll-snap-align: start; }
-  .vistas img { display: block; width: 100%; height: auto; border: 1px solid #d8e2ee; border-radius: 6px; background: #fff; margin-bottom: 4px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
 </style>
 </head>
 <body>
@@ -100,8 +109,8 @@
     <h2>Packs de estudio</h2>
     <p class="sub">Para OPE de Enfermería, TCAE, Celador, Fisioterapia, Técnicos y Administrativos de los servicios de salud.</p>
     <p class="aviso-lanzamiento">🏷️ <b>Precios de lanzamiento hasta el 31 de octubre.</b> Desde el 1 de noviembre, los packs sueltos pasan a 9,90 € (Ley 55/2003: 12,90 €) y el pack completo a 34,90 €.</p>
-    <p class="vistas-titulo">Así son los packs por dentro (páginas reales, pulsa para ampliar):</p>
-    <div class="vistas"><a href="vistas/pack-completo/0-indice.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/0-indice.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Índice de las 12 leyes">Índice de las 12 leyes</a><a href="vistas/pack-completo/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada">Ley explicada</a><a href="vistas/pack-completo/2-esquema.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema">Esquema</a><a href="vistas/pack-completo/3-test.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución">Test con solución</a><a href="vistas/pack-completo/4-fichas.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso">Fichas de repaso</a></div>
+    <div class="por-dentro"><h3>Así son los packs por dentro</h3><p>Páginas reales del pack completo. Pulsa en cualquiera para verla en grande.</p>
+    <div class="vistas"><a href="vistas/pack-completo/0-indice.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/0-indice.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Índice de las 12 leyes"><span>Índice de las 12 leyes</span></a><a href="vistas/pack-completo/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="vistas/pack-completo/2-esquema.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="vistas/pack-completo/3-test.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="vistas/pack-completo/4-fichas.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
     <div class="rejilla">
       <article class="tarjeta destacada">
         <span class="etiqueta">El más completo · ahorras un 68 %</span>

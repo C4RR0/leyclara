@@ -60,9 +60,10 @@ def vistas_previas(slug, raiz):
     celdas = "".join(
         f'<a href="{raiz}vistas/{slug}/{i.name}" target="_blank" rel="noopener">'
         f'<img src="{raiz}vistas/{slug}/{i.name}" width="640" height="906" loading="lazy" '
-        f'alt="Página de muestra del pack: {VISTAS.get(i.stem, i.stem)}">{VISTAS.get(i.stem, i.stem)}</a>'
+        f'alt="Página de muestra del pack: {VISTAS.get(i.stem, i.stem)}"><span>{VISTAS.get(i.stem, i.stem)}</span></a>'
         for i in imgs)
-    return f'<p class="vistas-titulo">Así es el pack por dentro (páginas reales, pulsa para ampliar):</p><div class="vistas">{celdas}</div>'
+    return (f'<div class="por-dentro"><h3>Así es el pack por dentro</h3>'
+            f'<p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas">{celdas}</div></div>')
 
 
 def la(corto):
@@ -111,12 +112,19 @@ CSS = """
   .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
   .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
   .final h2 { margin: 0 0 8px; }
-  .vistas-titulo { font-weight: 700; margin: 16px 0 6px; }
-  .vistas { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 10px; scroll-snap-type: x mandatory; }
-  .vistas a { flex: 0 0 auto; width: 112px; text-decoration: none; text-align: center; font-size: .85rem;
-              color: var(--suave); scroll-snap-align: start; }
-  .vistas img { display: block; width: 100%; height: auto; border: 1px solid var(--borde); border-radius: 6px;
-                background: #fff; margin-bottom: 4px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
   .ahorro { font-weight: 400; opacity: .8; }
   .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
   .mitad a { font-weight: 700; color: var(--azul-2); }

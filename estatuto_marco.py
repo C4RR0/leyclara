@@ -71,6 +71,76 @@ OTRAS_LEYES = ("El proyecto también modifica otras leyes del temario: la <a hre
                "MECU, disposición final tercera). Y deroga expresamente la Ley 55/2003 (disposición derogatoria única).")
 
 
+# Test corto: enunciado, opciones, índice de la correcta, solución (artículo del proyecto y lo que dice la ley vigente)
+TEST = [
+    ("Según el proyecto, ¿qué edad mínima hay que tener para participar en los procesos de selección de personal estatutario fijo?",
+     ["18 años, como hasta ahora.", "16 años.", "17 años.", "21 años."], 1,
+     "Art. 45.5.e del proyecto: tener cumplidos 16 años. La Ley 55/2003 exige 18 (art. 30.5.d)."),
+    ("¿Cuál será la duración máxima conjunta del tiempo de trabajo semanal (jornada ordinaria, guardias y otras modalidades)?",
+     ["48 horas de promedio en cómputo semestral.", "40 horas de promedio en cómputo anual.",
+      "45 horas de promedio en cómputo cuatrimestral.", "45 horas de promedio en cómputo semestral."], 2,
+     "Art. 84 del proyecto: 45 horas en cómputo cuatrimestral. La Ley 55/2003 fija 48 horas en cómputo semestral (art. 48.2)."),
+    ("¿A los cuántos años prescribirán las faltas muy graves?",
+     ["A los cuatro años.", "A los cinco años.", "A los tres años.", "A los dos años."], 2,
+     "Art. 105.3 del proyecto: tres años (graves, dos años; leves, seis meses). En la Ley 55/2003 son cuatro años (art. 72.6)."),
+    ("Si la jornada supera las 6 horas continuadas, la pausa será de:",
+     ["Al menos 15 minutos.", "Al menos 20 minutos, que cuentan como trabajo efectivo.",
+      "Al menos 30 minutos, que no cuentan como trabajo efectivo.", "La que fije cada servicio de salud, sin mínimo."], 1,
+     "Arts. 86 y 90 del proyecto: no inferior a 20 minutos y es trabajo efectivo. La Ley 55/2003 dice 15 minutos (art. 50)."),
+    ("¿Cuándo se declarará la jubilación forzosa?",
+     ["A los 65 años.", "A los 67 años en todo caso.",
+      "A la edad que fijen las normas del Régimen General de la Seguridad Social para la jubilación contributiva.", "A los 70 años."], 2,
+     "Art. 42.2 del proyecto, con posible prolongación voluntaria hasta los 70. La Ley 55/2003 fija los 65 años (art. 26.2)."),
+    ("Con la nueva clasificación, el personal técnico de FP de grado medio (por ejemplo, TCAE) se integra en el:",
+     ["Grupo C2.", "Grupo 3.", "Grupo 5.", "Grupo 4."], 3,
+     "Disposición transitoria cuarta: el personal del art. 6.2.b).2.º de la Ley 55/2003 pasa al Grupo 4 (título de nivel 4 del MECU, art. 6)."),
+    ("¿En qué plazo prescribirán las sanciones impuestas por faltas leves?",
+     ["En seis meses.", "En un año.", "En tres meses.", "En dos años."], 1,
+     "Art. 109.8 del proyecto: al año. En la Ley 55/2003 prescriben a los seis meses (art. 73.4)."),
+    ("¿Qué hace el proyecto con otras leyes del temario?",
+     ["Deroga la Ley 55/2003 y modifica la Ley 16/2003 y la Ley 44/2003.", "Modifica la Ley 55/2003 sin derogarla.",
+      "Deroga la Ley 55/2003 y la Ley 44/2003.", "Deroga la Ley 55/2003 y modifica la Ley 41/2002."], 0,
+     "Disposición derogatoria única (deroga la Ley 55/2003) y disposiciones finales segunda (Ley 16/2003) y tercera (Ley 44/2003)."),
+]
+
+
+def test_html() -> str:
+    h = []
+    for i, (enun, ops, ok, sol) in enumerate(TEST):
+        botones = "".join(f'<li><button type="button" data-j="{j}"><span class="letra">{"abcd"[j]})</span>{e(o)}</button></li>'
+                          for j, o in enumerate(ops))
+        h.append(f'<article class="pregunta" data-i="{i}" data-ok="{ok}">\n  <h2><b>{i + 1}.</b>{e(enun)}</h2>\n'
+                 f'  <ol class="opciones">{botones}</ol>\n  <p class="solucion">Correcta: <b>{"abcd"[ok]})</b> {e(sol)}</p>\n</article>')
+    return "\n".join(h)
+
+
+TEST_JS = """<script>
+(function () {
+  var hechas = 0, aciertos = 0, total = document.querySelectorAll('.pregunta').length;
+  document.querySelectorAll('.pregunta').forEach(function (p) {
+    var ok = +p.dataset.ok, botones = p.querySelectorAll('button');
+    botones.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (p.classList.contains('hecha')) return;
+        p.classList.add('hecha');
+        botones.forEach(function (x) { x.disabled = true; });
+        botones[ok].classList.add('bien');
+        if (+b.dataset.j !== ok) b.classList.add('mal'); else aciertos++;
+        hechas++;
+        if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-estatuto');
+        if (hechas === total) {
+          var r = document.getElementById('resultado-em');
+          r.textContent = 'Has acertado ' + aciertos + ' de ' + total + '. La tabla de abajo tiene todos los cambios con su artículo.';
+          r.hidden = false;
+          if (window.leyclaraContar) leyclaraContar('test-terminado-estatuto');
+        }
+      });
+    });
+  });
+})();
+</script>"""
+
+
 def main() -> None:
     ruta = "nuevo-estatuto-marco/"
     filas = "".join(f"<tr><th scope=\"row\">{e(t)}</th><td>{e(a)}</td><td>{e(n)}</td></tr>" for t, a, n in CAMBIOS)
@@ -92,6 +162,10 @@ def main() -> None:
   <p>{ESTADO}</p>
   <h2>¿Entra en mi examen?</h2>
   <p class="clave">Mientras no se publique en el BOE, no: se estudia la <a href="{BOE_55}" rel="noopener">Ley 55/2003</a>. Las bases de cada convocatoria suelen fijar que se exige la normativa vigente en una fecha concreta (a menudo, la de publicación de la convocatoria), así que revisa las tuyas. Si tu examen es dentro de muchos meses, conviene conocer estos cambios, porque es probable que acaben preguntándose.</p>
+  <h2>¿Sabes qué cambia? Test de {len(TEST)} preguntas</h2>
+  <p>Pulsa una opción: verás al momento la respuesta, con el artículo del proyecto y lo que dice la ley vigente.</p>
+{test_html()}
+  <p id="resultado-em" class="clave" hidden></p>
   <h2>Los cambios que más pueden caer</h2>
   <div class="tabla"><table>
     <thead><tr><th>Tema</th><th>Ley 55/2003 (vigente)</th><th>Proyecto de nuevo Estatuto Marco</th></tr></thead>
@@ -106,7 +180,7 @@ def main() -> None:
   </div>
 </main>
 """)
-    h.append(PIE + CONTADOR + "\n</body>\n</html>\n")
+    h.append(PIE + CONTADOR + TEST_JS + "\n</body>\n</html>\n")
     (WEB / ruta).mkdir(exist_ok=True)
     (WEB / ruta / "index.html").write_text("\n".join(h), encoding="utf-8")
     print("OK", WEB / ruta / "index.html")

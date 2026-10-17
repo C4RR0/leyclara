@@ -46,6 +46,7 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
 
 LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
 TOTAL_TEST = sum(l[6] for l in LEYES)
+GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
 SUELTAS = f"{sum(float(l[5].replace(',', '.')) for l in LEYES):.2f}".replace(".", ",")
 
 # Páginas reales del pack (ventas/vistas_previas.py las genera en web/vistas/<slug>/)
@@ -128,6 +129,8 @@ CSS = """
   .ahorro { font-weight: 400; opacity: .8; }
   .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
   .mitad a { font-weight: 700; color: var(--azul-2); }
+  .regalo { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--acento); background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .regalo a { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -217,6 +220,10 @@ def pagina_ley(ley, todas):
     carpeta, slug, corto, tema, completo, precio, n_pack = ley
     qs = leer(carpeta)
     ruta = f"test/{slug}/"
+    coste = "gratis" if slug == GRATIS else f"{precio} €"
+    regalo = "" if slug == GRATIS else (
+        f'<p class="regalo">🎁 ¿Quieres ver un pack completo antes de comprar? El de la '
+        f'<a href="{TIENDA}{GRATIS}">Ley 53/1984 es gratis</a>: mismo formato, solo te pide el correo para enviártelo.</p>')
     titulo = f"Test {corto} ({tema}): {len(qs)} preguntas con solución | LeyClara"
     descripcion = (f"Test online gratis de {la(corto)} de {tema} para oposiciones sanitarias (TCAE, celador, "
                    f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
@@ -245,14 +252,15 @@ def pagina_ley(ley, todas):
         if i == len(qs) // 2 - 1:  # a mitad del test, solo visible cuando se han respondido la mitad
             h.append(f'<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 Estas {len(qs)} preguntas son la muestra gratis: '
                      f'el pack de {e(la(corto))} trae {n_pack}, cada una con su artículo, además de la ley explicada, esquemas y fichas. '
-                     f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({precio} €)</a></aside>')
+                     f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({coste})</a></aside>')
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
   {vistas_previas(slug, "../../")}
-  <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
+  <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
+  {regalo}
   <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <p class="lanzamiento">{LANZAMIENTO}</p>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
@@ -413,7 +421,7 @@ def pagina_resumen(ley, todas):
   <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de {e(la(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
   {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
-  <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
+  <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {"Gratis" if slug == GRATIS else precio + " €"}</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
 </section>""")
     otros = "".join(f'<li><a href="../{l[1]}/">Resumen {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)

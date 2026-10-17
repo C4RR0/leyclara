@@ -46,6 +46,23 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
 
 LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
 TOTAL_TEST = sum(l[6] for l in LEYES)
+SUELTAS = f"{sum(float(l[5].replace(',', '.')) for l in LEYES):.2f}".replace(".", ",")
+
+# Páginas reales del pack (ventas/vistas_previas.py las genera en web/vistas/<slug>/)
+VISTAS = {"0-indice": "Índice de las 12 leyes", "1-ley-explicada": "Ley explicada", "2-esquema": "Esquema",
+          "3-test": "Test con solución", "4-fichas": "Fichas de repaso"}
+
+
+def vistas_previas(slug, raiz):
+    imgs = sorted((WEB / "vistas" / slug).glob("*.jpg"))
+    if not imgs:
+        return ""
+    celdas = "".join(
+        f'<a href="{raiz}vistas/{slug}/{i.name}" target="_blank" rel="noopener">'
+        f'<img src="{raiz}vistas/{slug}/{i.name}" width="640" height="906" loading="lazy" '
+        f'alt="Página de muestra del pack: {VISTAS.get(i.stem, i.stem)}">{VISTAS.get(i.stem, i.stem)}</a>'
+        for i in imgs)
+    return f'<p class="vistas-titulo">Así es el pack por dentro (páginas reales, pulsa para ampliar):</p><div class="vistas">{celdas}</div>'
 
 
 def la(corto):
@@ -94,6 +111,15 @@ CSS = """
   .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
   .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
   .final h2 { margin: 0 0 8px; }
+  .vistas-titulo { font-weight: 700; margin: 16px 0 6px; }
+  .vistas { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 10px; scroll-snap-type: x mandatory; }
+  .vistas a { flex: 0 0 auto; width: 112px; text-decoration: none; text-align: center; font-size: .85rem;
+              color: var(--suave); scroll-snap-align: start; }
+  .vistas img { display: block; width: 100%; height: auto; border: 1px solid var(--borde); border-radius: 6px;
+                background: #fff; margin-bottom: 4px; }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -208,13 +234,18 @@ def pagina_ley(ley, todas):
         for j, o in enumerate(q["opciones"]):
             h.append(f'    <li><button type="button" data-j="{j}"><span class="letra">{"abcd"[j]})</span>{e(o)}</button></li>')
         h.append(f'  </ol>\n  <p class="solucion">Correcta: <b>{"abcd"[q["correcta"]]})</b> {e(q["explicacion"])}</p>\n</article>')
+        if i == len(qs) // 2 - 1:  # a mitad del test, solo visible cuando se han respondido la mitad
+            h.append(f'<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 Estas {len(qs)} preguntas son la muestra gratis: '
+                     f'el pack de {e(la(corto))} trae {n_pack}, cada una con su artículo, además de la ley explicada, esquemas y fichas. '
+                     f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({precio} €)</a></aside>')
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
-  <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
-  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 €</a>
+  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
+  <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <p class="lanzamiento">{LANZAMIENTO}</p>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
@@ -242,6 +273,7 @@ def pagina_ley(ley, todas):
         document.getElementById('aciertos').textContent = aciertos;
         document.getElementById('respondidas').textContent = hechas;
         if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-' + datos.ley);
+        if (hechas === Math.floor(total / 2) && hechas < total) document.getElementById('mitad').hidden = false;
         if (hechas === total) {{
           var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
@@ -370,7 +402,8 @@ def pagina_resumen(ley, todas):
     h.append(f"<h2>Datos y plazos que más caen</h2>\n{md_a_html(datos)}")
     h.append(f"""<section class="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
-  <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack completo</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
+  <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de {e(la(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
+  {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
   <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {precio} €</a>
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>

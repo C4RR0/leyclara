@@ -55,6 +55,15 @@
   .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
   .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
   .final h2 { margin: 0 0 8px; }
+  .vistas-titulo { font-weight: 700; margin: 16px 0 6px; }
+  .vistas { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 10px; scroll-snap-type: x mandatory; }
+  .vistas a { flex: 0 0 auto; width: 112px; text-decoration: none; text-align: center; font-size: .85rem;
+              color: var(--suave); scroll-snap-align: start; }
+  .vistas img { display: block; width: 100%; height: auto; border: 1px solid var(--borde); border-radius: 6px;
+                background: #fff; margin-bottom: 4px; }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -185,6 +194,7 @@
   </ol>
   <p class="solucion">Correcta: <b>d)</b> Art. 20.3.a: Incompatible con cualquier otra actividad profesional.</p>
 </article>
+<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 Estas 20 preguntas son la muestra gratis: el pack de la Ley 44/2003 trae 100, cada una con su artículo, además de la ley explicada, esquemas y fichas. <a href="https://carrosphere.gumroad.com/l/ley-44-2003" target="_blank" rel="noopener">Ver el pack (6,90 €)</a></aside>
 <article class="pregunta" data-i="10">
   <h2><b>11.</b>¿Qué porcentaje mínimo de plazas de formación sanitaria especializada se reserva para personas con discapacidad?</h2>
   <ol class="opciones">
@@ -288,9 +298,10 @@
 <section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
-  <p>Este test son las 20 preguntas de la muestra gratis. El <b>pack de la Ley 44/2003</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y 100 preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  <p class="vistas-titulo">Así es el pack por dentro (páginas reales, pulsa para ampliar):</p><div class="vistas"><a href="../../vistas/ley-44-2003/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada">Ley explicada</a><a href="../../vistas/ley-44-2003/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema">Esquema</a><a href="../../vistas/ley-44-2003/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución">Test con solución</a><a href="../../vistas/ley-44-2003/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso">Fichas de repaso</a></div>
   <a class="boton lleno" href="https://carrosphere.gumroad.com/l/ley-44-2003">Pack Ley 44/2003 · 6,90 €</a>
-  <a class="boton" href="https://carrosphere.gumroad.com/l/pack-completo">Las 12 leyes · 24,90 €</a>
+  <a class="boton" href="https://carrosphere.gumroad.com/l/pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas 77,90 €)</span></a>
+  <p>Este test son las 20 preguntas de la muestra gratis. El <b>pack de la Ley 44/2003</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y 100 preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   <p class="lanzamiento">Precios de lanzamiento hasta el 31 de octubre.</p>
   <a class="boton" href="../../muestras/muestra-ley-44-2003.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/ley-44-2003/">Resumen y datos clave</a>
@@ -321,6 +332,7 @@
         document.getElementById('aciertos').textContent = aciertos;
         document.getElementById('respondidas').textContent = hechas;
         if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-' + datos.ley);
+        if (hechas === Math.floor(total / 2) && hechas < total) document.getElementById('mitad').hidden = false;
         if (hechas === total) {
           var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');

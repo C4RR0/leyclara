@@ -290,7 +290,7 @@ def pagina_ley(ley, todas):
   <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
   {regalo}
   <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
-  <p class="lanzamiento">{LANZAMIENTO}</p>
+  {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO else ''}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>

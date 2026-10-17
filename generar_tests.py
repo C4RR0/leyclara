@@ -246,7 +246,7 @@ def pagina_ley(ley, todas):
     h.append(f"""<section class="cabecera"><div class="envoltorio">
   <h1>Test de {e(la(corto))} ({e(tema)})</h1>
   <p class="intro">{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
-  <p class="intro">Texto actualizado con la versión consolidada del BOE.</p>
+  <p class="intro">Texto actualizado con la versión consolidada del BOE.{"" if slug == GRATIS else f' 🎁 ¿Quieres ver un pack completo? <a href="{TIENDA}{GRATIS}">El de la Ley 53/1984 es gratis</a>.'}</p>
 </div></section>
 <div class="marcador"><div class="envoltorio"><span>Aciertos: <span id="aciertos">0</span> / <span id="respondidas">0</span></span><span>{len(qs)} preguntas</span></div></div>
 <main class="envoltorio">
@@ -331,6 +331,7 @@ def portada(todas):
     h.append("""<section class="cabecera"><div class="envoltorio">
   <h1>Test de legislación sanitaria para oposiciones</h1>
   <p class="intro">Test online gratis de las leyes que entran en el temario común de casi todas las OPE de los servicios de salud: TCAE, celador, enfermería, técnicos y personal de gestión. Cada respuesta indica el artículo exacto. Sin registro.</p>
+  <p class="regalo">🎁 <b>Regalo:</b> el pack completo de la Ley 53/1984 de incompatibilidades (ley explicada, esquema, 80 test y fichas, en PDF y Word) es gratis. <a href="https://carrosphere.gumroad.com/l/ley-53-1984">Descárgalo aquí</a>: solo te pide el correo.</p>
 </div></section>
 <main class="envoltorio"><div class="rejilla">""")
     for l in todas:

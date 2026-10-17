@@ -111,7 +111,7 @@
   </table></div>
   <p>El proyecto también modifica otras leyes del temario: la <a href="../test/ley-16-2003/">Ley 16/2003</a> (composición de la Comisión de Recursos Humanos del SNS, disposición final segunda) y la <a href="../test/ley-44-2003/">Ley 44/2003</a> (las profesiones sanitarias pasan a agruparse según el MECU, disposición final tercera). Y deroga expresamente la Ley 55/2003 (disposición derogatoria única).</p>
   <p><small>Fuentes: <a href="https://www.congreso.es/public_oficiales/L15/CONG/BOCG/A/BOCG-15-A-113-1.PDF" rel="noopener">Proyecto de Ley 121/000112, BOCG Congreso, serie A, núm. 113-1, de 18/09/2026</a> y <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-23101" rel="noopener">Ley 55/2003 consolidada (BOE)</a>. El texto puede cambiar durante la tramitación por las enmiendas: actualizaremos esta página cuando ocurra.</small></p>
-  <div class="compromiso">
+  <div class="compromiso" id="final">
     <h2>Si estudias con LeyClara, no pierdes nada</h2>
     <p>El <a href="https://carrosphere.gumroad.com/l/ley-55-2003" target="_blank" rel="noopener">pack de la Ley 55/2003</a> está hecho con la versión vigente del BOE. Si el nuevo Estatuto Marco se publica en el BOE, rehacemos el pack con la ley nueva (ley explicada, esquemas, test y fichas) y quien lo haya comprado lo recibe actualizado en su biblioteca de Gumroad sin pagar nada más. Lo mismo con el <a href="https://carrosphere.gumroad.com/l/pack-completo" target="_blank" rel="noopener">pack de las 12 leyes</a>.</p>
     <p>Mientras tanto, practica con el <a href="../test/ley-55-2003/">test gratis de la Ley 55/2003</a> (20 preguntas con el artículo de cada respuesta).</p>
@@ -128,12 +128,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

@@ -146,7 +146,7 @@
 <p><mark>MUY IMPORTANTE: en el ámbito sanitario la LOPDGDD obliga a los centros sanitarios que deben mantener historias clínicas a designar un delegado de protección de datos, y regula la investigación con datos de salud (DA 17.ª).</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>Al día siguiente de su publicación (07/12/2018)</td><td>DF 16.ª</td></tr><tr><td>Derecho fundamental que desarrolla</td><td>Art. 18.4 CE</td><td>1</td></tr><tr><td>Norma que deroga</td><td>LO 15/1999 (y RDL 5/2018)</td><td>DD única</td></tr><tr><td>Edad mínima para consentir</td><td>14 años</td><td>7</td></tr><tr><td>Ejercicio repetitivo del derecho de acceso</td><td>Más de una vez en 6 meses</td><td>13.3</td></tr><tr><td>Bloqueo de datos en ficheros de morosos</td><td>30 días tras la notificación</td><td>20.1</td></tr><tr><td>Permanencia en ficheros de morosos</td><td>Máximo 5 años</td><td>20.1.d</td></tr><tr><td>Supresión de imágenes de videovigilancia</td><td>1 mes (72 horas para entregarlas a la autoridad)</td><td>22.3</td></tr><tr><td>Comunicación del nombramiento del DPD</td><td>10 días</td><td>34.3</td></tr><tr><td>Respuesta del DPD a una reclamación previa / remitida por la AEPD</td><td>2 meses / 1 mes</td><td>37</td></tr><tr><td>Mandato de la Presidencia de la AEPD</td><td>5 años, renovable una vez</td><td>48.5</td></tr><tr><td>Ratificación de la Presidencia de la AEPD</td><td>3/5 de la Comisión de Justicia del Congreso</td><td>48.3</td></tr><tr><td>Reuniones del Consejo Consultivo</td><td>Al menos una vez al semestre</td><td>49.4</td></tr><tr><td>Resolución por falta de atención de un derecho</td><td>6 meses (silencio estimatorio)</td><td>64.1</td></tr><tr><td>Duración máxima del procedimiento sancionador</td><td>12 meses (caducidad)</td><td>64.2</td></tr><tr><td>Prescripción de infracciones muy graves / graves / leves</td><td>3 años / 2 años / 1 año</td><td>72 a 74</td></tr><tr><td>Prescripción de sanciones</td><td>≤ 40.000 €: 1 año · 40.001-300.000 €: 2 años · &gt; 300.000 €: 3 años</td><td>78</td></tr><tr><td>Publicación en el BOE de la sanción</td><td>Personas jurídicas, más de 1 millón de euros</td><td>76.4</td></tr><tr><td>Plazo de respuesta a los derechos (RGPD)</td><td>1 mes, prorrogable 2 meses</td><td>Art. 12.3 RGPD</td></tr><tr><td>Notificación de una brecha de seguridad (RGPD)</td><td>72 horas</td><td>Art. 33 RGPD</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la LO 3/2018</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la LO 3/2018</b>: la ley explicada, esquema, fichas y 98 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/lo-3-2018/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2018/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/lo-3-2018/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2018/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/lo-3-2018/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2018/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/lo-3-2018/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2018/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -167,12 +167,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

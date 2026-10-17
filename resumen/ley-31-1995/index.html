@@ -135,7 +135,7 @@
 <p><mark>MUY IMPORTANTE: la LPRL se aplica también al personal estatutario de los servicios de salud (art. 3.1). Por eso aparece en casi todos los temarios de oposiciones sanitarias.</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>3 meses después de su publicación (10/02/1996)</td><td>DF 2.ª</td></tr><tr><td>Título competencial</td><td>Art. 149.1.7.ª CE (legislación laboral)</td><td>DA 3.ª</td></tr><tr><td>Carácter de sus normas laborales</td><td>Derecho necesario mínimo indisponible</td><td>2.2</td></tr><tr><td>Principios de la acción preventiva</td><td>9 (de evitar a dar instrucciones)</td><td>15.1</td></tr><tr><td>Accidentes que van a la relación documental</td><td>Incapacidad superior a un día de trabajo</td><td>23.1.e</td></tr><tr><td>Plazo para anular o ratificar la paralización de los representantes</td><td>24 horas</td><td>21.3</td></tr><tr><td>Impugnación de la paralización de la Inspección</td><td>3 días hábiles (se resuelve en 24 horas)</td><td>44.1</td></tr><tr><td>Suspensión por riesgo durante la lactancia</td><td>Hijos menores de 9 meses</td><td>26.4</td></tr><tr><td>Asunción personal de la prevención por el empresario</td><td>Hasta 10 trabajadores (25 con un único centro)</td><td>30.5</td></tr><tr><td>Votos en la Comisión Nacional</td><td>1 por Administración / 2 por empresarios y sindicatos</td><td>13.4</td></tr><tr><td>Presidente de la Comisión Nacional</td><td>Secretario General de Empleo y Relaciones Laborales</td><td>13.5</td></tr><tr><td>Participación a través de representantes</td><td>Empresas o centros con 6 o más trabajadores</td><td>34.1</td></tr><tr><td>Delegado de Prevención en empresas de hasta 30</td><td>El Delegado de Personal</td><td>35.2</td></tr><tr><td>Delegados de Prevención de 50 a 100 / máximo</td><td>2 / 8 (más de 4.000)</td><td>35.2</td></tr><tr><td>Cómputo de temporales de hasta un año</td><td>Cada 200 días trabajados = 1 trabajador</td><td>35.3</td></tr><tr><td>Plazo de los informes de los Delegados</td><td>15 días</td><td>36.3</td></tr><tr><td>Comité de Seguridad y Salud obligatorio</td><td>50 o más trabajadores</td><td>38.2</td></tr><tr><td>Reuniones del Comité de Seguridad y Salud</td><td>Trimestrales</td><td>38.3</td></tr><tr><td>Asesoramiento técnico específico</td><td>Empresas de hasta 25 trabajadores</td><td>DA 17.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 31/1995</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 31/1995</b>: la ley explicada, esquema, fichas y 102 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-31-1995/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-31-1995/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-31-1995/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-31-1995/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -156,12 +156,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

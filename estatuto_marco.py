@@ -99,7 +99,7 @@ def main() -> None:
   </table></div>
   <p>{OTRAS_LEYES}</p>
   <p><small>Fuentes: <a href="{BOCG}" rel="noopener">Proyecto de Ley 121/000112, BOCG Congreso, serie A, núm. 113-1, de 18/09/2026</a> y <a href="{BOE_55}" rel="noopener">Ley 55/2003 consolidada (BOE)</a>. El texto puede cambiar durante la tramitación por las enmiendas: actualizaremos esta página cuando ocurra.</small></p>
-  <div class="compromiso">
+  <div class="compromiso" id="final">
     <h2>Si estudias con LeyClara, no pierdes nada</h2>
     <p>El <a href="{TIENDA}ley-55-2003" target="_blank" rel="noopener">pack de la Ley 55/2003</a> está hecho con la versión vigente del BOE. Si el nuevo Estatuto Marco se publica en el BOE, rehacemos el pack con la ley nueva (ley explicada, esquemas, test y fichas) y quien lo haya comprado lo recibe actualizado en su biblioteca de Gumroad sin pagar nada más. Lo mismo con el <a href="{TIENDA}pack-completo" target="_blank" rel="noopener">pack de las 12 leyes</a>.</p>
     <p>Mientras tanto, practica con el <a href="../test/ley-55-2003/">test gratis de la Ley 55/2003</a> (20 preguntas con el artículo de cada respuesta).</p>

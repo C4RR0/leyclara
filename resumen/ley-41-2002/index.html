@@ -144,7 +144,7 @@
 </ul>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Comunicación judicial del internamiento obligatorio por salud pública</td><td>Máximo 24 horas</td><td>9.2.a</td></tr><tr><td>Edad a partir de la que no cabe consentimiento por representación</td><td>Mayores de 16 años y emancipados</td><td>9.4</td></tr><tr><td>Conservación mínima de la documentación clínica</td><td>5 años desde el alta de cada proceso</td><td>17.1</td></tr><tr><td>Entrada en vigor de la ley</td><td>6 meses tras su publicación</td><td>Disp. final</td></tr><tr><td>Documentos del contenido mínimo de la historia clínica</td><td>16 (de la a a la o, incluida la ñ)</td><td>15.2</td></tr><tr><td>Documentos solo exigibles en hospitalización</td><td>8 (b, c, i, j, k, l, ñ, o)</td><td>15.2</td></tr><tr><td>Información previa al consentimiento escrito</td><td>4 elementos</td><td>10.1</td></tr><tr><td>Supuestos de consentimiento por representación</td><td>3</td><td>9.3</td></tr><tr><td>Supuestos de intervención sin consentimiento</td><td>2</td><td>9.2</td></tr><tr><td>Definiciones legales</td><td>13</td><td>3</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 41/2002</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 41/2002</b>: la ley explicada, esquema, fichas y 62 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-41-2002/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-41-2002/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-41-2002/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-41-2002/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-41-2002/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-41-2002/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-41-2002/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-41-2002/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -165,12 +165,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

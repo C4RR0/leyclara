@@ -134,7 +134,7 @@
 <p><mark>MUY IMPORTANTE: muchos temarios siguen copiando el art. 10 completo. Sus apartados 5, 6, 8, 9 y 11 están derogados desde 2003: hoy esa materia está en la Ley 41/2002.</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Base constitucional de la ley básica</td><td>Art. 149.1.16.ª CE</td><td>2</td></tr><tr><td>Preceptos supletorios</td><td>31.1.b y c, y 57 a 69</td><td>2</td></tr><tr><td>Principios de organización</td><td>Eficacia, celeridad, economía y flexibilidad</td><td>7</td></tr><tr><td>Elección de médico en toda la ciudad</td><td>Municipios de más de 250.000 habitantes</td><td>14</td></tr><tr><td>Multa máxima leve / grave / muy grave</td><td>3.005,06 € / 15.025,30 € / 601.012,10 €</td><td>36</td></tr><tr><td>Cierre temporal por infracción muy grave</td><td>Hasta 5 años</td><td>36.2</td></tr><tr><td>Reincidencia que convierte en grave / muy grave</td><td>Leves en 3 meses / graves en 5 años</td><td>35</td></tr><tr><td>Competencia exclusiva del Estado</td><td>Sanidad exterior y relaciones internacionales</td><td>38</td></tr><tr><td>Población del Área de Salud</td><td>200.000 a 250.000 habitantes</td><td>56.5</td></tr><tr><td>Corporaciones locales en la dirección del Área</td><td>No menos del 40 %</td><td>56.3</td></tr><tr><td>Corporaciones locales en el Consejo de Salud de Área</td><td>50 %</td><td>58</td></tr><tr><td>Sindicatos en el Consejo de Salud de Área</td><td>No menos del 25 %</td><td>58</td></tr><tr><td>Comunidad autónoma en el Consejo de Dirección</td><td>60 %</td><td>59</td></tr><tr><td>Gerente de Área</td><td>Voz sin voto en el Consejo de Dirección</td><td>60</td></tr><tr><td>Hospitales generales por Área</td><td>Al menos uno</td><td>65</td></tr><tr><td>Centros universitarios por universidad</td><td>1 hospital y 3 centros de atención primaria</td><td>104</td></tr><tr><td>Miembros de comisión elegidos por sorteo (plazas vinculadas)</td><td>2</td><td>105</td></tr><tr><td>Plazo para crear el Servicio de Salud tras las transferencias</td><td>12 meses</td><td>DT 3.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 14/1986</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 14/1986</b>: la ley explicada, esquema, fichas y 85 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-14-1986/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-14-1986/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-14-1986/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-14-1986/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-14-1986/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-14-1986/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-14-1986/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-14-1986/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -155,12 +155,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

@@ -134,7 +134,7 @@
 <p><mark>MUY IMPORTANTE: muchos temarios todavía hablan de la &quot;Comisión Consultiva Profesional&quot; y de un 5 % de plazas MIR/EIR para discapacidad. Hoy el órgano es el Foro Profesional y la reserva es de al menos el 7 %.</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>Al día siguiente de su publicación (23/11/2003)</td><td>DF 3.ª</td></tr><tr><td>Base constitucional de las profesiones tituladas</td><td>Art. 36 CE</td><td>2</td></tr><tr><td>Base constitucional de los profesionales de FP</td><td>Art. 35.1 CE</td><td>3</td></tr><tr><td>Profesiones de nivel Licenciado / Diplomado</td><td>4 / 7</td><td>2.2</td></tr><tr><td>Declarar una nueva profesión sanitaria</td><td>Norma con rango de ley</td><td>2.3</td></tr><tr><td>TCAE y Técnico en Farmacia</td><td>FP de grado medio</td><td>3.2.b</td></tr><tr><td>Revisión de requisitos de la plantilla</td><td>Cada 3 años como mínimo</td><td>8.3</td></tr><tr><td>Periodo troncal común</td><td>2 años (± 6 meses como máximo)</td><td>19.2</td></tr><tr><td>Evaluaciones del residente</td><td>Anuales y una final</td><td>20.3.e</td></tr><tr><td>Reserva de plazas para discapacidad</td><td>Al menos el 7 %</td><td>22.3</td></tr><tr><td>Ejercicio previo para nueva especialización</td><td>5 años, mismo tronco</td><td>23</td></tr><tr><td>Tercer título de especialista</td><td>8 años desde el anterior</td><td>23</td></tr><tr><td>Ejercicio previo para un diploma de ACE</td><td>2 años en la especialidad</td><td>25.2</td></tr><tr><td>Vocales de la Comisión Nacional de Especialidad</td><td>11 (2 + 4 + 2 + 2 + 1)</td><td>28</td></tr><tr><td>Mandato en la Comisión Nacional</td><td>4 años (una renovación) / residentes 2 años</td><td>28</td></tr><tr><td>Miembros del Comité de ACE</td><td>6</td><td>29</td></tr><tr><td>Grados del desarrollo profesional</td><td>4 (+ grado inicial opcional)</td><td>38</td></tr><tr><td>Primer grado / entre grados / tras evaluación negativa</td><td>5 años / 5 años / 2 años</td><td>38</td></tr><tr><td>Grupos mínimos del Foro Profesional</td><td>Grupo médico y grupo enfermero</td><td>47</td></tr><tr><td>Implantación del nuevo modelo de prueba</td><td>8 años</td><td>DT 1.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 44/2003</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 44/2003</b>: la ley explicada, esquema, fichas y 100 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-44-2003/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-44-2003/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-44-2003/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-44-2003/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-44-2003/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -155,12 +155,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

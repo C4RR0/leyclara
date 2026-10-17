@@ -161,12 +161,23 @@ CONTADOR = """<script>
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\\/test\\/[^\\/]+\\//.test(ruta) ? 'test' : /\\/resumen\\/[^\\/]+\\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\\/(.+)\\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\\.com\\/l\\/([\\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\\/vistas\\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\\.com\\/l\\/([\\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>"""
 
@@ -435,7 +446,7 @@ def pagina_resumen(ley, todas):
 <main class="envoltorio resumen">""")
     h.append(md_a_html(vistazo))
     h.append(f"<h2>Datos y plazos que más caen</h2>\n{md_a_html(datos)}")
-    h.append(f"""<section class="final">
+    h.append(f"""<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de {e(la(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
   {vistas_previas(slug, "../../")}

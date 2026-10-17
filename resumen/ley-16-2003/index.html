@@ -137,7 +137,7 @@
 <p><mark>MUY IMPORTANTE: el art. 3 vigente reconoce el derecho a la protección de la salud a todas las personas con nacionalidad española y a las extranjeras con residencia en España. Si un temario habla de &quot;asegurado y beneficiario&quot; como requisito, está desfasado (redacción de 2012).</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>Al día siguiente de su publicación (30/05/2003)</td><td>DF 6.ª</td></tr><tr><td>Título competencial principal</td><td>Art. 149.1.1.ª, 16.ª y 17.ª CE</td><td>DF 1.ª</td></tr><tr><td>Prestaciones del catálogo</td><td>9</td><td>7</td></tr><tr><td>Modalidades de la cartera común</td><td>Básica, suplementaria y de servicios accesorios</td><td>8</td></tr><tr><td>Aprobación de la cartera común</td><td>Real decreto (acuerdo del Consejo Interterritorial)</td><td>8.3</td></tr><tr><td>Actualización de la cartera común</td><td>Orden del Ministerio de Sanidad</td><td>21.1</td></tr><tr><td>Evaluación del cribado neonatal</td><td>Al menos una vez al año</td><td>21</td></tr><tr><td>Financiación del uso tutelado y de los servicios de referencia</td><td>Fondo de cohesión</td><td>22.3 y 28.2</td></tr><tr><td>Excluidos de la garantía de tiempo</td><td>Trasplantes y catástrofes</td><td>25.2</td></tr><tr><td>Urgencias</td><td>24 horas del día, también en el domicilio</td><td>15</td></tr><tr><td>Elementos de la infraestructura de la calidad</td><td>5</td><td>59</td></tr><tr><td>Rinde cuentas de los planes de calidad</td><td>El Ministro, ante el Senado</td><td>61.2</td></tr><tr><td>Vías de participación social</td><td>Comité Consultivo, Foro Abierto y Foro Virtual</td><td>67</td></tr><tr><td>Comité Consultivo</td><td>6 + 6 + 4 + 8 + 8 = 32</td><td>67.2</td></tr><tr><td>Presidente del Consejo Interterritorial</td><td>Ministro de Sanidad</td><td>70</td></tr><tr><td>Vicepresidente del Consejo Interterritorial</td><td>Un consejero autonómico elegido por todos</td><td>70</td></tr><tr><td>Acuerdos del Consejo Interterritorial</td><td>Recomendaciones por consenso</td><td>73.2</td></tr><tr><td>Presidente de la Comisión Delegada</td><td>Secretario General de Sanidad</td><td>74</td></tr><tr><td>Advertencia por incumplimiento autonómico</td><td>A través del Delegado del Gobierno</td><td>76.4</td></tr><tr><td>Integración de la sanidad penitenciaria</td><td>18 meses</td><td>DA 6.ª</td></tr><tr><td>Preceptos derogados de la Ley 14/1986</td><td>Arts. 43 y 47</td><td>DD 1.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 16/2003</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 16/2003</b>: la ley explicada, esquema, fichas y 102 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-16-2003/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-16-2003/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-16-2003/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-16-2003/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-16-2003/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-16-2003/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-16-2003/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-16-2003/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -158,12 +158,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

@@ -133,7 +133,7 @@
 <p><mark>MUY IMPORTANTE: composición equilibrada = ninguno de los dos sexos supera el 60 % ni baja del 40 % (DA 1.ª). Es el dato más preguntado de la ley.</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>Al día siguiente (24/03/2007); art. 71.2 el 31/12/2008</td><td>DF 8.ª</td></tr><tr><td>Preceptos constitucionales que desarrolla</td><td>Arts. 9.2 y 14 CE</td><td>1</td></tr><tr><td>Preceptos con carácter orgánico</td><td>Solo las DA 1.ª, 2.ª y 3.ª</td><td>DF 2.ª</td></tr><tr><td>Composición equilibrada</td><td>Ningún sexo por encima del 60 % ni por debajo del 40 %</td><td>DA 1.ª</td></tr><tr><td>Carga de la prueba en discriminación</td><td>Corresponde a la persona demandada (no en procesos penales)</td><td>13</td></tr><tr><td>Única legitimada en litigios por acoso</td><td>La persona acosada</td><td>12.3</td></tr><tr><td>Informe de impacto de género</td><td>Proyectos normativos y planes que aprueba el Consejo de Ministros</td><td>19</td></tr><tr><td>Plan Estratégico de Igualdad de Oportunidades</td><td>Lo aprueba periódicamente el Gobierno</td><td>17</td></tr><tr><td>Plan de igualdad obligatorio</td><td>Empresas de 50 o más trabajadores</td><td>45.2</td></tr><tr><td>Materias mínimas del diagnóstico</td><td>9</td><td>46.2</td></tr><tr><td>Plazos de implantación (RDL 6/2019)</td><td>151-250: 1 año · 101-150: 2 años · 50-100: 3 años</td><td>DT 12.ª</td></tr><tr><td>Preferencia en cursos tras maternidad o paternidad</td><td>Durante un año</td><td>60.1</td></tr><tr><td>Reserva en cursos para directivas</td><td>Al menos el 40 %</td><td>60.2</td></tr><tr><td>Plan de Igualdad de la AGE</td><td>Al inicio de cada legislatura; evaluación anual</td><td>64</td></tr><tr><td>Informe sobre igualdad de cada Ministerio</td><td>Al menos anual</td><td>63</td></tr><tr><td>Presencia equilibrada en consejos de administración</td><td>Plazo de 8 años</td><td>75</td></tr><tr><td>Suspensión o licencia por riesgo durante la lactancia</td><td>Hijos menores de 9 meses</td><td>DA 23.ª</td></tr><tr><td>Base del art. 27 (salud)</td><td>Art. 149.1.16.ª CE</td><td>DF 1.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la LO 3/2007</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la LO 3/2007</b>: la ley explicada, esquema, fichas y 90 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/lo-3-2007/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2007/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/lo-3-2007/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2007/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/lo-3-2007/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2007/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/lo-3-2007/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/lo-3-2007/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -154,12 +154,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

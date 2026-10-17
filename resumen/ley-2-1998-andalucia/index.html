@@ -135,7 +135,7 @@
 <p><mark>MUY IMPORTANTE: el art. 58.3 (consideración de autoridad pública del personal del SSPA) y la disposición adicional única (puestos de difícil cobertura) son de 2023: muchos temarios antiguos no los recogen.</mark></p>
 <h2>Datos y plazos que más caen</h2>
 <div class="tabla"><table><thead><tr><th>Dato</th><th>Valor</th><th>Artículo</th></tr></thead><tbody><tr><td>Entrada en vigor</td><td>Al día siguiente de su publicación en el BOJA (5/7/1998)</td><td>DF 3.ª</td></tr><tr><td>Principios de actuación</td><td>12</td><td>2</td></tr><tr><td>Prestaciones garantizadas a todas las personas en Andalucía</td><td>Prestaciones vitales de emergencia</td><td>3.5</td></tr><tr><td>Prestaciones mínimas del SSPA</td><td>Las del Sistema Nacional de Salud</td><td>4.1</td></tr><tr><td>Derechos de los ciudadanos (art. 6.1)</td><td>Epígrafes a) a s)</td><td>6.1</td></tr><tr><td>Comunicar el internamiento obligatorio por salud pública</td><td>Autoridad judicial en 24 horas</td><td>6.1.ñ</td></tr><tr><td>Reexamen del internamiento forzoso de enfermos mentales</td><td>Al menos trimestral</td><td>6.4.b</td></tr><tr><td>Derechos que NO rigen en la sanidad privada</td><td>a), c), l) y m)</td><td>6.5</td></tr><tr><td>Rechazo del tratamiento</td><td>Firmar el documento correspondiente</td><td>8.6</td></tr><tr><td>Órgano colegiado de participación ciudadana</td><td>Consejo Andaluz de Salud</td><td>11</td></tr><tr><td>Órgano de participación en cada área</td><td>Consejo de Salud de Área</td><td>13</td></tr><tr><td>Ratificar medidas cautelares de la inspección</td><td>Máximo 48 horas</td><td>23.1.d</td></tr><tr><td>Reincidencia que agrava una infracción</td><td>Misma naturaleza en un año (resolución firme)</td><td>25.2</td></tr><tr><td>Multas de los Alcaldes / del Consejero</td><td>Hasta 2.500.000 / 25.000.000 pesetas</td><td>27.2</td></tr><tr><td>Aprueba el Plan Andaluz de Salud</td><td>Consejo de Gobierno (lo elabora la Consejería)</td><td>31 y 32</td></tr><tr><td>Marco territorial elemental de la atención primaria</td><td>Zona básica de salud</td><td>50</td></tr><tr><td>Primer nivel de acceso ordinario</td><td>Atención primaria</td><td>52</td></tr><tr><td>Dispositivo especializado público por área</td><td>Al menos uno</td><td>56</td></tr><tr><td>Consideración de autoridad pública del personal del SSPA</td><td>Sí (Ley 5/2023)</td><td>58.3</td></tr><tr><td>Situación especial en activo del estatutario</td><td>Máximo 5 años</td><td>60</td></tr><tr><td>Naturaleza del SAS</td><td>Organismo autónomo administrativo adscrito a la Consejería de Salud</td><td>64</td></tr><tr><td>Preside el Consejo de Administración del SAS</td><td>Consejero de Salud (suplente: Viceconsejero)</td><td>68</td></tr><tr><td>Nombra y separa al Director gerente del SAS</td><td>Consejo de Gobierno, a propuesta del Consejero</td><td>69 y 61</td></tr><tr><td>Preferencia en convenios y conciertos</td><td>Entidades sin ánimo de lucro (a igualdad de condiciones)</td><td>74.2</td></tr><tr><td>Permanencia mínima tras un concurso de difícil cobertura</td><td>2 años</td><td>DA única</td></tr><tr><td>Desarrollo del Título VII (caps. I a III)</td><td>24 meses</td><td>DF 2.ª</td></tr></tbody></table></div>
-<section class="final">
+<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
   <p>Haz el <b>test online gratis de la Ley 2/1998</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de la Ley 2/1998</b>: la ley explicada, esquema, fichas y 102 preguntas tipo test, en PDF y Word.</p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-2-1998-andalucia/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-2-1998-andalucia/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-2-1998-andalucia/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-2-1998-andalucia/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-2-1998-andalucia/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-2-1998-andalucia/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-2-1998-andalucia/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-2-1998-andalucia/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
@@ -156,12 +156,23 @@
   window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) contar('comprar-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
   });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
 })();
 </script>
 </body>

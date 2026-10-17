@@ -66,6 +66,10 @@
   #muestras .rejilla { grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); }
   footer { border-top: 1px solid var(--borde); padding: 28px 0 40px; color: var(--suave); font-size: .88rem; }
   @media (max-width: 560px) { nav { display: none; } .boton.hueco { margin: 10px 0 0; } }
+  .vistas-titulo { font-weight: 700; margin: 16px 0 6px; }
+  .vistas { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 10px; scroll-snap-type: x mandatory; }
+  .vistas a { flex: 0 0 auto; width: 112px; text-decoration: none; text-align: center; font-size: .85rem; scroll-snap-align: start; }
+  .vistas img { display: block; width: 100%; height: auto; border: 1px solid #d8e2ee; border-radius: 6px; background: #fff; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -96,6 +100,8 @@
     <h2>Packs de estudio</h2>
     <p class="sub">Para OPE de Enfermería, TCAE, Celador, Fisioterapia, Técnicos y Administrativos de los servicios de salud.</p>
     <p class="aviso-lanzamiento">🏷️ <b>Precios de lanzamiento hasta el 31 de octubre.</b> Desde el 1 de noviembre, los packs sueltos pasan a 9,90 € (Ley 55/2003: 12,90 €) y el pack completo a 34,90 €.</p>
+    <p class="vistas-titulo">Así son los packs por dentro (páginas reales, pulsa para ampliar):</p>
+    <div class="vistas"><a href="vistas/pack-completo/0-indice.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/0-indice.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Índice de las 12 leyes">Índice de las 12 leyes</a><a href="vistas/pack-completo/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada">Ley explicada</a><a href="vistas/pack-completo/2-esquema.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema">Esquema</a><a href="vistas/pack-completo/3-test.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución">Test con solución</a><a href="vistas/pack-completo/4-fichas.jpg" target="_blank" rel="noopener"><img src="vistas/pack-completo/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso">Fichas de repaso</a></div>
     <div class="rejilla">
       <article class="tarjeta destacada">
         <span class="etiqueta">El más completo · ahorras un 68 %</span>

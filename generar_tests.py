@@ -234,8 +234,13 @@ def pagina_ley(ley, todas):
           "inLanguage": "es", "url": URL + ruta,
           "learningResourceType": "Practice problem", "assesses": f"{corto} ({tema})",
           "hasPart": [{"@type": "Question", "name": q["enunciado"], "text": q["enunciado"], "eduQuestionType": "Multiple choice",
-                       "suggestedAnswer": [{"@type": "Answer", "text": o} for i, o in enumerate(q["opciones"]) if i != q["correcta"]],
-                       "acceptedAnswer": {"@type": "Answer", "text": q["opciones"][q["correcta"]]}} for q in qs]}
+                       "learningResourceType": "Practice problem", "encodingFormat": "text/plain",
+                       "suggestedAnswer": [{"@type": "Answer", "position": i, "text": o, "encodingFormat": "text/plain"}
+                                           for i, o in enumerate(q["opciones"]) if i != q["correcta"]],
+                       "acceptedAnswer": {"@type": "Answer", "position": q["correcta"], "text": q["opciones"][q["correcta"]],
+                                          "encodingFormat": "text/plain",
+                                          "answerExplanation": {"@type": "Comment", "text": q["explicacion"], "encodingFormat": "text/plain"}}}
+                      for q in qs]}
     h = [cabecera_html(titulo, descripcion, ruta,
                        f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')]
     h.append(f"""<section class="cabecera"><div class="envoltorio">

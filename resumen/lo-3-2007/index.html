@@ -146,6 +146,7 @@
 </main>
 <footer><div class="envoltorio">
   <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario.</p>
   <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
 </div></footer>
 <script>
@@ -163,6 +164,7 @@
     if (m) contar('descarga-' + m[1]);
     if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
     m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
+    if (/t\.me\/leyclara_avisos/.test(h)) contar('telegram-canal-en-' + donde);
   });
   var fin = document.getElementById('final');
   if (fin && 'IntersectionObserver' in window) {

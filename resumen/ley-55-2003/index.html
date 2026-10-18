@@ -168,7 +168,7 @@
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
   // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
-  var ruta = location.pathname, donde = /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+  var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
     : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;

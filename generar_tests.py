@@ -164,7 +164,7 @@ CONTADOR = """<script>
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
   // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
-  var ruta = location.pathname, donde = /\\/test\\/[^\\/]+\\//.test(ruta) ? 'test' : /\\/resumen\\/[^\\/]+\\//.test(ruta) ? 'resumen'
+  var ruta = location.pathname, donde = /\\/test\\/$/.test(ruta) ? 'portada-test' : /\\/test\\/[^\\/]+\\//.test(ruta) ? 'test' : /\\/resumen\\/[^\\/]+\\//.test(ruta) ? 'resumen'
     : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
@@ -358,6 +358,7 @@ def portada(todas):
   <h1>Test de legislación sanitaria para oposiciones</h1>
   <p class="intro">Test online gratis de las leyes que entran en el temario común de casi todas las OPE de los servicios de salud: TCAE, celador, enfermería, técnicos y personal de gestión. Cada respuesta indica el artículo exacto. Sin registro.</p>
   <p class="regalo">🎁 <b>Regalo:</b> el pack completo de la Ley 53/1984 de incompatibilidades (ley explicada, esquema, 80 test y fichas, en PDF y Word) es gratis. <a href="https://carrosphere.gumroad.com/l/ley-53-1984">Descárgalo aquí</a>: solo te pide el correo.</p>
+  <p class="canal-aviso">📲 Hago estos tests yo mismo a partir del BOE. En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
 </div></section>
 <main class="envoltorio"><div class="rejilla">""")
     for l in todas:

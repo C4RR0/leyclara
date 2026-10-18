@@ -2,13 +2,10 @@ name: Short diario de test
 
 # Tres preguntas tipo test al día en el canal de YouTube de LeyClara.
 # Sin el secret YOUTUBE_TOKEN_LEYCLARA_JSON solo genera el vídeo (no sube nada).
+# 3 al día desde el 16/10/2026. Desde el 18/10 lo dispara cron-job.org (job "Publicar Short
+# LeyClara", 9:00, 15:00 y 19:00 hora de Madrid) porque el schedule de GitHub llegaba con horas
+# de retraso; no volver a poner schedule aquí o se publicaría dos veces.
 on:
-  schedule:
-    # 3 al día desde el 16/10/2026 (cola de 160 preguntas, ~53 días). Horas de España en
-    # invierno (desde el 25/10; antes, una hora más): 9:00, 15:00 y 19:00.
-    - cron: "0 8 * * *"
-    - cron: "0 14 * * *"
-    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       prueba:

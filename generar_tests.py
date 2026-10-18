@@ -261,6 +261,7 @@ def pagina_ley(ley, todas):
           "learningResourceType": "Practice problem", "assesses": f"{corto} ({tema})",
           "hasPart": [{"@type": "Question", "name": q["enunciado"], "text": q["enunciado"], "eduQuestionType": "Multiple choice",
                        "learningResourceType": "Practice problem", "encodingFormat": "text/plain",
+                       "assesses": f"{corto} ({tema})", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-",
                        "suggestedAnswer": [{"@type": "Answer", "position": i, "text": o, "encodingFormat": "text/plain"}
                                            for i, o in enumerate(q["opciones"]) if i != q["correcta"]],
                        "acceptedAnswer": {"@type": "Answer", "position": q["correcta"], "text": q["opciones"][q["correcta"]],
@@ -291,6 +292,7 @@ def pagina_ley(ley, todas):
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
+  <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
@@ -299,7 +301,6 @@ def pagina_ley(ley, todas):
   {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO else ''}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
-  <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
 </section>
 <h2>Más test de legislación sanitaria</h2>

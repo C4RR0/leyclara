@@ -7,6 +7,8 @@ Uso: python generar_tests.py   (desde la carpeta web/)
 import html
 import json
 import re
+import subprocess
+from datetime import date
 from pathlib import Path
 
 WEB = Path(__file__).resolve().parent
@@ -492,7 +494,14 @@ def portada_resumenes(todas):
 if __name__ == "__main__":
     rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
              + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/", "nuevo-estatuto-marco/"])
-    mapa = "\n".join(f"  <url><loc>{URL}{r}</loc></url>" for r in rutas)
+    def cambiada(r):
+        """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""
+        f = f"{r}index.html"
+        git = lambda *a: subprocess.run(["git", *a], cwd=WEB, capture_output=True, text=True)
+        if git("diff", "--quiet", "--", f).returncode:
+            return date.today().isoformat()
+        return git("log", "-1", "--format=%cs", "--", f).stdout.strip() or date.today().isoformat()
+    mapa = "\n".join(f"  <url><loc>{URL}{r}</loc><lastmod>{cambiada(r)}</lastmod></url>" for r in rutas)
     (WEB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                      f"{mapa}\n</urlset>\n", encoding="utf-8")

@@ -48,14 +48,14 @@ LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
 TOTAL_TEST = sum(l[6] for l in LEYES)
 GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
 # leyes que deroga o modifica el proyecto del nuevo Estatuto Marco (página de estatuto_marco.py)
-AFECTADAS_EM = {"ley-55-2003": "la deroga", "ley-16-2003": "la modifica", "ley-44-2003": "la modifica"}
+AFECTADAS_EM = {"ley-55-2003": "la derogaba", "ley-16-2003": "la modificaba", "ley-44-2003": "la modificaba"}
 
 
 def aviso_em(slug, raiz):
     if slug not in AFECTADAS_EM:
         return ""
-    return (f'<p class="intro">📌 El proyecto del nuevo Estatuto Marco {AFECTADAS_EM[slug]}, pero aún no está aprobado: '
-            f'<a href="{raiz}nuevo-estatuto-marco/">qué cambia y si entra en tu examen</a>.</p>')
+    return (f'<p class="intro">📌 El proyecto del nuevo Estatuto Marco, que {AFECTADAS_EM[slug]}, caducó al disolverse las Cortes '
+            f'(6/10/2026): esta ley sigue vigente. <a href="{raiz}nuevo-estatuto-marco/">Qué cambiaba y qué se estudia</a>.</p>')
 SUELTAS = f"{sum(float(l[5].replace(',', '.')) for l in LEYES):.2f}".replace(".", ",")
 
 # Páginas reales del pack (ventas/vistas_previas.py las genera en web/vistas/<slug>/)

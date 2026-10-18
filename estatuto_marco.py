@@ -9,15 +9,17 @@ Uso: python estatuto_marco.py   (desde la carpeta web/)
 """
 from generar_tests import CONTADOR, PIE, TIENDA, WEB, cabecera_html, e
 
-REVISADO = "18/10/2026"
+REVISADO = "18/10/2026"  # 18/10 mañana: proyecto caducado por la disolución de las Cortes (RD 806/2026)
 BOCG = "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/A/BOCG-15-A-113-1.PDF"
 BOE_55 = "https://www.boe.es/buscar/act.php?id=BOE-A-2003-23101"
 
-ESTADO = ("Es un <strong>proyecto de ley</strong>: el Gobierno lo aprobó el 1 de septiembre de 2026 y lo envió al "
-          "Congreso, que lo publicó el 18 de septiembre (expediente 121/000112). Se tramita en la Comisión de Sanidad "
-          "con competencia legislativa plena y después tiene que pasar por el Senado. El plazo de enmiendas fijado "
-          "inicialmente terminaba el 6 de octubre. Hasta que se publique en el BOE, <strong>la ley vigente sigue siendo "
-          "la Ley 55/2003</strong>, y entrará en vigor a los 20 días de esa publicación (disposición final séptima).")
+ESTADO = ("<strong>El proyecto ha caducado.</strong> El Gobierno lo aprobó el 1 de septiembre de 2026 y el Congreso "
+          "lo publicó el 18 de septiembre (expediente 121/000112), pero el 6 de octubre el BOE publicó la disolución de "
+          "las Cortes y la convocatoria de elecciones generales para el 29 de noviembre (Real Decreto 806/2026). Al "
+          "disolverse las Cámaras caducan los proyectos que estaban en trámite, y este figura en el Congreso como "
+          "«Concluido (Caducado)» desde ese día. Para que haya un nuevo Estatuto Marco, el Gobierno que salga de las "
+          "elecciones tendrá que volver a aprobar un proyecto (con este texto o con otro) y enviarlo a las nuevas Cortes, "
+          "que se constituyen el 23 de diciembre. Mientras tanto, <strong>la ley vigente es la Ley 55/2003</strong>.")
 
 # tema, Ley 55/2003 vigente, proyecto (artículo del proyecto)
 CAMBIOS = [
@@ -65,10 +67,10 @@ CAMBIOS = [
      "Igual: hasta 3 meses en los grupos 8, 7 y 6 y 2 meses en el resto (art. 48.3)."),
 ]
 
-OTRAS_LEYES = ("El proyecto también modifica otras leyes del temario: la <a href=\"../test/ley-16-2003/\">Ley 16/2003</a> "
+OTRAS_LEYES = ("El proyecto también modificaba otras leyes del temario: la <a href=\"../test/ley-16-2003/\">Ley 16/2003</a> "
                "(composición de la Comisión de Recursos Humanos del SNS, disposición final segunda) y la "
-               "<a href=\"../test/ley-44-2003/\">Ley 44/2003</a> (las profesiones sanitarias pasan a agruparse según el "
-               "MECU, disposición final tercera). Y deroga expresamente la Ley 55/2003 (disposición derogatoria única).")
+               "<a href=\"../test/ley-44-2003/\">Ley 44/2003</a> (las profesiones sanitarias pasarían a agruparse según el "
+               "MECU, disposición final tercera). Y derogaba expresamente la Ley 55/2003 (disposición derogatoria única).")
 
 
 # Test corto: enunciado, opciones, índice de la correcta, solución (artículo del proyecto y lo que dice la ley vigente)
@@ -76,14 +78,14 @@ TEST = [
     ("Según el proyecto, ¿qué edad mínima hay que tener para participar en los procesos de selección de personal estatutario fijo?",
      ["18 años, como hasta ahora.", "16 años.", "17 años.", "21 años."], 1,
      "Art. 45.5.e del proyecto: tener cumplidos 16 años. La Ley 55/2003 exige 18 (art. 30.5.d)."),
-    ("¿Cuál será la duración máxima conjunta del tiempo de trabajo semanal (jornada ordinaria, guardias y otras modalidades)?",
+    ("¿Cuál sería la duración máxima conjunta del tiempo de trabajo semanal (jornada ordinaria, guardias y otras modalidades)?",
      ["48 horas de promedio en cómputo semestral.", "40 horas de promedio en cómputo anual.",
       "45 horas de promedio en cómputo cuatrimestral.", "45 horas de promedio en cómputo semestral."], 2,
      "Art. 84 del proyecto: 45 horas en cómputo cuatrimestral. La Ley 55/2003 fija 48 horas en cómputo semestral (art. 48.2)."),
     ("¿A los cuántos años prescribirán las faltas muy graves?",
      ["A los cuatro años.", "A los cinco años.", "A los tres años.", "A los dos años."], 2,
      "Art. 105.3 del proyecto: tres años (graves, dos años; leves, seis meses). En la Ley 55/2003 son cuatro años (art. 72.6)."),
-    ("Si la jornada supera las 6 horas continuadas, la pausa será de:",
+    ("Si la jornada supera las 6 horas continuadas, la pausa sería de:",
      ["Al menos 15 minutos.", "Al menos 20 minutos, que cuentan como trabajo efectivo.",
       "Al menos 30 minutos, que no cuentan como trabajo efectivo.", "La que fije cada servicio de salud, sin mínimo."], 1,
      "Arts. 86 y 90 del proyecto: no inferior a 20 minutos y es trabajo efectivo. La Ley 55/2003 dice 15 minutos (art. 50)."),
@@ -97,7 +99,7 @@ TEST = [
     ("¿En qué plazo prescribirán las sanciones impuestas por faltas leves?",
      ["En seis meses.", "En un año.", "En tres meses.", "En dos años."], 1,
      "Art. 109.8 del proyecto: al año. En la Ley 55/2003 prescriben a los seis meses (art. 73.4)."),
-    ("¿Qué hace el proyecto con otras leyes del temario?",
+    ("¿Qué hacía el proyecto con otras leyes del temario?",
      ["Deroga la Ley 55/2003 y modifica la Ley 16/2003 y la Ley 44/2003.", "Modifica la Ley 55/2003 sin derogarla.",
       "Deroga la Ley 55/2003 y la Ley 44/2003.", "Deroga la Ley 55/2003 y modifica la Ley 41/2002."], 0,
      "Disposición derogatoria única (deroga la Ley 55/2003) y disposiciones finales segunda (Ley 16/2003) y tercera (Ley 44/2003)."),
@@ -144,9 +146,9 @@ TEST_JS = """<script>
 def main() -> None:
     ruta = "nuevo-estatuto-marco/"
     filas = "".join(f"<tr><th scope=\"row\">{e(t)}</th><td>{e(a)}</td><td>{e(n)}</td></tr>" for t, a, n in CAMBIOS)
-    h = [cabecera_html("Nuevo Estatuto Marco 2026: qué cambia respecto a la Ley 55/2003 | LeyClara",
-                       "Qué cambia el proyecto del nuevo Estatuto Marco frente a la Ley 55/2003 (edad mínima de 16 años, "
-                       "jubilación, 45 horas, discapacidad, faltas y sanciones) y si entra en tu examen de la OPE.", ruta,
+    h = [cabecera_html("Nuevo Estatuto Marco 2026: qué cambiaba y por qué ha caducado | LeyClara",
+                       "El proyecto del nuevo Estatuto Marco caducó al disolverse las Cortes (6/10/2026). Qué cambiaba frente a la Ley 55/2003 "
+                       "(edad mínima de 16 años, jubilación, 45 horas, faltas y sanciones) y qué se estudia para la OPE.", ruta,
                        "<style>table{width:100%;border-collapse:collapse;font-size:.93rem;margin:12px 0 24px}"
                        "th,td{border-bottom:1px solid var(--borde);padding:9px 8px;text-align:left;vertical-align:top}"
                        "td,th{hyphens:auto;overflow-wrap:break-word}thead th{background:var(--claro)}tbody th{font-weight:700;min-width:120px}.tabla{overflow-x:auto}"
@@ -154,25 +156,25 @@ def main() -> None:
                        ".compromiso{border:1px dashed var(--azul-2);border-radius:12px;padding:14px 16px;margin:18px 0}"
                        ".compromiso a{font-weight:700}</style>")]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
-  <h1>Nuevo Estatuto Marco: qué cambia respecto a la Ley 55/2003</h1>
-  <p class="intro">Resumen del proyecto de ley que sustituirá al Estatuto Marco, comparado punto por punto con la ley que está en vigor. Revisado el {REVISADO} con el texto publicado por el Congreso.</p>
+  <h1>Nuevo Estatuto Marco: qué cambiaba el proyecto y en qué punto está</h1>
+  <p class="intro">Resumen del proyecto de ley que iba a sustituir a la Ley 55/2003, comparado punto por punto con la ley que está en vigor. <b>Ese proyecto caducó el 6 de octubre de 2026 al disolverse las Cortes</b>: hoy no cambia nada, pero es el texto del que partirá cualquier reforma. Revisado el {REVISADO}.</p>
 </div></section>
 <main class="envoltorio">
   <h2>¿En qué punto está?</h2>
   <p>{ESTADO}</p>
   <h2>¿Entra en mi examen?</h2>
-  <p class="clave">Mientras no se publique en el BOE, no: se estudia la <a href="{BOE_55}" rel="noopener">Ley 55/2003</a>. Las bases de cada convocatoria suelen fijar que se exige la normativa vigente en una fecha concreta (a menudo, la de publicación de la convocatoria), así que revisa las tuyas. Si tu examen es dentro de muchos meses, conviene conocer estos cambios, porque es probable que acaben preguntándose.</p>
-  <h2>¿Sabes qué cambia? Test de {len(TEST)} preguntas</h2>
+  <p class="clave">No: el proyecto ha caducado y se estudia la <a href="{BOE_55}" rel="noopener">Ley 55/2003</a>. Las bases de cada convocatoria suelen fijar que se exige la normativa vigente en una fecha concreta (a menudo, la de publicación de la convocatoria), así que revisa las tuyas. Estos cambios sirven para saber por dónde puede ir la reforma, pero no entran en el examen mientras no haya un nuevo Estatuto Marco publicado en el BOE.</p>
+  <h2>¿Sabes qué cambiaba? Test de {len(TEST)} preguntas</h2>
   <p>Pulsa una opción: verás al momento la respuesta, con el artículo del proyecto y lo que dice la ley vigente.</p>
 {test_html()}
   <p id="resultado-em" class="clave" hidden></p>
-  <h2>Los cambios que más pueden caer</h2>
+  <h2>Los cambios más importantes del proyecto</h2>
   <div class="tabla"><table>
-    <thead><tr><th>Tema</th><th>Ley 55/2003 (vigente)</th><th>Proyecto de nuevo Estatuto Marco</th></tr></thead>
+    <thead><tr><th>Tema</th><th>Ley 55/2003 (vigente)</th><th>Proyecto de 2026 (caducado)</th></tr></thead>
     <tbody>{filas}</tbody>
   </table></div>
   <p>{OTRAS_LEYES}</p>
-  <p><small>Fuentes: <a href="{BOCG}" rel="noopener">Proyecto de Ley 121/000112, BOCG Congreso, serie A, núm. 113-1, de 18/09/2026</a> y <a href="{BOE_55}" rel="noopener">Ley 55/2003 consolidada (BOE)</a>. El texto puede cambiar durante la tramitación por las enmiendas: actualizaremos esta página cuando ocurra.</small></p>
+  <p><small>Fuentes: <a href="{BOCG}" rel="noopener">Proyecto de Ley 121/000112, BOCG Congreso, serie A, núm. 113-1, de 18/09/2026</a> y <a href="{BOE_55}" rel="noopener">Ley 55/2003 consolidada (BOE)</a>. Disolución de las Cortes: <a href="https://www.boe.es/boe/dias/2026/10/06/" rel="noopener">Real Decreto 806/2026, BOE de 6/10/2026</a>. Si se presenta un proyecto nuevo, actualizaremos esta página.</small></p>
   <div class="compromiso" id="final">
     <h2>Si estudias con LeyClara, no pierdes nada</h2>
     <p>El <a href="{TIENDA}ley-55-2003" target="_blank" rel="noopener">pack de la Ley 55/2003</a> está hecho con la versión vigente del BOE. Si el nuevo Estatuto Marco se publica en el BOE, rehacemos el pack con la ley nueva (ley explicada, esquemas, test y fichas) y quien lo haya comprado lo recibe actualizado en su biblioteca de Gumroad sin pagar nada más. Lo mismo con el <a href="{TIENDA}pack-completo" target="_blank" rel="noopener">pack de las 12 leyes</a>.</p>

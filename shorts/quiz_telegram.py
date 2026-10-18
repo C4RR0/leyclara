@@ -65,7 +65,8 @@ def main(prueba: bool) -> None:
     print(json.dumps(quiz, ensure_ascii=False, indent=1))
     if prueba:
         return
-    token = os.environ["TELEGRAM_BOT_TOKEN"]
+    # strip(): al pegar el secret en GitHub se coló un salto de línea y la URL salía inválida
+    token = os.environ["TELEGRAM_BOT_TOKEN"].strip()
     pet = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendPoll",
                                  data=json.dumps({"chat_id": CANAL, **quiz}).encode("utf-8"),
                                  headers={"Content-Type": "application/json"})

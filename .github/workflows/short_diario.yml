@@ -44,6 +44,11 @@ jobs:
           else
             python publicar_short.py
           fi
+      - name: Enlace del canal de Telegram en los Shorts antiguos
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.prueba) }}
+        continue-on-error: true
+        working-directory: shorts
+        run: python enlace_canal_descripciones.py
       - name: Guardar vídeo de muestra
         if: always()
         uses: actions/upload-artifact@v4

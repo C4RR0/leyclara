@@ -256,6 +256,7 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
                    f"Respuesta: {letra}) {q['opciones'][q['correcta']]}\n{q['explicacion']}\n\n"
                    f"Haz el test completo de {la} gratis (20 preguntas, con el artículo de cada respuesta): "
                    f"https://{WEB}/test/{SLUGS[clave]}/?g=yt\n\n"
+                   "Avisos gratis por Telegram cuando cambie una ley de tu temario: https://t.me/leyclara_avisos\n\n"
                    "#oposiciones #opesanidad #tcae #celador #enfermeria #legislacionsanitaria"
                    + ETIQUETAS.get(clave, ""))
     return {"titulo": titulo, "descripcion": descripcion, "video": str(salida),

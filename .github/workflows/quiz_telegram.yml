@@ -1,0 +1,51 @@
+name: Quiz diario en Telegram
+
+# Una pregunta tipo test al día en el canal t.me/leyclara_avisos, en modo cuestionario.
+# Necesita el secret TELEGRAM_BOT_TOKEN (bot de @BotFather, administrador del canal).
+# El schedule de GitHub puede llegar con retraso; para un quiz diario da igual.
+on:
+  schedule:
+    - cron: "30 17 * * *"
+  workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Solo enseñar la pregunta, sin publicarla"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quiz-telegram
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias
+        # quiz_telegram.py reutiliza leer_pregunta() de generar_short_test.py, que importa estas dos
+        run: pip install -q edge-tts==7.2.8 pillow
+      - name: Publicar quiz
+        working-directory: shorts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.prueba }}" = "true" ]; then
+            python quiz_telegram.py --prueba
+          elif [ -z "$TELEGRAM_BOT_TOKEN" ]; then
+            echo "Falta el secret TELEGRAM_BOT_TOKEN: no se publica nada."
+            python quiz_telegram.py --prueba
+          else
+            python quiz_telegram.py
+          fi
+      - name: Guardar por dónde va
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add shorts/quiz_estado.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Quiz publicado en Telegram" && git pull --rebase -q && git push)

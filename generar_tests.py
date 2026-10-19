@@ -191,8 +191,10 @@ def e(t: str) -> str:
     return html.escape(t, quote=True)
 
 
-def leer(carpeta: str) -> list[dict]:
-    est = (WEB / "shorts" / "preguntas" / carpeta / "muestra" / "estudio.md").read_text(encoding="utf-8")
+def leer(carpeta: str, completo: bool = False) -> list[dict]:
+    """Preguntas de la muestra gratis o, con completo=True, todas las del pack (../<carpeta>/estudio.md, fuera del repo)."""
+    ruta = (WEB.parent / carpeta / "estudio.md") if completo else (WEB / "shorts" / "preguntas" / carpeta / "muestra" / "estudio.md")
+    est = ruta.read_text(encoding="utf-8")
     test = est.split("## Preguntas tipo test")[1]
     preg_txt, sol_txt = test.split("### Soluciones")
     sol = {int(m.group(1)): (m.group(2), m.group(3).strip())
@@ -205,6 +207,71 @@ def leer(carpeta: str) -> list[dict]:
         preguntas.append({"n": n, "enunciado": lineas[0].strip(), "opciones": opciones,
                           "correcta": "abcd".index(letra), "explicacion": expl})
     return preguntas
+
+
+# Test por temas (19/10): páginas más concretas que la de cada ley para búsquedas con menos competencia
+# («test régimen disciplinario estatuto marco»). Preguntas del pack completo cuyo artículo cae en los rangos.
+# carpeta: [(slug, nombre del tema, [(art. desde, art. hasta), ...])]
+TEMAS = {
+    "ley55": [("personal-temporal", "clasificación del personal, interinos y sustitutos", [(5, 9)]),
+              ("seleccion-y-provision", "selección, provisión de plazas y promoción interna", [(29, 35)]),
+              ("jornada-y-permisos", "jornada, descansos, vacaciones y permisos", [(46, 61)]),
+              ("situaciones", "situaciones del personal estatutario", [(62, 69)]),
+              ("regimen-disciplinario", "régimen disciplinario: faltas, sanciones y prescripción", [(70, 75)]),
+              ("condicion-de-fijo-y-retribuciones", "condición de fijo, movilidad, carrera y retribuciones", [(17, 28), (36, 45)])],
+    "ley41": [("informacion-sanitaria", "principios básicos y derecho a la información sanitaria", [(1, 7)]),
+              ("consentimiento-informado", "consentimiento informado e instrucciones previas", [(8, 13)]),
+              ("historia-clinica", "historia clínica e informe de alta", [(14, 23)])],
+    "ley14": [("sistema-de-salud", "derechos de los ciudadanos y sistema de salud", [(1, 37)]),
+              ("areas-de-salud", "servicios de salud, áreas de salud y zonas básicas", [(44, 87)]),
+              ("competencias-y-sanidad-privada", "competencias, sanidad privada y productos farmacéuticos", [(38, 43), (88, 116)])],
+    "ley44": [("ejercicio-profesional", "profesiones sanitarias y su ejercicio", [(1, 11)]),
+              ("formacion-especializada", "formación sanitaria especializada (MIR, EIR) y formación continuada", [(12, 36)]),
+              ("desarrollo-profesional", "desarrollo profesional, ejercicio privado y Foro Profesional", [(37, 47)])],
+    "ley16": [("cartera-de-servicios", "prestaciones y cartera común de servicios del SNS", [(7, 29)]),
+              ("consejo-interterritorial", "principios, calidad y Consejo Interterritorial del SNS", [(1, 6), (59, 79)]),
+              ("farmacia-y-profesionales", "farmacia, profesionales, investigación e información sanitaria", [(30, 58)])],
+    "ley31": [("derechos-y-obligaciones", "derechos y obligaciones en prevención de riesgos laborales", [(14, 29)]),
+              ("delegados-de-prevencion", "delegados de prevención y comité de seguridad y salud", [(33, 40)]),
+              ("servicios-de-prevencion", "definiciones, política preventiva y servicios de prevención", [(1, 13), (30, 32), (41, 54)])],
+    "lo3_2007": [("igualdad-y-tutela", "principio de igualdad y tutela contra la discriminación", [(1, 13)]),
+                 ("politicas-publicas", "políticas públicas para la igualdad", [(14, 35)]),
+                 ("igualdad-en-el-trabajo", "igualdad en el trabajo y en los medios de comunicación", [(36, 50)]),
+                 ("empleo-publico", "igualdad en el empleo público", [(51, 78)])],
+    "lo3_2018": [("principios-y-derechos", "principios y derechos de las personas (acceso, rectificación, supresión…)", [(1, 18)]),
+                 ("delegado-de-proteccion-de-datos", "responsable, encargado y delegado de protección de datos", [(19, 39)]),
+                 ("autoridades", "Agencia Española de Protección de Datos y procedimientos", [(44, 69)]),
+                 ("regimen-sancionador", "régimen sancionador: infracciones y prescripción", [(70, 78)]),
+                 ("derechos-digitales", "derechos digitales: desconexión digital e intimidad", [(79, 97)])],
+    "ley2_1998_and": [("derechos-de-los-ciudadanos", "derechos, deberes y participación de los ciudadanos", [(1, 14)]),
+                      ("actuaciones-en-salud", "actuaciones en salud y Plan Andaluz de Salud", [(15, 42)]),
+                      ("ordenacion-sanitaria", "ordenación sanitaria: SAS, áreas y zonas básicas", [(43, 81)])],
+    "ley53": [("actividades-publicas", "compatibilidad con un segundo puesto o actividad pública", [(1, 10)]),
+              ("actividades-privadas", "actividades privadas y disposiciones comunes", [(11, 20)])],
+}
+MAX_TEMA = 12  # preguntas por página de tema: el resto se queda en el pack
+
+
+def articulo(explicacion: str):
+    m = re.match(r"Arts?\.\s*(\d+)", explicacion)
+    return int(m.group(1)) if m else None
+
+
+def temas_de(ley):
+    """[(ruta, nombre, preguntas)] de los temas de una ley con al menos 8 preguntas."""
+    carpeta, slug = ley[0], ley[1]
+    if carpeta not in TEMAS:
+        return []
+    todas = leer(carpeta, completo=True)
+    salida = []
+    for t_slug, nombre, rangos in TEMAS[carpeta]:
+        qs = [q for q in todas if (a := articulo(q["explicacion"])) is not None and any(d <= a <= h for d, h in rangos)]
+        if len(qs) < 8:
+            continue
+        if len(qs) > MAX_TEMA:  # repartidas por todo el tema, no solo las primeras
+            qs = [qs[round(i * (len(qs) - 1) / (MAX_TEMA - 1))] for i in range(MAX_TEMA)]
+        salida.append((f"test/{slug}-{t_slug}/", nombre, qs))
+    return salida
 
 
 def cabecera_html(titulo, descripcion, ruta, extra_head=""):
@@ -243,19 +310,40 @@ PIE = """<footer><div class="envoltorio">
 """
 
 
-def pagina_ley(ley, todas):
+def pagina_ley(ley, todas, tema_pag=None):
+    """Página de test de una ley (muestra gratis) o, con tema_pag=(ruta, nombre, preguntas), de uno de sus temas."""
     carpeta, slug, corto, tema, completo, precio, n_pack = ley
-    qs = leer(carpeta)
-    ruta = f"test/{slug}/"
+    temas = temas_de(ley)
+    if tema_pag:
+        ruta, nombre_tema, qs = tema_pag
+    else:
+        ruta, qs = f"test/{slug}/", leer(carpeta)
     coste = "gratis" if slug == GRATIS else f"{precio} €"
     regalo = "" if slug == GRATIS else (
         f'<p class="regalo">🎁 ¿Quieres ver un pack completo antes de comprar? El de la '
         f'<a href="{TIENDA}{GRATIS}">Ley 53/1984 es gratis</a>: mismo formato, solo te pide el correo para enviártelo.</p>')
-    titulo = f"Test {corto} ({tema}): {len(qs)} preguntas con solución | LeyClara"
-    descripcion = (f"Test online gratis de {la(corto)} de {tema} para oposiciones sanitarias (TCAE, celador, "
-                   f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
+    if tema_pag:
+        titulo = f"Test {corto}: {nombre_tema} ({len(qs)} preguntas) | LeyClara"
+        descripcion = (f"Test gratis de {la(corto)} ({tema}) sobre {nombre_tema}, para oposiciones sanitarias (TCAE, celador, "
+                       f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
+        h1 = f"Test de {la(corto)}: {nombre_tema}"
+        que_es = f"{len(qs)} preguntas tipo test sobre <b>{e(nombre_tema)}</b> de la {e(completo)}"
+        sobre_muestra = f"Este test son {len(qs)} preguntas de este tema sacadas del pack"
+        mitad = f"Estas {len(qs)} preguntas son solo una parte"
+    else:
+        titulo = f"Test {corto} ({tema}): {len(qs)} preguntas con solución | LeyClara"
+        descripcion = (f"Test online gratis de {la(corto)} de {tema} para oposiciones sanitarias (TCAE, celador, "
+                       f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
+        h1 = f"Test de {la(corto)} ({tema})"
+        que_es = f"{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>"
+        sobre_muestra = f"Este test son las {len(qs)} preguntas de la muestra gratis"
+        mitad = f"Estas {len(qs)} preguntas son la muestra gratis"
+    por_temas = "".join(f'<li><a href="../{r.split("/")[1]}/">{e(n[0].upper() + n[1:])}</a></li>'
+                        for r, n, _ in temas if r != ruta)
+    if tema_pag:
+        por_temas = f'<li><a href="../{slug}/">Test general de {e(la(corto))}</a></li>' + por_temas
     datos = {"ley": slug, "correctas": [q["correcta"] for q in qs]}
-    ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto} ({tema})",
+    ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto}: {nombre_tema}" if tema_pag else f"Test {corto} ({tema})",
           "about": {"@type": "Thing", "name": completo}, "educationalLevel": "Oposiciones",
           "inLanguage": "es", "url": URL + ruta,
           "learningResourceType": "Practice problem", "assesses": f"{corto} ({tema})",
@@ -271,8 +359,8 @@ def pagina_ley(ley, todas):
     h = [cabecera_html(titulo, descripcion, ruta,
                        f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
-  <h1>Test de {e(la(corto))} ({e(tema)})</h1>
-  <p class="intro">{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
+  <h1>{e(h1)}</h1>
+  <p class="intro">{que_es}, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
   <p class="intro">Texto actualizado con la versión consolidada del BOE.{"" if slug == GRATIS else f' 🎁 ¿Quieres ver un pack completo? <a href="{TIENDA}{GRATIS}">El de la Ley 53/1984 es gratis</a>.'}</p>
   {aviso_em(slug, "../../")}
 </div></section>
@@ -285,7 +373,7 @@ def pagina_ley(ley, todas):
             h.append(f'    <li><button type="button" data-j="{j}"><span class="letra">{"abcd"[j]})</span>{e(o)}</button></li>')
         h.append(f'  </ol>\n  <p class="solucion">Correcta: <b>{"abcd"[q["correcta"]]})</b> {e(q["explicacion"])}</p>\n</article>')
         if i == len(qs) // 2 - 1:  # a mitad del test, solo visible cuando se han respondido la mitad
-            h.append(f'<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 Estas {len(qs)} preguntas son la muestra gratis: '
+            h.append(f'<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 {mitad}: '
                      f'el pack de {e(la(corto))} trae {n_pack}, cada una con su artículo, además de la ley explicada, esquemas y fichas. '
                      f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({coste})</a></aside>')
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
@@ -297,12 +385,13 @@ def pagina_ley(ley, todas):
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>
   <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
   {regalo}
-  <p>Este test son las {len(qs)} preguntas de la muestra gratis. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  <p>{sobre_muestra}. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO else ''}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
   <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
 </section>
+{f'<h2>Test de {e(la(corto))} por temas</h2>{chr(10)}<ul class="otros">{por_temas}</ul>' if por_temas else ''}
 <h2>Más test de legislación sanitaria</h2>
 <ul class="otros">{otros}</ul>
 </main>
@@ -366,7 +455,13 @@ def portada(todas):
 <main class="envoltorio"><div class="rejilla">""")
     for l in todas:
         h.append(f'<a class="tarjeta" href="{l[1]}/"><h2>Test {e(l[2])}</h2><p>{e(l[3][0].upper() + l[3][1:])} · 20 preguntas</p></a>')
-    h.append("</div></main>")
+    h.append("</div>\n<h2>Test por temas</h2>")
+    for l in todas:
+        temas = temas_de(l)
+        if temas:
+            enlaces = "".join(f'<li><a href="{r.split("/")[1]}/">{e(n[0].upper() + n[1:])}</a></li>' for r, n, _ in temas)
+            h.append(f'<h3>{e(l[2])} · {e(l[3])}</h3>\n<ul class="otros">{enlaces}</ul>')
+    h.append("</main>")
     h.append(PIE + CONTADOR + "\n</body>\n</html>\n")
     (WEB / ruta).mkdir(exist_ok=True)
     (WEB / ruta / "index.html").write_text("\n".join(h), encoding="utf-8")
@@ -494,6 +589,7 @@ def portada_resumenes(todas):
 
 if __name__ == "__main__":
     rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
+             + [pagina_ley(l, LEYES, t) for l in LEYES for t in temas_de(l)]
              + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/", "nuevo-estatuto-marco/"])
     def cambiada(r):
         """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""

@@ -13,7 +13,9 @@ import json
 import os
 import sys
 import urllib.request
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from generar_short_test import NOMBRES, leer_pregunta
 
@@ -53,6 +55,11 @@ def preparar(clave: str, n: int) -> dict | None:
 
 def main(prueba: bool) -> None:
     estado = json.loads(ESTADO.read_text(encoding="utf-8")) if ESTADO.exists() else {"siguiente": 0, "publicadas": []}
+    # Lo lanzan dos workflows (el Short de la tarde y, de reserva, el schedule propio): uno al día como mucho.
+    hoy = datetime.now(ZoneInfo("Europe/Madrid")).date().isoformat()
+    if not prueba and estado.get("ultimo_dia") == hoy:
+        print(f"Ya hay quiz publicado hoy ({hoy}): no se publica otro.")
+        return
     lista = list(candidatas())
     while True:
         i = estado["siguiente"] % len(lista)
@@ -75,6 +82,7 @@ def main(prueba: bool) -> None:
     if not resp.get("ok"):
         sys.exit(f"Telegram respondió: {resp}")
     estado["publicadas"].append(f"{clave}:{n}")
+    estado["ultimo_dia"] = hoy
     ESTADO.write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"Publicada {clave}:{n} (mensaje {resp['result']['message_id']})")
 

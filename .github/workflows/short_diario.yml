@@ -44,6 +44,16 @@ jobs:
           else
             python publicar_short.py
           fi
+      - name: Quiz del día en Telegram (con el Short de la tarde)
+        # El schedule de quiz_telegram.yml llega con horas de retraso o no llega (el 19/10 no salió); el Short de
+        # las 19:00 lo dispara cron-job.org puntual. quiz_telegram.py no publica dos el mismo día.
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.prueba) }}
+        continue-on-error: true
+        working-directory: shorts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ "$(TZ=Europe/Madrid date +%H)" -ge 18 ] && [ -n "$TELEGRAM_BOT_TOKEN" ]; then python quiz_telegram.py; fi
       - name: Enlace del canal de Telegram en los Shorts antiguos
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.prueba) }}
         continue-on-error: true
@@ -62,4 +72,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add shorts/cola.json
-          git diff --cached --quiet || (git commit -m "Short publicado (cola de test)" && git push)
+          git add shorts/quiz_estado.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Short publicado (cola de test)" && git pull --rebase -q && git push)

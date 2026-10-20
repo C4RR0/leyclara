@@ -75,6 +75,8 @@
   .regalo a { font-weight: 700; color: var(--azul-2); }
   .canal-aviso { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid #229ed9; background: var(--claro); border-radius: 8px; font-size: .95rem; }
   .canal-aviso a { font-weight: 700; color: var(--azul-2); }
+  p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
+  a.siguiente { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -310,6 +312,7 @@
 <section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
+  <p class="siguiente">➡️ <a class="siguiente" href="../ley-31-1995-derechos-y-obligaciones/">Siguiente test: Ley 31/1995: derechos y obligaciones en prevención de riesgos laborales</a></p>
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   <div class="por-dentro"><h3>Así es el pack por dentro</h3><p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas"><a href="../../vistas/ley-31-1995/1-ley-explicada.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/1-ley-explicada.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Ley explicada"><span>Ley explicada</span></a><a href="../../vistas/ley-31-1995/2-esquema.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/2-esquema.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Esquema"><span>Esquema</span></a><a href="../../vistas/ley-31-1995/3-test.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/3-test.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Test con solución"><span>Test con solución</span></a><a href="../../vistas/ley-31-1995/4-fichas.jpg" target="_blank" rel="noopener"><img src="../../vistas/ley-31-1995/4-fichas.jpg" width="640" height="906" loading="lazy" alt="Página de muestra del pack: Fichas de repaso"><span>Fichas de repaso</span></a></div></div>
   <a class="boton lleno" href="https://carrosphere.gumroad.com/l/ley-31-1995">Pack Ley 31/1995 · 6,90 €</a>
@@ -382,6 +385,7 @@
     if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
     m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
     if (/t\.me\/leyclara_avisos/.test(h)) contar('telegram-canal-en-' + donde);
+    if (a.classList.contains('siguiente')) contar('siguiente-test');
   });
   var fin = document.getElementById('final');
   if (fin && 'IntersectionObserver' in window) {

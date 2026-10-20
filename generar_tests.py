@@ -144,6 +144,8 @@ CSS = """
   .regalo a { font-weight: 700; color: var(--azul-2); }
   .canal-aviso { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid #229ed9; background: var(--claro); border-radius: 8px; font-size: .95rem; }
   .canal-aviso a { font-weight: 700; color: var(--azul-2); }
+  p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
+  a.siguiente { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -175,6 +177,7 @@ CONTADOR = """<script>
     if (/\\/vistas\\//.test(h)) contar('vista-previa-en-' + donde);
     m = h.match(/gumroad\\.com\\/l\\/([\\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
     if (/t\\.me\\/leyclara_avisos/.test(h)) contar('telegram-canal-en-' + donde);
+    if (a.classList.contains('siguiente')) contar('siguiente-test');
   });
   var fin = document.getElementById('final');
   if (fin && 'IntersectionObserver' in window) {
@@ -342,6 +345,17 @@ def pagina_ley(ley, todas, tema_pag=None):
                         for r, n, _ in temas if r != ruta)
     if tema_pag:
         por_temas = f'<li><a href="../{slug}/">Test general de {e(la(corto))}</a></li>' + por_temas
+    # «Siguiente test» al acabar (20/10): el siguiente tema de la misma ley y, tras el último, la ley siguiente
+    rutas_temas = [r for r, _, _ in temas]
+    if tema_pag and ruta in rutas_temas[:-1]:
+        sig_r, sig_n = temas[rutas_temas.index(ruta) + 1][:2]
+        sig = (sig_r.split("/")[1], f"{corto}: {sig_n}")
+    elif not tema_pag and temas:
+        sig = (temas[0][0].split("/")[1], f"{corto}: {temas[0][1]}")
+    else:
+        l_sig = todas[(next(i for i, l in enumerate(todas) if l[1] == slug) + 1) % len(todas)]
+        sig = (l_sig[1], f"{l_sig[2]} ({l_sig[3]})")
+    siguiente = f'<p class="siguiente">➡️ <a class="siguiente" href="../{sig[0]}/">Siguiente test: {e(sig[1])}</a></p>'
     datos = {"ley": slug, "correctas": [q["correcta"] for q in qs]}
     ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto}: {nombre_tema}" if tema_pag else f"Test {corto} ({tema})",
           "about": {"@type": "Thing", "name": completo}, "educationalLevel": "Oposiciones",
@@ -380,6 +394,7 @@ def pagina_ley(ley, todas, tema_pag=None):
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
+  {siguiente}
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>

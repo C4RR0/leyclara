@@ -15,8 +15,8 @@ hechos = json.loads((AQUI / "publicados.json").read_text(encoding="utf-8"))
 r = yt.videos().list(part="status,processingDetails,contentDetails", id=",".join(hechos.values())).execute()
 for v in r.get("items", []):
     s, p = v["status"], v.get("processingDetails", {})
-    print(f"{v['id']}: subida={s.get('uploadStatus')} rechazo={s.get('rejectionReason', '-')} "
+    print(f"::notice::{v['id']}: subida={s.get('uploadStatus')} rechazo={s.get('rejectionReason', '-')} "
           f"fallo={s.get('failureReason', '-')} privacidad={s.get('privacyStatus')} "
           f"procesado={p.get('processingStatus', '-')} duración={v['contentDetails'].get('duration')}")
 ch = yt.channels().list(part="status", mine=True).execute()["items"][0]["status"]
-print(f"Canal: longUploadsStatus={ch.get('longUploadsStatus')}")
+print(f"::notice::Canal: longUploadsStatus={ch.get('longUploadsStatus')}")

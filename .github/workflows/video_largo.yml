@@ -3,6 +3,7 @@ name: Video largo de test
 # Monta (voz gratis + ffmpeg) y sube al canal de YouTube de LeyClara los vídeos largos de test
 # (videos_largos/guion_*.md). Se lanza al subir un guion nuevo; los ya publicados están en
 # videos_largos/publicados.json y no se vuelven a subir. Publicar uno nuevo exige el OK de Sergio.
+# Después, cada vídeo nuevo se anuncia una vez en t.me/leyclara_avisos (anunciados.json).
 on:
   push:
     paths: ["videos_largos/guion_*.md", "videos_largos/comprobar.txt"]
@@ -43,6 +44,11 @@ jobs:
           # estado real en YouTube (procesado, rechazo, permiso de vídeos de más de 15 min)
           [ -f videos_largos/publicados.json ] && python videos_largos/estado_videos.py || true
           rm -f shorts/token_leyclara.json
+      - name: Anunciar los vídeos nuevos en el canal de Telegram (Teo)
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python videos_largos/anunciar_telegram.py
       - name: Guardar vídeo
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,5 +62,5 @@ jobs:
           rm -f shorts/token_leyclara.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add videos_largos/publicados.json 2>/dev/null || true
+          git add videos_largos/publicados.json videos_largos/anunciados.json 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Video largo publicado" && git pull --rebase -q && git push)

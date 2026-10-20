@@ -15,7 +15,10 @@ from googleapiclient.http import MediaFileUpload
 AQUI = Path(__file__).resolve().parent
 TOKEN = AQUI.parent / "shorts" / "token_leyclara.json"
 PUBLICADOS = AQUI / "publicados.json"
-TITULOS = {"estatuto_marco_50": "Test del Estatuto Marco (Ley 55/2003): 50 preguntas de examen con solución | Oposiciones sanidad"}
+TITULOS = {"estatuto_marco_50": "Test del Estatuto Marco (Ley 55/2003): 50 preguntas de examen con solución | Oposiciones sanidad",
+           "estatuto_marco_parte1": "Test del Estatuto Marco (Ley 55/2003) · Parte 1: 25 preguntas de examen con solución | OPE sanidad",
+           "estatuto_marco_parte2": "Test del Estatuto Marco (Ley 55/2003) · Parte 2: 25 preguntas de examen con solución | OPE sanidad"}
+MAX_SIN_VERIFICAR = 15 * 60  # YouTube borra al momento los vídeos más largos si el canal no está verificado (20/10)
 
 
 def main(nombre: str) -> int:
@@ -25,6 +28,14 @@ def main(nombre: str) -> int:
         return 0
     salida = AQUI / "salida"
     yt = build("youtube", "v3", credentials=Credentials.from_authorized_user_file(str(TOKEN)))
+    import subprocess
+    dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                str(salida / f"{nombre}.mp4")], capture_output=True, text=True).stdout.strip())
+    largos = yt.channels().list(part="status", mine=True).execute()["items"][0]["status"].get("longUploadsStatus")
+    if dur > MAX_SIN_VERIFICAR and largos != "allowed":
+        print(f"::warning::{nombre} dura {dur / 60:.1f} min y el canal no admite más de 15 (longUploadsStatus={largos}): "
+              "no se sube hasta verificar el canal en youtube.com/verify.")
+        return 0
     body = {"snippet": {"title": TITULOS.get(nombre, nombre.replace("_", " "))[:100],
                         "description": (salida / f"{nombre}_descripcion.txt").read_text(encoding="utf-8")[:5000],
                         "categoryId": "27",  # Educación

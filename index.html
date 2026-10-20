@@ -412,6 +412,11 @@
   contar('visita');
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   if (g) contar('visita-' + g);
+  // origen guardado mientras navega (mismo criterio que las páginas de test, 20/10)
+  var origen = '';
+  try { if (g) sessionStorage.setItem('leyclara-g', g); origen = sessionStorage.getItem('leyclara-g') || ''; } catch (e) { origen = g; }
+  if (origen) origen = /^tg-/.test(origen) ? 'tg' : ['yt', 'libro', 'pdf'].indexOf(origen) >= 0 ? origen : 'otro';
+  function deOrigen(ev) { if (origen) contar(ev + '-de-' + origen); }
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a');
     if (!a) return;
@@ -420,8 +425,8 @@
     if (m) contar('descarga-' + m[1]);
     if (/^vistas\//.test(h)) contar('vista-previa-en-portada');
     m = h.match(/gumroad\.com\/l\/([\w-]+)/);
-    if (m) { contar('comprar-' + m[1]); contar('comprar-en-portada'); }
-    if (/t\.me\/leyclara_avisos/.test(h)) contar('telegram-canal-en-portada');
+    if (m) { contar('comprar-' + m[1]); contar('comprar-en-portada'); deOrigen('comprar'); }
+    if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-portada'); deOrigen('telegram-canal'); }
   });
   // embudo (18/10): ¿cuántos bajan hasta ver los packs?
   var packs = document.getElementById('packs');

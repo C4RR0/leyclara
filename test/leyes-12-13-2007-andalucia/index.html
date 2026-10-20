@@ -371,9 +371,14 @@
 <script>
 (function () {
   function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
-  window.leyclaraContar = contar;
   var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
   contar('visita'); if (g) contar('visita-' + g);
+  // origen de la visita (?g=) guardado mientras navega, para saber qué origen termina tests y pulsa Comprar (20/10)
+  var origen = '';
+  try { if (g) sessionStorage.setItem('leyclara-g', g); origen = sessionStorage.getItem('leyclara-g') || ''; } catch (e) { origen = g; }
+  if (origen) origen = /^tg-/.test(origen) ? 'tg' : ['yt', 'libro', 'pdf'].indexOf(origen) >= 0 ? origen : 'otro';
+  function deOrigen(ev) { if (origen) contar(ev + '-de-' + origen); }
+  window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
   // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
   var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
     : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
@@ -382,8 +387,8 @@
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
     if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
-    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); }
-    if (/t\.me\/leyclara_avisos/.test(h)) contar('telegram-canal-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
     if (a.classList.contains('siguiente')) contar('siguiente-test');
   });
   var fin = document.getElementById('final');

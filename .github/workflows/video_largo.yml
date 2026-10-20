@@ -1,0 +1,58 @@
+name: Video largo de test
+
+# Monta (voz gratis + ffmpeg) y sube al canal de YouTube de LeyClara los vídeos largos de test
+# (videos_largos/guion_*.md). Se lanza al subir un guion nuevo; los ya publicados están en
+# videos_largos/publicados.json y no se vuelven a subir. Publicar uno nuevo exige el OK de Sergio.
+on:
+  push:
+    paths: ["videos_largos/guion_*.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-largo
+
+jobs:
+  video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.2.8 pillow google-api-python-client google-auth
+      - name: Montar y subir los guiones pendientes
+        env:
+          TOKEN: ${{ secrets.YOUTUBE_TOKEN_LEYCLARA_JSON }}
+        run: |
+          printf '%s' "$TOKEN" > shorts/token_leyclara.json
+          for g in videos_largos/guion_*.md; do
+            n=$(basename "$g" .md); n=${n#guion_}
+            if python -c "import json,sys; sys.exit(0 if '$n' in json.load(open('videos_largos/publicados.json')) else 1)" 2>/dev/null; then
+              echo "$n ya publicado"; continue
+            fi
+            python videos_largos/montar_video_test.py "$g"
+            python videos_largos/subir_video_largo.py "$n"
+          done
+          rm -f shorts/token_leyclara.json
+      - name: Guardar vídeo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-largo
+          path: videos_largos/salida/
+          retention-days: 7
+      - name: Guardar lista de publicados
+        if: always()
+        run: |
+          rm -f shorts/token_leyclara.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add videos_largos/publicados.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Video largo publicado" && git pull --rebase -q && git push)

@@ -20,3 +20,11 @@ for v in r.get("items", []):
           f"procesado={p.get('processingStatus', '-')} duración={v['contentDetails'].get('duration')}")
 ch = yt.channels().list(part="status", mine=True).execute()["items"][0]["status"]
 print(f"::notice::Canal: longUploadsStatus={ch.get('longUploadsStatus')}")
+# últimas subidas del canal, por si un vídeo no aparece por su id (eliminado o aún sin indexar)
+subidas = yt.channels().list(part="contentDetails", mine=True).execute()["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+ultimas = yt.playlistItems().list(part="snippet,status", playlistId=subidas, maxResults=5).execute().get("items", [])
+for it in ultimas:
+    print(f"::notice::Subida {it['snippet']['resourceId']['videoId']} {it['snippet']['publishedAt']} "
+          f"{it['status'].get('privacyStatus')} «{it['snippet']['title'][:60]}»")
+if not r.get("items"):
+    print(f"::notice::Ningún vídeo de publicados.json aparece en videos.list: {list(hechos.values())}")

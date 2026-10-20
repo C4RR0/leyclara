@@ -37,6 +37,7 @@ jobs:
             if python -c "import json,sys; sys.exit(0 if '$n' in json.load(open('videos_largos/publicados.json')) else 1)" 2>/dev/null; then
               echo "$n ya publicado"; continue
             fi
+            python videos_largos/canal_largos.py || break  # sin verificar, YouTube borra los de más de 15 min
             python videos_largos/montar_video_test.py "$g"
             python videos_largos/subir_video_largo.py "$n"
           done

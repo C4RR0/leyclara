@@ -5,7 +5,7 @@ name: Video largo de test
 # videos_largos/publicados.json y no se vuelven a subir. Publicar uno nuevo exige el OK de Sergio.
 on:
   push:
-    paths: ["videos_largos/guion_*.md"]
+    paths: ["videos_largos/guion_*.md", "videos_largos/comprobar.txt"]
   workflow_dispatch:
 
 permissions:
@@ -40,6 +40,8 @@ jobs:
             python videos_largos/montar_video_test.py "$g"
             python videos_largos/subir_video_largo.py "$n"
           done
+          # estado real en YouTube (procesado, rechazo, permiso de vídeos de más de 15 min)
+          [ -f videos_largos/publicados.json ] && python videos_largos/estado_videos.py || true
           rm -f shorts/token_leyclara.json
       - name: Guardar vídeo
         if: always()

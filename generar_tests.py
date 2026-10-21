@@ -40,10 +40,28 @@ LEYES = [  # carpeta, slug, nombre corto, tema, nombre completo, precio, nº de 
     ("ley53", "ley-53-1984", "Ley 53/1984", "incompatibilidades",
      "Ley 53/1984, de 26 de diciembre, de Incompatibilidades del personal al servicio de las Administraciones Públicas", "6,90", 80),
 ]
+# Temario común de las oposiciones de la Administración (packs de Iris, 21/10/2026): no entran en el pack de las 12 leyes
+LEYES_ADMIN = [
+    ("constitucion", "constitucion-espanola", "Constitución Española", "Carta Magna de 1978",
+     "Constitución Española de 1978", "6,90", 118),
+    ("ley39", "ley-39-2015", "Ley 39/2015", "procedimiento administrativo común",
+     "Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas", "6,90", 173),
+    ("ley40", "ley-40-2015", "Ley 40/2015", "régimen jurídico del sector público",
+     "Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público", "6,90", 132),
+    ("trebep", "trebep", "TREBEP", "Estatuto Básico del Empleado Público",
+     "Texto refundido de la Ley del Estatuto Básico del Empleado Público (Real Decreto Legislativo 5/2015, de 30 de octubre)", "6,90", 204),
+]
+TODAS = LEYES + LEYES_ADMIN
+ADMIN = {l[0] for l in LEYES_ADMIN}
+# Packs aún sin producto en Gumroad: en vez de «Comprar», aviso por Telegram. Quitar el slug al crear el producto.
+SIN_TIENDA = {l[1] for l in LEYES_ADMIN}
+TELEGRAM = "https://t.me/leyclara_avisos"
 
 # Leyes autonómicas: solo entran en la OPE de su servicio de salud
 AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
-          "and_igualdad": "la OPE del Servicio Andaluz de Salud (SAS)"}
+          "and_igualdad": "la OPE del Servicio Andaluz de Salud (SAS)",
+          **{c: "las oposiciones de la Administración (Estado, comunidades autónomas y ayuntamientos) y de muchas OPE de sanidad"
+             for c in ADMIN}}
 
 
 LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
@@ -79,8 +97,18 @@ def vistas_previas(slug, raiz):
 
 
 def la(corto):
-    """Artículo para el nombre corto: «la Ley 55/2003», «las Leyes 12 y 13/2007»."""
-    return "las " + corto if corto.startswith("Leyes") else "la " + corto
+    """Artículo para el nombre corto: «la Ley 55/2003», «las Leyes 12 y 13/2007», «el TREBEP»."""
+    return "las " + corto if corto.startswith("Leyes") else "el " + corto if corto == "TREBEP" else "la " + corto
+
+
+def de(corto):
+    """«de la Ley 55/2003», «del TREBEP»."""
+    return re.sub(r"^de el ", "del ", "de " + la(corto))
+
+
+def publico(carpeta):
+    return ("oposiciones de la Administración (auxiliar, administrativo, gestión)" if carpeta in ADMIN
+            else "oposiciones sanitarias (TCAE, celador, enfermería)")
 
 CSS = """
   :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
@@ -332,24 +360,22 @@ def pagina_ley(ley, todas, tema_pag=None):
         f'<a href="{TIENDA}{GRATIS}">Ley 53/1984 es gratis</a>: mismo formato, solo te pide el correo para enviártelo.</p>')
     if tema_pag:
         titulo = f"Test {corto}: {nombre_tema} ({len(qs)} preguntas) | LeyClara"
-        descripcion = (f"Test gratis de {la(corto)} ({tema}) sobre {nombre_tema}, para oposiciones sanitarias (TCAE, celador, "
-                       f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
-        h1 = f"Test de {la(corto)}: {nombre_tema}"
+        descripcion = (f"Test gratis {de(corto)} ({tema}) sobre {nombre_tema}, para {publico(carpeta)}. {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
+        h1 = f"Test {de(corto)}: {nombre_tema}"
         que_es = f"{len(qs)} preguntas tipo test sobre <b>{e(nombre_tema)}</b> de la {e(completo)}"
         sobre_muestra = f"Este test son {len(qs)} preguntas de este tema sacadas del pack"
         mitad = f"Estas {len(qs)} preguntas son solo una parte"
     else:
         titulo = f"Test {corto} ({tema}): {len(qs)} preguntas con solución | LeyClara"
-        descripcion = (f"Test online gratis de {la(corto)} de {tema} para oposiciones sanitarias (TCAE, celador, "
-                       f"enfermería). {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
-        h1 = f"Test de {la(corto)} ({tema})"
+        descripcion = (f"Test online gratis {de(corto)} de {tema} para {publico(carpeta)}. {len(qs)} preguntas con la solución y el artículo exacto. Sin registro.")
+        h1 = f"Test {de(corto)} ({tema})"
         que_es = f"{len(qs)} preguntas tipo test de la <b>{e(completo)}</b>"
         sobre_muestra = f"Este test son las {len(qs)} preguntas de la muestra gratis"
         mitad = f"Estas {len(qs)} preguntas son la muestra gratis"
     por_temas = "".join(f'<li><a href="../{r.split("/")[1]}/">{e(n[0].upper() + n[1:])}</a></li>'
                         for r, n, _ in temas if r != ruta)
     if tema_pag:
-        por_temas = f'<li><a href="../{slug}/">Test general de {e(la(corto))}</a></li>' + por_temas
+        por_temas = f'<li><a href="../{slug}/">Test general {e(de(corto))}</a></li>' + por_temas
     # «Siguiente test» al acabar (20/10): el siguiente tema de la misma ley y, tras el último, la ley siguiente
     rutas_temas = [r for r, _, _ in temas]
     if tema_pag and ruta in rutas_temas[:-1]:
@@ -393,26 +419,35 @@ def pagina_ley(ley, todas, tema_pag=None):
         h.append(f'  </ol>\n  <p class="solucion">Correcta: <b>{"abcd"[q["correcta"]]})</b> {e(q["explicacion"])}</p>\n</article>')
         if i == len(qs) // 2 - 1:  # a mitad del test, solo visible cuando se han respondido la mitad
             h.append(f'<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 {mitad}: '
-                     f'el pack de {e(la(corto))} trae {n_pack}, cada una con su artículo, además de la ley explicada, esquemas y fichas. '
-                     f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({coste})</a></aside>')
+                     f'el pack {e(de(corto))} trae {n_pack}, cada una con su artículo, además de la ley explicada, esquemas y fichas. '
+                     + (f'<a href="{TELEGRAM}" target="_blank" rel="noopener">Sale muy pronto: te aviso por Telegram</a></aside>'
+                        if slug in SIN_TIENDA else
+                        f'<a href="{TIENDA}{slug}" target="_blank" rel="noopener">Ver el pack ({coste})</a></aside>'))
     otros = "".join(f'<li><a href="../{l[1]}/">Test {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
+    if slug in SIN_TIENDA:
+        comprar = (f'<a class="boton lleno" href="{TELEGRAM}">Pack {e(corto)}: muy pronto · Avísame por Telegram</a>')
+        pleno = "¡Pleno! Esta ley la llevas bien. Prueba con el siguiente test para repasar el resto del temario."
+    else:
+        comprar = (f'<a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>\n'
+                   f'  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>')
+        pleno = (f"¡Pleno! Esta ley la llevas bien. Para mantener el nivel en todo el temario, el pack completo trae "
+                 f"{TOTAL_TEST} preguntas de las 12 leyes con su artículo.")
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
   {siguiente}
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   {vistas_previas(slug, "../../")}
-  <a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>
-  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>
+  {comprar}
   {regalo}
-  <p>{sobre_muestra}. El <b>pack de {e(la(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
-  {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO else ''}
+  <p>{sobre_muestra}. El <b>pack {e(de(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO and slug not in SIN_TIENDA else ''}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
-  <p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>
+  {"" if slug in SIN_TIENDA else '<p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>'}
 </section>
-{f'<h2>Test de {e(la(corto))} por temas</h2>{chr(10)}<ul class="otros">{por_temas}</ul>' if por_temas else ''}
-<h2>Más test de legislación sanitaria</h2>
+{f'<h2>Test {e(de(corto))} por temas</h2>{chr(10)}<ul class="otros">{por_temas}</ul>' if por_temas else ''}
+<h2>Más test de legislación</h2>
 <ul class="otros">{otros}</ul>
 </main>
 """)
@@ -440,7 +475,7 @@ def pagina_ley(ley, todas, tema_pag=None):
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
           msg.textContent = fallos > 0
             ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae {n_pack} preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.'
-            : '¡Pleno! Esta ley la llevas bien. Para mantener el nivel en todo el temario, el pack completo trae {TOTAL_TEST} preguntas de las 12 leyes con su artículo.';
+            : '{pleno}';
           msg.hidden = false;
           setTimeout(function () {{ document.getElementById('final').scrollIntoView({{behavior: 'smooth'}}); }}, 1500);
           if (window.leyclaraContar) leyclaraContar('test-terminado-' + datos.ley);
@@ -563,7 +598,7 @@ def pagina_resumen(ley, todas):
                    f"que más caen en las oposiciones, con el artículo de cada dato.")
     h = [cabecera_html(titulo, descripcion, ruta, CSS_RESUMEN)]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
-  <h1>Resumen de {e(la(corto))}: {e(tema)}</h1>
+  <h1>Resumen {e(de(corto))}: {e(tema)}</h1>
   <p class="intro">{e(completo)}. Lo esencial para la oposición: ficha, estructura, cambios recientes y los datos y plazos que más caen, con su artículo.</p>
   {aviso_em(slug, "../../")}
 </div></section>
@@ -572,10 +607,10 @@ def pagina_resumen(ley, todas):
     h.append(f"<h2>Datos y plazos que más caen</h2>\n{md_a_html(datos)}")
     h.append(f"""<section class="final" id="final">
   <h2>¿Te lo sabes? Compruébalo</h2>
-  <p>Haz el <b>test online gratis de {e(la(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack de {e(la(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
+  <p>Haz el <b>test online gratis {e(de(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack {e(de(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
   {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
-  <a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {"Gratis" if slug == GRATIS else precio + " €"}</a>
+  {f'<a class="boton" href="{TELEGRAM}">Pack {e(corto)}: muy pronto · Avísame por Telegram</a>' if slug in SIN_TIENDA else f'<a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {"Gratis" if slug == GRATIS else precio + " €"}</a>'}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
 </section>""")
     otros = "".join(f'<li><a href="../{l[1]}/">Resumen {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)
@@ -608,9 +643,9 @@ def portada_resumenes(todas):
 
 
 if __name__ == "__main__":
-    rutas = (["", portada(LEYES)] + [pagina_ley(l, LEYES) for l in LEYES]
-             + [pagina_ley(l, LEYES, t) for l in LEYES for t in temas_de(l)]
-             + [portada_resumenes(LEYES)] + [pagina_resumen(l, LEYES) for l in LEYES] + ["actualizaciones/", "nuevo-estatuto-marco/"])
+    rutas = (["", portada(TODAS)] + [pagina_ley(l, TODAS) for l in TODAS]
+             + [pagina_ley(l, TODAS, t) for l in TODAS for t in temas_de(l)]
+             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/"])
     def cambiada(r):
         """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""
         f = f"{r}index.html"

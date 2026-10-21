@@ -26,6 +26,10 @@ LEYES_BOE = [
     ("ley-53-1984", "Ley 53/1984, de incompatibilidades", ["BOE-A-1985-151"], "16/12/2025"),
     ("ley-2-1998-andalucia", "Ley 2/1998, de Salud de Andalucía", ["BOE-A-1998-18720"], "18/12/2025"),
     ("leyes-12-13-2007-andalucia", "Leyes 12/2007 y 13/2007 de Andalucía", ["BOE-A-2008-2492", "BOE-A-2008-2493"], "16/01/2026"),
+    ("constitucion-espanola", "Constitución Española de 1978", ["BOE-A-1978-31229"], "20/05/2026"),
+    ("ley-39-2015", "Ley 39/2015, del Procedimiento Administrativo Común", ["BOE-A-2015-10565"], "25/09/2026"),
+    ("ley-40-2015", "Ley 40/2015, de Régimen Jurídico del Sector Público", ["BOE-A-2015-10566"], "20/10/2026"),
+    ("trebep", "TREBEP (RDL 5/2015), Estatuto Básico del Empleado Público", ["BOE-A-2015-11719"], "14/10/2026"),
 ]
 
 QUIEN = """<h2>Quién hace LeyClara</h2>

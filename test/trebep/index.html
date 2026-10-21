@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test TREBEP (Estatuto Básico del Empleado Público): 20 preguntas con solución | LeyClara</title>
+<meta name="description" content="Test online gratis del TREBEP de Estatuto Básico del Empleado Público para oposiciones de la Administración (auxiliar, administrativo, gestión). 20 preguntas con la solución y el artículo exacto. Sin registro.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/test/trebep/">
+<meta property="og:title" content="Test TREBEP (Estatuto Básico del Empleado Público): 20 preguntas con solución | LeyClara">
+<meta property="og:description" content="Test online gratis del TREBEP de Estatuto Básico del Empleado Público para oposiciones de la Administración (auxiliar, administrativo, gestión). 20 preguntas con la solución y el artículo exacto. Sin registro.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/test/trebep/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235;
+            --ok-fondo:#123524; --mal-fondo:#3a1715; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .cabecera { padding: 36px 0 12px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 8px; }
+  .marcador { position: sticky; top: 0; z-index: 5; background: var(--fondo); border-bottom: 1px solid var(--borde);
+              padding: 10px 0; font-weight: 700; }
+  .marcador .envoltorio { display: flex; justify-content: space-between; gap: 12px; }
+  .pregunta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; margin: 18px 0; background: var(--tarjeta); }
+  .pregunta h2 { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.4; }
+  .pregunta h2 b { color: var(--azul-2); margin-right: 6px; }
+  .opciones { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .opciones button { width: 100%; text-align: left; font: inherit; color: inherit; background: var(--claro);
+                     border: 2px solid transparent; border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+  .opciones button:hover:not(:disabled) { border-color: var(--azul-2); }
+  .opciones button:disabled { cursor: default; }
+  .opciones button.bien { background: var(--ok-fondo); border-color: var(--ok); font-weight: 700; }
+  .opciones button.mal { background: var(--mal-fondo); border-color: var(--mal); }
+  .opciones .letra { font-weight: 800; margin-right: 8px; color: var(--azul-2); }
+  .solucion { display: none; margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--ok); background: var(--claro);
+              border-radius: 0 8px 8px 0; font-size: .95rem; }
+  .pregunta.hecha .solucion { display: block; }
+  .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
+  .final h2 { margin: 0 0 8px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
+  .regalo { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--acento); background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .regalo a { font-weight: 700; color: var(--azul-2); }
+  .canal-aviso { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid #229ed9; background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .canal-aviso a { font-weight: 700; color: var(--azul-2); }
+  p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
+  a.siguiente { font-weight: 700; color: var(--azul-2); }
+  .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
+  .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); margin: 6px 8px 0 0; }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
+             text-decoration: none; font-size: .92rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
+  .tarjeta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: var(--tarjeta); text-decoration: none; display: block; }
+  .tarjeta h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .93rem; }
+  footer { border-top: 1px solid var(--borde); padding: 24px 0 36px; color: var(--suave); font-size: .86rem; margin-top: 30px; }
+  @media (max-width: 520px) { header nav { display: none; } }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Quiz", "name": "Test TREBEP (Estatuto Básico del Empleado Público)", "about": {"@type": "Thing", "name": "Texto refundido de la Ley del Estatuto Básico del Empleado Público (Real Decreto Legislativo 5/2015, de 30 de octubre)"}, "educationalLevel": "Oposiciones", "inLanguage": "es", "url": "https://c4rr0.github.io/leyclara/test/trebep/", "learningResourceType": "Practice problem", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "hasPart": [{"@type": "Question", "name": "¿Qué Real Decreto Legislativo aprueba el texto refundido del Estatuto Básico del Empleado Público?", "text": "¿Qué Real Decreto Legislativo aprueba el texto refundido del Estatuto Básico del Empleado Público?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Ley 7/2007, de 12 de abril.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Real Decreto Legislativo 3/2015, de 30 de octubre.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Real Decreto Legislativo 2/2015, de 23 de octubre.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Real Decreto Legislativo 5/2015, de 30 de octubre.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Preámbulo y art. 1: Real Decreto Legislativo 5/2015, de 30 de octubre.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Cuál de los siguientes colectivos tiene legislación específica propia y solo se le aplica el Estatuto cuando así lo disponga esa legislación (art. 4)?", "text": "¿Cuál de los siguientes colectivos tiene legislación específica propia y solo se le aplica el Estatuto cuando así lo disponga esa legislación (art. 4)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "El personal de las universidades públicas.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "El personal funcionario de las entidades locales.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "El personal funcionario de la Administración General del Estado.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "El personal militar de las Fuerzas Armadas.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 4.d: El personal militar de las Fuerzas Armadas.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Cuál es el plazo máximo para el exceso o acumulación de tareas como causa de nombramiento de un funcionario interino (art. 10.1.d)?", "text": "¿Cuál es el plazo máximo para el exceso o acumulación de tareas como causa de nombramiento de un funcionario interino (art. 10.1.d)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Tres años improrrogables.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "Un año, dentro de un período de dos años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Seis meses, dentro de un período de doce meses.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "Nueve meses, dentro de un período de dieciocho meses.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 10.1.d: Nueve meses, dentro de un período de dieciocho meses.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿A quién corresponde establecer el régimen jurídico específico del personal directivo profesional, en desarrollo del Estatuto (art. 13)?", "text": "¿A quién corresponde establecer el régimen jurídico específico del personal directivo profesional, en desarrollo del Estatuto (art. 13)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "A los sindicatos más representativos.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "A los Ayuntamientos exclusivamente.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "A las Juntas de Personal.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "Al Gobierno y a los órganos de gobierno de las comunidades autónomas.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 13: Al Gobierno y a los órganos de gobierno de las comunidades autónomas.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿En qué consiste la carrera horizontal (art. 16.3.a)?", "text": "¿En qué consiste la carrera horizontal (art. 16.3.a)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "En el cambio de Administración sin pérdida de antigüedad.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "En el ascenso en la estructura de puestos mediante concurso.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "En el acceso a cuerpos de un subgrupo superior.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "En la progresión de grado, categoría o escalón sin necesidad de cambiar de puesto de trabajo.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 16.3.a: En la progresión de grado, categoría o escalón sin necesidad de cambiar de puesto de trabajo.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "Las retribuciones de los funcionarios de carrera se clasifican en (art. 22.1):", "text": "Las retribuciones de los funcionarios de carrera se clasifican en (art. 22.1):", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Ordinarias y extraordinarias.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Directas e indirectas.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Fijas y variables.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Básicas y complementarias.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 22.1: Básicas y complementarias.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué se entiende por participación institucional a los efectos del Estatuto (art. 31.4)?", "text": "¿Qué se entiende por participación institucional a los efectos del Estatuto (art. 31.4)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "El derecho de reunión en el centro de trabajo.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "El derecho a negociar condiciones de trabajo.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "El derecho a elegir representantes de personal.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "El derecho a participar, a través de las organizaciones sindicales, en los órganos de control y seguimiento de las entidades u organismos que legalmente se determine.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 31.4: El derecho a participar, a través de las organizaciones sindicales, en los órganos de control y seguimiento de las entidades u organismos que legalmente se determine.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Cuál es el número máximo de miembros que puede tener cada parte en las Mesas de Negociación (art. 35.4)?", "text": "¿Cuál es el número máximo de miembros que puede tener cada parte en las Mesas de Negociación (art. 35.4)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 1, "text": "Doce.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Diez.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Veinte.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 0, "text": "Quince.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 35.4: Quince.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿A partir de qué censo mínimo de funcionarios se constituyen las Juntas de Personal (art. 39.3)?", "text": "¿A partir de qué censo mínimo de funcionarios se constituyen las Juntas de Personal (art. 39.3)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "250 funcionarios.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "30 funcionarios.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "100 funcionarios.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 2, "text": "50 funcionarios.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 39.3: 50 funcionarios.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué audiencia tienen los representantes en los expedientes disciplinarios que se les incoen durante su mandato y el año posterior (art. 41.1.c)?", "text": "¿Qué audiencia tienen los representantes en los expedientes disciplinarios que se les incoen durante su mandato y el año posterior (art. 41.1.c)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Solo la audiencia del interesado.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "La audiencia del sindicato provincial.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Ninguna, el expediente es ordinario.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Audiencia en esos expedientes, sin perjuicio de la audiencia al interesado.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 41.1.c: Audiencia en esos expedientes, sin perjuicio de la audiencia al interesado.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué edad de los hijos e hijas se menciona en el art. 47.2 para las medidas de flexibilización horaria?", "text": "¿Qué edad de los hijos e hijas se menciona en el art. 47.2 para las medidas de flexibilización horaria?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Menores de dieciséis años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "Menores de ocho años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Menores de tres años.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 2, "text": "Menores de doce años.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 47.2: Menores de doce años.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Puede transferirse al otro progenitor el permiso de lactancia (art. 48.f)?", "text": "¿Puede transferirse al otro progenitor el permiso de lactancia (art. 48.f)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Sí, siempre.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Sí, solo si el otro progenitor es funcionario.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Sí, con autorización de la Administración.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "No, constituye un derecho individual que no puede transferirse.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 48.f: No, constituye un derecho individual que no puede transferirse.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué preaviso mínimo se exige para cada período de disfrute interrumpido de los permisos del art. 49?", "text": "¿Qué preaviso mínimo se exige para cada período de disfrute interrumpido de los permisos del art. 49?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Al menos tres días.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Al menos un mes.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Al menos siete días.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Al menos quince días.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 49.a: Al menos quince días.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué rige el régimen de jornada, permisos y vacaciones del personal laboral (art. 51)?", "text": "¿Qué rige el régimen de jornada, permisos y vacaciones del personal laboral (art. 51)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Solo el Estatuto de los Trabajadores.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Solo el convenio colectivo.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Lo que decida cada Administración libremente.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Lo establecido en el capítulo V y la legislación laboral correspondiente.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 51: Lo establecido en el capítulo V y la legislación laboral correspondiente.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿En qué lengua deben garantizar la atención al ciudadano los empleados públicos (art. 54.11)?", "text": "¿En qué lengua deben garantizar la atención al ciudadano los empleados públicos (art. 54.11)?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "En la lengua de la comunidad exclusivamente.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "Solo en castellano.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "En la que decida el empleado.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 2, "text": "En la que el ciudadano solicite, siempre que sea oficial en el territorio.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 54.11: En la que el ciudadano solicite, siempre que sea oficial en el territorio.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué porcentaje de efectivos totales con discapacidad debe alcanzarse progresivamente en cada Administración?", "text": "¿Qué porcentaje de efectivos totales con discapacidad debe alcanzarse progresivamente en cada Administración?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "El cinco por ciento.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "El siete por ciento.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "El uno por ciento.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 2, "text": "El dos por ciento.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 59.1: El dos por ciento.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿En qué supuesto NO puede aceptarse la renuncia a la condición de funcionario?", "text": "¿En qué supuesto NO puede aceptarse la renuncia a la condición de funcionario?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Cuando el funcionario esté en excedencia.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "Cuando la solicitud se presente por correo electrónico.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Cuando el funcionario tenga más de treinta años de servicio.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "Cuando esté sujeto a expediente disciplinario o se haya dictado auto de procesamiento o apertura de juicio oral.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 64.2: Cuando esté sujeto a expediente disciplinario o se haya dictado auto de procesamiento o apertura de juicio oral.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "¿Qué titulación se exige para el acceso a los cuerpos y escalas del Grupo B?", "text": "¿Qué titulación se exige para el acceso a los cuerpos y escalas del Grupo B?", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Grado universitario.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Bachiller o Técnico.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Graduado en Educación Secundaria Obligatoria.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Técnico Superior.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 76: Técnico Superior.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "En la excedencia por cuidado de familiares, el puesto de trabajo se reserva, al menos, durante:", "text": "En la excedencia por cuidado de familiares, el puesto de trabajo se reserva, al menos, durante:", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Seis meses.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 1, "text": "Tres años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Un año.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 3, "text": "Dos años.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 89.4: Dos años.", "encodingFormat": "text/plain"}}}, {"@type": "Question", "name": "La suspensión firme de funciones tiene una duración máxima de:", "text": "La suspensión firme de funciones tiene una duración máxima de:", "eduQuestionType": "Multiple choice", "learningResourceType": "Practice problem", "encodingFormat": "text/plain", "assesses": "TREBEP (Estatuto Básico del Empleado Público)", "educationalLevel": "Oposiciones", "typicalAgeRange": "18-", "suggestedAnswer": [{"@type": "Answer", "position": 0, "text": "Doce años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 2, "text": "Tres años.", "encodingFormat": "text/plain"}, {"@type": "Answer", "position": 3, "text": "Un año.", "encodingFormat": "text/plain"}], "acceptedAnswer": {"@type": "Answer", "position": 1, "text": "Seis años.", "encodingFormat": "text/plain", "answerExplanation": {"@type": "Comment", "text": "Art. 96.1.c: Seis años.", "encodingFormat": "text/plain"}}}]}</script>
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../../">Ley<span>Clara</span></a>
+  <nav><a href="../../test/">Todos los test</a><a href="../../resumen/">Resúmenes</a><a href="../../#packs">Packs</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Test del TREBEP (Estatuto Básico del Empleado Público)</h1>
+  <p class="intro">20 preguntas tipo test de la <b>Texto refundido de la Ley del Estatuto Básico del Empleado Público (Real Decreto Legislativo 5/2015, de 30 de octubre)</b>, del temario común de las oposiciones de la Administración (Estado, comunidades autónomas y ayuntamientos) y de muchas OPE de sanidad. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
+  <p class="intro">Texto actualizado con la versión consolidada del BOE. 🎁 ¿Quieres ver un pack completo? <a href="https://carrosphere.gumroad.com/l/ley-53-1984">El de la Ley 53/1984 es gratis</a>.</p>
+  
+</div></section>
+<div class="marcador"><div class="envoltorio"><span>Aciertos: <span id="aciertos">0</span> / <span id="respondidas">0</span></span><span>20 preguntas</span></div></div>
+<main class="envoltorio">
+
+<article class="pregunta" data-i="0">
+  <h2><b>1.</b>¿Qué Real Decreto Legislativo aprueba el texto refundido del Estatuto Básico del Empleado Público?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Ley 7/2007, de 12 de abril.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Real Decreto Legislativo 5/2015, de 30 de octubre.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Real Decreto Legislativo 3/2015, de 30 de octubre.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Real Decreto Legislativo 2/2015, de 23 de octubre.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Preámbulo y art. 1: Real Decreto Legislativo 5/2015, de 30 de octubre.</p>
+</article>
+<article class="pregunta" data-i="1">
+  <h2><b>2.</b>¿Cuál de los siguientes colectivos tiene legislación específica propia y solo se le aplica el Estatuto cuando así lo disponga esa legislación (art. 4)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>El personal de las universidades públicas.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>El personal funcionario de las entidades locales.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>El personal funcionario de la Administración General del Estado.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>El personal militar de las Fuerzas Armadas.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 4.d: El personal militar de las Fuerzas Armadas.</p>
+</article>
+<article class="pregunta" data-i="2">
+  <h2><b>3.</b>¿Cuál es el plazo máximo para el exceso o acumulación de tareas como causa de nombramiento de un funcionario interino (art. 10.1.d)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Tres años improrrogables.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Un año, dentro de un período de dos años.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Seis meses, dentro de un período de doce meses.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Nueve meses, dentro de un período de dieciocho meses.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 10.1.d: Nueve meses, dentro de un período de dieciocho meses.</p>
+</article>
+<article class="pregunta" data-i="3">
+  <h2><b>4.</b>¿A quién corresponde establecer el régimen jurídico específico del personal directivo profesional, en desarrollo del Estatuto (art. 13)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>A los sindicatos más representativos.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>A los Ayuntamientos exclusivamente.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>A las Juntas de Personal.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Al Gobierno y a los órganos de gobierno de las comunidades autónomas.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 13: Al Gobierno y a los órganos de gobierno de las comunidades autónomas.</p>
+</article>
+<article class="pregunta" data-i="4">
+  <h2><b>5.</b>¿En qué consiste la carrera horizontal (art. 16.3.a)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>En el cambio de Administración sin pérdida de antigüedad.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>En el ascenso en la estructura de puestos mediante concurso.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>En el acceso a cuerpos de un subgrupo superior.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>En la progresión de grado, categoría o escalón sin necesidad de cambiar de puesto de trabajo.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 16.3.a: En la progresión de grado, categoría o escalón sin necesidad de cambiar de puesto de trabajo.</p>
+</article>
+<article class="pregunta" data-i="5">
+  <h2><b>6.</b>Las retribuciones de los funcionarios de carrera se clasifican en (art. 22.1):</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Ordinarias y extraordinarias.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Básicas y complementarias.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Directas e indirectas.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Fijas y variables.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 22.1: Básicas y complementarias.</p>
+</article>
+<article class="pregunta" data-i="6">
+  <h2><b>7.</b>¿Qué se entiende por participación institucional a los efectos del Estatuto (art. 31.4)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>El derecho de reunión en el centro de trabajo.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>El derecho a participar, a través de las organizaciones sindicales, en los órganos de control y seguimiento de las entidades u organismos que legalmente se determine.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>El derecho a negociar condiciones de trabajo.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>El derecho a elegir representantes de personal.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 31.4: El derecho a participar, a través de las organizaciones sindicales, en los órganos de control y seguimiento de las entidades u organismos que legalmente se determine.</p>
+</article>
+<article class="pregunta" data-i="7">
+  <h2><b>8.</b>¿Cuál es el número máximo de miembros que puede tener cada parte en las Mesas de Negociación (art. 35.4)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Quince.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Doce.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Diez.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Veinte.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>a)</b> Art. 35.4: Quince.</p>
+</article>
+<article class="pregunta" data-i="8">
+  <h2><b>9.</b>¿A partir de qué censo mínimo de funcionarios se constituyen las Juntas de Personal (art. 39.3)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>250 funcionarios.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>30 funcionarios.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>50 funcionarios.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>100 funcionarios.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>c)</b> Art. 39.3: 50 funcionarios.</p>
+</article>
+<article class="pregunta" data-i="9">
+  <h2><b>10.</b>¿Qué audiencia tienen los representantes en los expedientes disciplinarios que se les incoen durante su mandato y el año posterior (art. 41.1.c)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Solo la audiencia del interesado.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Audiencia en esos expedientes, sin perjuicio de la audiencia al interesado.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>La audiencia del sindicato provincial.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Ninguna, el expediente es ordinario.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 41.1.c: Audiencia en esos expedientes, sin perjuicio de la audiencia al interesado.</p>
+</article>
+<aside class="mitad" id="mitad" hidden>Vas por la mitad 💪 Estas 20 preguntas son la muestra gratis: el pack del TREBEP trae 204, cada una con su artículo, además de la ley explicada, esquemas y fichas. <a href="https://t.me/leyclara_avisos" target="_blank" rel="noopener">Sale muy pronto: te aviso por Telegram</a></aside>
+<article class="pregunta" data-i="10">
+  <h2><b>11.</b>¿Qué edad de los hijos e hijas se menciona en el art. 47.2 para las medidas de flexibilización horaria?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Menores de dieciséis años.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Menores de ocho años.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Menores de doce años.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Menores de tres años.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>c)</b> Art. 47.2: Menores de doce años.</p>
+</article>
+<article class="pregunta" data-i="11">
+  <h2><b>12.</b>¿Puede transferirse al otro progenitor el permiso de lactancia (art. 48.f)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Sí, siempre.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>No, constituye un derecho individual que no puede transferirse.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Sí, solo si el otro progenitor es funcionario.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Sí, con autorización de la Administración.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 48.f: No, constituye un derecho individual que no puede transferirse.</p>
+</article>
+<article class="pregunta" data-i="12">
+  <h2><b>13.</b>¿Qué preaviso mínimo se exige para cada período de disfrute interrumpido de los permisos del art. 49?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Al menos tres días.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Al menos quince días.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Al menos un mes.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Al menos siete días.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 49.a: Al menos quince días.</p>
+</article>
+<article class="pregunta" data-i="13">
+  <h2><b>14.</b>¿Qué rige el régimen de jornada, permisos y vacaciones del personal laboral (art. 51)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Solo el Estatuto de los Trabajadores.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Lo establecido en el capítulo V y la legislación laboral correspondiente.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Solo el convenio colectivo.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Lo que decida cada Administración libremente.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 51: Lo establecido en el capítulo V y la legislación laboral correspondiente.</p>
+</article>
+<article class="pregunta" data-i="14">
+  <h2><b>15.</b>¿En qué lengua deben garantizar la atención al ciudadano los empleados públicos (art. 54.11)?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>En la lengua de la comunidad exclusivamente.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Solo en castellano.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>En la que el ciudadano solicite, siempre que sea oficial en el territorio.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>En la que decida el empleado.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>c)</b> Art. 54.11: En la que el ciudadano solicite, siempre que sea oficial en el territorio.</p>
+</article>
+<article class="pregunta" data-i="15">
+  <h2><b>16.</b>¿Qué porcentaje de efectivos totales con discapacidad debe alcanzarse progresivamente en cada Administración?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>El cinco por ciento.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>El siete por ciento.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>El dos por ciento.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>El uno por ciento.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>c)</b> Art. 59.1: El dos por ciento.</p>
+</article>
+<article class="pregunta" data-i="16">
+  <h2><b>17.</b>¿En qué supuesto NO puede aceptarse la renuncia a la condición de funcionario?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Cuando el funcionario esté en excedencia.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Cuando la solicitud se presente por correo electrónico.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Cuando el funcionario tenga más de treinta años de servicio.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Cuando esté sujeto a expediente disciplinario o se haya dictado auto de procesamiento o apertura de juicio oral.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 64.2: Cuando esté sujeto a expediente disciplinario o se haya dictado auto de procesamiento o apertura de juicio oral.</p>
+</article>
+<article class="pregunta" data-i="17">
+  <h2><b>18.</b>¿Qué titulación se exige para el acceso a los cuerpos y escalas del Grupo B?</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Grado universitario.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Técnico Superior.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Bachiller o Técnico.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Graduado en Educación Secundaria Obligatoria.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 76: Técnico Superior.</p>
+</article>
+<article class="pregunta" data-i="18">
+  <h2><b>19.</b>En la excedencia por cuidado de familiares, el puesto de trabajo se reserva, al menos, durante:</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Seis meses.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Tres años.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Un año.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Dos años.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>d)</b> Art. 89.4: Dos años.</p>
+</article>
+<article class="pregunta" data-i="19">
+  <h2><b>20.</b>La suspensión firme de funciones tiene una duración máxima de:</h2>
+  <ol class="opciones">
+    <li><button type="button" data-j="0"><span class="letra">a)</span>Doce años.</button></li>
+    <li><button type="button" data-j="1"><span class="letra">b)</span>Seis años.</button></li>
+    <li><button type="button" data-j="2"><span class="letra">c)</span>Tres años.</button></li>
+    <li><button type="button" data-j="3"><span class="letra">d)</span>Un año.</button></li>
+  </ol>
+  <p class="solucion">Correcta: <b>b)</b> Art. 96.1.c: Seis años.</p>
+</article>
+<section class="final" id="final">
+  <h2 id="resultado">¿Qué tal te ha ido?</h2>
+  <p id="mensaje-final" class="mensaje-final" hidden></p>
+  <p class="siguiente">➡️ <a class="siguiente" href="../ley-55-2003/">Siguiente test: Ley 55/2003 (Estatuto Marco)</a></p>
+  <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
+  
+  <a class="boton lleno" href="https://t.me/leyclara_avisos">Pack TREBEP: muy pronto · Avísame por Telegram</a>
+  <p class="regalo">🎁 ¿Quieres ver un pack completo antes de comprar? El de la <a href="https://carrosphere.gumroad.com/l/ley-53-1984">Ley 53/1984 es gratis</a>: mismo formato, solo te pide el correo para enviártelo.</p>
+  <p>Este test son las 20 preguntas de la muestra gratis. El <b>pack del TREBEP</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y 204 preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
+  
+  <a class="boton" href="../../muestras/muestra-trebep.pdf" download>Muestra en PDF</a>
+  <a class="boton" href="../../resumen/trebep/">Resumen y datos clave</a>
+  
+</section>
+
+<h2>Más test de legislación</h2>
+<ul class="otros"><li><a href="../ley-55-2003/">Test Ley 55/2003 · Estatuto Marco</a></li><li><a href="../ley-41-2002/">Test Ley 41/2002 · autonomía del paciente</a></li><li><a href="../ley-14-1986/">Test Ley 14/1986 · General de Sanidad</a></li><li><a href="../ley-44-2003/">Test Ley 44/2003 · ordenación de las profesiones sanitarias</a></li><li><a href="../ley-16-2003/">Test Ley 16/2003 · cohesión y calidad del SNS</a></li><li><a href="../ley-31-1995/">Test Ley 31/1995 · prevención de riesgos laborales</a></li><li><a href="../lo-3-2007/">Test LO 3/2007 · igualdad efectiva de mujeres y hombres</a></li><li><a href="../lo-3-2018/">Test LO 3/2018 · protección de datos</a></li><li><a href="../ley-2-1998-andalucia/">Test Ley 2/1998 · Salud de Andalucía</a></li><li><a href="../leyes-12-13-2007-andalucia/">Test Leyes 12 y 13/2007 · igualdad y violencia de género en Andalucía</a></li><li><a href="../ley-53-1984/">Test Ley 53/1984 · incompatibilidades</a></li><li><a href="../constitucion-espanola/">Test Constitución Española · Carta Magna de 1978</a></li><li><a href="../ley-39-2015/">Test Ley 39/2015 · procedimiento administrativo común</a></li><li><a href="../ley-40-2015/">Test Ley 40/2015 · régimen jurídico del sector público</a></li></ul>
+</main>
+
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario.</p>
+  <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
+</div></footer>
+
+<script>
+(function () {
+  var datos = {"ley": "trebep", "correctas": [1, 3, 3, 3, 3, 1, 1, 0, 2, 1, 2, 1, 1, 1, 2, 2, 3, 1, 3, 1]}, aciertos = 0, hechas = 0, total = datos.correctas.length;
+  document.querySelectorAll('.pregunta').forEach(function (p) {
+    var i = +p.dataset.i, botones = p.querySelectorAll('button');
+    botones.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (p.classList.contains('hecha')) return;
+        var j = +b.dataset.j, ok = datos.correctas[i];
+        p.classList.add('hecha');
+        botones.forEach(function (x) { x.disabled = true; });
+        botones[ok].classList.add('bien');
+        if (j !== ok) b.classList.add('mal'); else aciertos++;
+        hechas++;
+        document.getElementById('aciertos').textContent = aciertos;
+        document.getElementById('respondidas').textContent = hechas;
+        if (hechas === 1 && window.leyclaraContar) leyclaraContar('test-empezado-' + datos.ley);
+        if (hechas === Math.floor(total / 2) && hechas < total) document.getElementById('mitad').hidden = false;
+        if (hechas === total) {
+          var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
+          document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
+          msg.textContent = fallos > 0
+            ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae 204 preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.'
+            : '¡Pleno! Esta ley la llevas bien. Prueba con el siguiente test para repasar el resto del temario.';
+          msg.hidden = false;
+          setTimeout(function () { document.getElementById('final').scrollIntoView({behavior: 'smooth'}); }, 1500);
+          if (window.leyclaraContar) leyclaraContar('test-terminado-' + datos.ley);
+        }
+      });
+    });
+  });
+})();
+</script>
+<script>
+(function () {
+  function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  contar('visita'); if (g) contar('visita-' + g);
+  // origen de la visita (?g=) guardado mientras navega, para saber qué origen termina tests y pulsa Comprar (20/10)
+  var origen = '';
+  try { if (g) sessionStorage.setItem('leyclara-g', g); origen = sessionStorage.getItem('leyclara-g') || ''; } catch (e) { origen = g; }
+  if (origen) origen = /^tg-/.test(origen) ? 'tg' : ['yt', 'libro', 'pdf'].indexOf(origen) >= 0 ? origen : 'otro';
+  function deOrigen(ev) { if (origen) contar(ev + '-de-' + origen); }
+  window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
+    if (a.classList.contains('siguiente')) contar('siguiente-test');
+  });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
+})();
+</script>
+</body>
+</html>

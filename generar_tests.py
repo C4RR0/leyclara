@@ -11,6 +11,8 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
+from faq_leyes import FAQ
+
 WEB = Path(__file__).resolve().parent
 URL = "https://c4rr0.github.io/leyclara/"
 TIENDA = "https://carrosphere.gumroad.com/l/"
@@ -179,6 +181,8 @@ CSS = """
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
   .boton.lleno { background: var(--azul); color: #fff; }
   .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .faq h3 { margin: 18px 0 4px; font-size: 1.05rem; }
+  .faq p { margin: 0; }
   .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
              text-decoration: none; font-size: .92rem; }
   .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
@@ -401,8 +405,17 @@ def pagina_ley(ley, todas, tema_pag=None):
                                           "encodingFormat": "text/plain",
                                           "answerExplanation": {"@type": "Comment", "text": q["explicacion"], "encodingFormat": "text/plain"}}}
                       for q in qs]}
+    # Preguntas frecuentes visibles (faq_leyes.py, comprobadas contra el BOE), solo en la página general de la ley
+    faq, extra_ld = "", ""
+    if not tema_pag and slug in FAQ:
+        faq = (f'<section class="faq"><h2>Preguntas frecuentes sobre {e(la(corto))}</h2>'
+               + "".join(f"<h3>{e(p)}</h3><p>{e(r)}</p>" for p, r in FAQ[slug]) + "</section>")
+        ld_faq = {"@context": "https://schema.org", "@type": "FAQPage",
+                  "mainEntity": [{"@type": "Question", "name": p, "acceptedAnswer": {"@type": "Answer", "text": r}}
+                                 for p, r in FAQ[slug]]}
+        extra_ld = f'<script type="application/ld+json">{json.dumps(ld_faq, ensure_ascii=False)}</script>'
     h = [cabecera_html(titulo, descripcion, ruta,
-                       f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')]
+                       f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + extra_ld)]
     h.append(f"""<section class="cabecera"><div class="envoltorio">
   <h1>{e(h1)}</h1>
   <p class="intro">{que_es}, del temario común de {AMBITO.get(carpeta, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")}. Pulsa una opción: verás al momento si aciertas y en qué artículo está la respuesta.</p>
@@ -447,6 +460,7 @@ def pagina_ley(ley, todas, tema_pag=None):
   {"" if slug in SIN_TIENDA else '<p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>'}
 </section>
 {f'<h2>Test {e(de(corto))} por temas</h2>{chr(10)}<ul class="otros">{por_temas}</ul>' if por_temas else ''}
+{faq}
 <h2>Más test de legislación</h2>
 <ul class="otros">{otros}</ul>
 </main>

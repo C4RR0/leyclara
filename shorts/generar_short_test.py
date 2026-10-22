@@ -186,9 +186,10 @@ def para_voz(texto: str) -> str:
 
 async def tts(texto: str, ruta: Path) -> None:
     # El endpoint nuevo da 429 con ráfagas y a veces corta sin audio: reintentar con espera.
+    # El 22/10 a las 19:00 falló tras ~4 min de reintentos: ahora aguanta ~13 min.
     from aiohttp import ClientResponseError
     from edge_tts.exceptions import NoAudioReceived
-    esperas = [15, 30, 60, 120]
+    esperas = [15, 30, 60, 120, 240, 300]
     for intento in range(len(esperas) + 1):
         try:
             await edge_tts.Communicate(para_voz(texto), VOZ, rate="+12%").save(str(ruta))

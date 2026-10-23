@@ -11,7 +11,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
-from faq_leyes import FAQ
+from faq_leyes import FAQ, enlace_boe
 
 WEB = Path(__file__).resolve().parent
 URL = "https://c4rr0.github.io/leyclara/"
@@ -96,6 +96,14 @@ def vistas_previas(slug, raiz):
         for i in imgs)
     return (f'<div class="por-dentro"><h3>Así es el pack por dentro</h3>'
             f'<p>Páginas reales del PDF. Pulsa en cualquiera para verla en grande.</p><div class="vistas">{celdas}</div></div>')
+
+
+def boe_a(slug, respuesta):
+    """Enlace al artículo citado en el BOE (texto consolidado) al final de una respuesta de las FAQ."""
+    en = enlace_boe(slug, respuesta)
+    if not en:
+        return ""
+    return f' <a href="{e(en[0])}" target="_blank" rel="noopener">Ver art. {en[1]} en el BOE</a>'
 
 
 def la(corto):
@@ -409,7 +417,7 @@ def pagina_ley(ley, todas, tema_pag=None):
     faq, extra_ld = "", ""
     if not tema_pag and slug in FAQ:
         faq = (f'<section class="faq"><h2>Preguntas frecuentes sobre {e(la(corto))}</h2>'
-               + "".join(f"<h3>{e(p)}</h3><p>{e(r)}</p>" for p, r in FAQ[slug]) + "</section>")
+               + "".join(f"<h3>{e(p)}</h3><p>{e(r)}{boe_a(slug, r)}</p>" for p, r in FAQ[slug]) + "</section>")
         ld_faq = {"@context": "https://schema.org", "@type": "FAQPage",
                   "mainEntity": [{"@type": "Question", "name": p, "acceptedAnswer": {"@type": "Answer", "text": r}}
                                  for p, r in FAQ[slug]]}

@@ -3,6 +3,7 @@ Preguntas frecuentes de cada ley (3 por ley) para el bloque visible de la págin
 Cada respuesta está comprobada contra el texto consolidado del BOE de NegocioOposiciones/fuentes/
 (22/10/2026) y cita su artículo. Si una ley se reforma, revisar aquí también.
 """
+import re
 
 FAQ = {
     "ley-55-2003": [
@@ -126,3 +127,22 @@ FAQ = {
          "A1 y A2: Grado universitario; B: Técnico Superior; C1: Bachiller o Técnico; C2: Graduado en ESO (art. 76)."),
     ],
 }
+
+
+# Texto consolidado en el BOE de cada ley (el mismo que actualizaciones.LEYES_BOE; para leyes con dos textos, el primero)
+BOE_IDS = {
+    "ley-55-2003": "BOE-A-2003-23101", "ley-41-2002": "BOE-A-2002-22188", "ley-14-1986": "BOE-A-1986-10499",
+    "ley-44-2003": "BOE-A-2003-21340", "ley-16-2003": "BOE-A-2003-10715", "ley-31-1995": "BOE-A-1995-24292",
+    "lo-3-2007": "BOE-A-2007-6115", "lo-3-2018": "BOE-A-2018-16673", "ley-2-1998-andalucia": "BOE-A-1998-18720",
+    "leyes-12-13-2007-andalucia": "BOE-A-2008-2492", "ley-53-1984": "BOE-A-1985-151",
+    "ley-39-2015": "BOE-A-2015-10565", "ley-40-2015": "BOE-A-2015-10566",
+    "constitucion-espanola": "BOE-A-1978-31229", "trebep": "BOE-A-2015-11719",
+}
+
+
+def enlace_boe(slug, respuesta):
+    """URL del primer artículo citado en la respuesta («art. 8.2», «arts. 50.1 y 48.k»), o None si no cita ninguno."""
+    m = re.search(r"\barts?\. (\d+)", respuesta)
+    if not m or slug not in BOE_IDS:
+        return None
+    return f"https://www.boe.es/buscar/act.php?id={BOE_IDS[slug]}#a{m.group(1)}", m.group(1)

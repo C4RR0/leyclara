@@ -1,10 +1,11 @@
 {
- "siguiente": 4,
+ "siguiente": 5,
  "publicadas": [
   "ley55:1",
   "ley41:1",
   "ley14:1",
-  "ley31:1"
+  "ley31:1",
+  "ley44:1"
  ],
- "ultimo_dia": "2026-10-22"
+ "ultimo_dia": "2026-10-23"
 }

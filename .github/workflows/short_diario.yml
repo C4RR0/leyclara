@@ -63,6 +63,15 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
           if [ "$(TZ=Europe/Madrid date +%H)" -lt 12 ] && [ -n "$TELEGRAM_BOT_TOKEN" ]; then python dato_telegram.py; fi
+      - name: Encuesta de los viernes en Telegram (con el Short de la mañana)
+        # Idea de Teo votada por Sergio (23/10). encuesta_viernes.py solo publica en viernes y una vez al día.
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.prueba) }}
+        continue-on-error: true
+        working-directory: shorts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ "$(TZ=Europe/Madrid date +%H)" -lt 12 ] && [ -n "$TELEGRAM_BOT_TOKEN" ]; then python encuesta_viernes.py; fi
       - name: Enlace del canal de Telegram en los Shorts antiguos
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.prueba) }}
         continue-on-error: true

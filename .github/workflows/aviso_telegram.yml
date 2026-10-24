@@ -1,0 +1,49 @@
+name: Aviso puntual en Telegram
+
+# Publica una vez en t.me/leyclara_avisos el texto de shorts/avisos/<aviso>.txt (lo lanza Claude a mano
+# cuando Sergio da el OK). Necesita el secret TELEGRAM_BOT_TOKEN.
+on:
+  workflow_dispatch:
+    inputs:
+      aviso:
+        description: "Nombre del aviso (fichero en shorts/avisos/ sin .txt)"
+        required: true
+      prueba:
+        description: "Solo enseñar el texto, sin publicarlo"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aviso-telegram
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias
+        run: pip install -q edge-tts==7.2.8 pillow
+      - name: Publicar aviso
+        working-directory: shorts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ "${{ inputs.prueba }}" = "true" ]; then
+            python aviso_telegram.py "${{ inputs.aviso }}" --prueba
+          else
+            python aviso_telegram.py "${{ inputs.aviso }}"
+          fi
+      - name: Guardar que se publicó
+        if: ${{ inputs.prueba == false }}
+        run: |
+          git config user.name "leyclara-bot"
+          git config user.email "leyclara-bot@users.noreply.github.com"
+          git add shorts/avisos/publicados.json
+          git diff --cached --quiet || git commit -m "Aviso publicado en Telegram: ${{ inputs.aviso }}"
+          git pull --rebase -q && git push -q

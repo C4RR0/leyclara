@@ -37,13 +37,18 @@ jobs:
         run: |
           if [ -n "$TOKEN" ]; then printf '%s' "$TOKEN" > shorts/token_leyclara.json; fi
       - name: Generar y publicar
+        # La voz (edge-tts) a veces da error 500 un momento (25/10 sin Short ni quiz): se reintenta 3 veces y,
+        # si aun así falla, los pasos de Telegram siguen (continue-on-error).
+        continue-on-error: true
         working-directory: shorts
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.prueba }}" = "true" ]; then
-            python publicar_short.py --prueba
-          else
-            python publicar_short.py
-          fi
+          ARGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.prueba }}" = "true" ]; then ARGS="--prueba"; fi
+          for i in 1 2 3; do
+            python publicar_short.py $ARGS && exit 0
+            echo "Intento $i fallido; reintento en 60 s"; sleep 60
+          done
+          exit 1
       - name: Quiz del día en Telegram (con el Short de la tarde)
         # El schedule de quiz_telegram.yml llega con horas de retraso o no llega (el 19/10 no salió); el Short de
         # las 19:00 lo dispara cron-job.org puntual. quiz_telegram.py no publica dos el mismo día.

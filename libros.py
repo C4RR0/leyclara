@@ -20,10 +20,10 @@ LIBROS = [
       ("Tapa blanda", "9,99 €", None, "")]),
     ("legislacion-sanitaria.jpg", "Legislación sanitaria para oposiciones: las 12 leyes",
      "Todo el temario común en un libro: 12 leyes explicadas, con esquemas, 1.006 test con solución y 296 fichas.",
-     [("Kindle", "9,99 €", None, "")]),
+     [("Kindle", "9,99 €", "B0HP85JNMZ", "Gratis con Kindle Unlimited")]),
     ("agenda-2027.jpg", "Agenda del opositor 2027",
      "Calendario, una página por semana, seguimiento de temas, test y simulacros, registro de errores y horas de estudio.",
-     [("Tapa blanda", "", None, "")]),
+     [("Tapa blanda", "8,91 €", "B0HP82S6SN", "En papel, para escribir en ella")]),
 ]
 
 CSS = ("<style>.libro{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:start;padding:22px 0;"

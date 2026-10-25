@@ -30,7 +30,7 @@ jobs:
       - name: Dependencias
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-          pip install -q edge-tts==7.2.8 pillow google-api-python-client google-auth
+          pip install -q edge-tts==7.3.1 pillow google-api-python-client google-auth
       - name: Token del canal
         env:
           TOKEN: ${{ secrets.YOUTUBE_TOKEN_LEYCLARA_JSON }}

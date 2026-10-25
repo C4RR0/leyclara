@@ -29,7 +29,7 @@ jobs:
           python-version: "3.12"
       - name: Dependencias
         # quiz_telegram.py reutiliza leer_pregunta() de generar_short_test.py, que importa estas dos
-        run: pip install -q edge-tts==7.2.8 pillow
+        run: pip install -q edge-tts==7.3.1 pillow
       - name: Publicar quiz
         working-directory: shorts
         env:

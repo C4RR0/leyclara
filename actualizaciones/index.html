@@ -82,6 +82,8 @@
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
   .boton.lleno { background: var(--azul); color: #fff; }
   .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .faq h3 { margin: 18px 0 4px; font-size: 1.05rem; }
+  .faq p { margin: 0; }
   .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
              text-decoration: none; font-size: .92rem; }
   .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
@@ -96,7 +98,7 @@
 <body>
 <header><div class="envoltorio">
   <a class="marca" href="../">Ley<span>Clara</span></a>
-  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a></nav>
+  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a><a href="../libros/">Libros</a></nav>
 </div></header>
 
 <section class="cabecera"><div class="envoltorio">
@@ -104,7 +106,7 @@
   <p class="intro">Las leyes cambian, y un temario desactualizado cuesta puntos. Cada semana comprobamos de forma automática, con la API oficial de datos abiertos del BOE, si se ha publicado alguna modificación de las leyes de nuestros packs.</p>
 </div></section>
 <main class="envoltorio">
-  <p class="resumen-boe">✔ Las 15 leyes de los packs están al día con el BOE.<br><small>Última comprobación: 21/10/2026.</small></p>
+  <p class="resumen-boe">✔ Las 15 leyes de los packs están al día con el BOE.<br><small>Última comprobación: 25/10/2026.</small></p>
   <div class="tabla"><table>
     <thead><tr><th>Ley</th><th>Versión del BOE del pack</th><th>Estado</th><th>Texto oficial</th></tr></thead>
     <tbody><tr><td><a href="../test/ley-14-1986/">Ley 14/1986, General de Sanidad</a></td><td>26/06/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1986-10499" rel="noopener">BOE-A-1986-10499</a></td></tr><tr><td><a href="../test/ley-16-2003/">Ley 16/2003, de cohesión y calidad del SNS</a></td><td>05/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-10715" rel="noopener">BOE-A-2003-10715</a></td></tr><tr><td><a href="../test/ley-31-1995/">Ley 31/1995, de Prevención de Riesgos Laborales</a></td><td>22/06/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292" rel="noopener">BOE-A-1995-24292</a></td></tr><tr><td><a href="../test/ley-41-2002/">Ley 41/2002, de autonomía del paciente</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-22188" rel="noopener">BOE-A-2002-22188</a></td></tr><tr><td><a href="../test/ley-44-2003/">Ley 44/2003, de ordenación de las profesiones sanitarias</a></td><td>24/09/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-21340" rel="noopener">BOE-A-2003-21340</a></td></tr><tr><td><a href="../test/ley-55-2003/">Ley 55/2003, del Estatuto Marco</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2003-23101" rel="noopener">BOE-A-2003-23101</a></td></tr><tr><td><a href="../test/lo-3-2007/">Ley Orgánica 3/2007, de igualdad</a></td><td>19/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115" rel="noopener">BOE-A-2007-6115</a></td></tr><tr><td><a href="../test/lo-3-2018/">Ley Orgánica 3/2018, de protección de datos</a></td><td>08/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" rel="noopener">BOE-A-2018-16673</a></td></tr><tr><td><a href="../test/ley-53-1984/">Ley 53/1984, de incompatibilidades</a></td><td>16/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-151" rel="noopener">BOE-A-1985-151</a></td></tr><tr><td><a href="../test/ley-2-1998-andalucia/">Ley 2/1998, de Salud de Andalucía</a></td><td>18/12/2025</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1998-18720" rel="noopener">BOE-A-1998-18720</a></td></tr><tr><td><a href="../test/leyes-12-13-2007-andalucia/">Leyes 12/2007 y 13/2007 de Andalucía</a></td><td>16/01/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2008-2492" rel="noopener">BOE-A-2008-2492</a> · <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2008-2493" rel="noopener">BOE-A-2008-2493</a></td></tr><tr><td><a href="../test/constitucion-espanola/">Constitución Española de 1978</a></td><td>20/05/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229" rel="noopener">BOE-A-1978-31229</a></td></tr><tr><td><a href="../test/ley-39-2015/">Ley 39/2015, del Procedimiento Administrativo Común</a></td><td>25/09/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565" rel="noopener">BOE-A-2015-10565</a></td></tr><tr><td><a href="../test/ley-40-2015/">Ley 40/2015, de Régimen Jurídico del Sector Público</a></td><td>20/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-10566" rel="noopener">BOE-A-2015-10566</a></td></tr><tr><td><a href="../test/trebep/">TREBEP (RDL 5/2015), Estatuto Básico del Empleado Público</a></td><td>14/10/2026</td><td class="ok">✔ Al día</td><td><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11719" rel="noopener">BOE-A-2015-11719</a></td></tr></tbody>
@@ -126,7 +128,7 @@ biblioteca de Gumroad. Para avisarnos, responde al correo de tu compra.</p>
 
 <footer><div class="envoltorio">
   <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
-  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario. · 📚 <a href="https://c4rr0.github.io/leyclara/libros/">Libros en Amazon</a></p>
   <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
 </div></footer>
 <script>
@@ -142,13 +144,14 @@ biblioteca de Gumroad. Para avisarnos, responde al correo de tu compra.</p>
   window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
   // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
   var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
-    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : /\/libros\//.test(ruta) ? 'libros' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
     if (m) contar('descarga-' + m[1]);
     if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
     m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    m = h.match(/amazon\.es\/dp\/(\w+)/); if (m) { contar('amazon-' + m[1]); contar('amazon-en-' + donde); deOrigen('amazon'); }
     if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
     if (a.classList.contains('siguiente')) contar('siguiente-test');
   });

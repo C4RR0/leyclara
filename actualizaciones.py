@@ -42,9 +42,11 @@ biblioteca de Gumroad. Para avisarnos, responde al correo de tu compra.</p>"""
 
 
 def fecha_boe(idb: str) -> dt.date:
-    req = urllib.request.Request(f"https://www.boe.es/datosabiertos/api/legislacion-consolidada/id/{idb}/metadatos",
+    # Fecha del último artículo modificado (índice del texto). La fecha_actualizacion de /metadatos cambia también
+    # por retoques técnicos del BOE sin tocar el texto (25/10/2026: 31/1995 y 40/2015 dieron falsos avisos).
+    req = urllib.request.Request(f"https://www.boe.es/datosabiertos/api/legislacion-consolidada/id/{idb}/texto/indice",
                                  headers={"Accept": "application/json", "User-Agent": "LeyClara/1.0"})
-    f = json.load(urllib.request.urlopen(req, timeout=60))["data"][0]["fecha_actualizacion"][:8]
+    f = max(b["fecha_actualizacion"][:8] for b in json.load(urllib.request.urlopen(req, timeout=60))["data"][0]["bloque"])
     return dt.date(int(f[:4]), int(f[4:6]), int(f[6:8]))
 
 

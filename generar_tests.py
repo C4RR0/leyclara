@@ -214,13 +214,14 @@ CONTADOR = """<script>
   window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
   // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
   var ruta = location.pathname, donde = /\\/test\\/$/.test(ruta) ? 'portada-test' : /\\/test\\/[^\\/]+\\//.test(ruta) ? 'test' : /\\/resumen\\/[^\\/]+\\//.test(ruta) ? 'resumen'
-    : /estatuto-marco/.test(ruta) ? 'estatuto' : 'otra';
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : /\\/libros\\//.test(ruta) ? 'libros' : 'otra';
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href') || '', m = h.match(/muestras\\/(.+)\\.pdf$/);
     if (m) contar('descarga-' + m[1]);
     if (/\\/vistas\\//.test(h)) contar('vista-previa-en-' + donde);
     m = h.match(/gumroad\\.com\\/l\\/([\\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    m = h.match(/amazon\\.es\\/dp\\/(\\w+)/); if (m) { contar('amazon-' + m[1]); contar('amazon-en-' + donde); deOrigen('amazon'); }
     if (/t\\.me\\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
     if (a.classList.contains('siguiente')) contar('siguiente-test');
   });
@@ -345,14 +346,14 @@ def cabecera_html(titulo, descripcion, ruta, extra_head=""):
 <body>
 <header><div class="envoltorio">
   <a class="marca" href="{'../../' if ruta.count('/') == 2 else '../'}">Ley<span>Clara</span></a>
-  <nav><a href="{RAIZ}test/">Todos los test</a><a href="{RAIZ}resumen/">Resúmenes</a><a href="{RAIZ}#packs">Packs</a></nav>
+  <nav><a href="{RAIZ}test/">Todos los test</a><a href="{RAIZ}resumen/">Resúmenes</a><a href="{RAIZ}#packs">Packs</a><a href="{RAIZ}libros/">Libros</a></nav>
 </div></header>
 """
 
 
 PIE = """<footer><div class="envoltorio">
   <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
-  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario. · 📚 <a href="https://c4rr0.github.io/leyclara/libros/">Libros en Amazon</a></p>
   <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
 </div></footer>
 """
@@ -667,7 +668,7 @@ def portada_resumenes(todas):
 if __name__ == "__main__":
     rutas = (["", portada(TODAS)] + [pagina_ley(l, TODAS) for l in TODAS]
              + [pagina_ley(l, TODAS, t) for l in TODAS for t in temas_de(l)]
-             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/"])
+             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/", "libros/"])
     def cambiada(r):
         """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""
         f = f"{r}index.html"

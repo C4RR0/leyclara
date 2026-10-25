@@ -18,14 +18,9 @@ import textwrap
 from pathlib import Path
 
 import edge_tts
-from edge_tts import communicate as _edge_communicate
-from edge_tts.constants import TRUSTED_CLIENT_TOKEN
 from PIL import Image, ImageDraw, ImageFont
 
-# Desde el 10/10/2026 Microsoft movió la síntesis a api.msedgeservices.com y edge-tts 7.2.8
-# sigue con la URL vieja (403). Mismo apaño que en CanalIA-CienciaEspacio/scripts/generar_audio.py.
-_edge_communicate.WSS_URL = ("wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1"
-                             f"?Ocp-Apim-Subscription-Key={TRUSTED_CLIENT_TOKEN}")
+# 25/10/2026: quitado el apaño de api.msedgeservices.com (daba 500); edge-tts 7.3.1 ya funciona con su URL.
 
 ANCHO, ALTO = 1080, 1920
 AZUL, AZUL_OSCURO, ACENTO, OK = "#1f4e79", "#0f2a44", "#ffd400", "#1e7d4f"

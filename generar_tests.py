@@ -56,7 +56,8 @@ LEYES_ADMIN = [
 TODAS = LEYES + LEYES_ADMIN
 ADMIN = {l[0] for l in LEYES_ADMIN}
 # Packs aún sin producto en Gumroad: en vez de «Comprar», aviso por Telegram. Quitar el slug al crear el producto.
-SIN_TIENDA = {l[1] for l in LEYES_ADMIN}
+# (26/10/2026: ya están en Gumroad los 4 de Administración y el paquete pack-administracion)
+SIN_TIENDA = set()
 TELEGRAM = "https://t.me/leyclara_avisos"
 
 # Leyes autonómicas: solo entran en la OPE de su servicio de salud
@@ -79,6 +80,11 @@ def aviso_em(slug, raiz):
     return (f'<p class="intro">📌 El proyecto del nuevo Estatuto Marco, que {AFECTADAS_EM[slug]}, caducó al disolverse las Cortes '
             f'(6/10/2026): esta ley sigue vigente. <a href="{raiz}nuevo-estatuto-marco/">Qué cambiaba y qué se estudia</a>.</p>')
 SUELTAS = f"{sum(float(l[5].replace(',', '.')) for l in LEYES):.2f}".replace(".", ",")
+# Paquete de Gumroad con los 4 de Administración (pack-administracion): es lo que se ofrece en sus tests en vez de las 12 leyes
+SLUGS_ADMIN = {l[1] for l in LEYES_ADMIN}
+SUELTAS_ADMIN = f"{sum(float(l[5].replace(',', '.')) for l in LEYES_ADMIN):.2f}".replace(".", ",")
+TOTAL_ADMIN = sum(l[6] for l in LEYES_ADMIN)
+PACK_ADMIN = "17,90"
 
 # Páginas reales del pack (ventas/vistas_previas.py las genera en web/vistas/<slug>/)
 VISTAS = {"0-indice": "Índice de las 12 leyes", "1-ley-explicada": "Ley explicada", "2-esquema": "Esquema",
@@ -449,6 +455,12 @@ def pagina_ley(ley, todas, tema_pag=None):
     if slug in SIN_TIENDA:
         comprar = (f'<a class="boton lleno" href="{TELEGRAM}">Pack {e(corto)}: muy pronto · Avísame por Telegram</a>')
         pleno = "¡Pleno! Esta ley la llevas bien. Prueba con el siguiente test para repasar el resto del temario."
+    elif slug in SLUGS_ADMIN:
+        comprar = (f'<a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>\n'
+                   f'  <a class="boton" href="{TIENDA}pack-administracion">Las 4 leyes de Administración · {PACK_ADMIN} € '
+                   f'<span class="ahorro">(sueltas {SUELTAS_ADMIN} €)</span></a>')
+        pleno = (f"¡Pleno! Esta ley la llevas bien. Para el resto del temario de Administración, el pack de las 4 leyes "
+                 f"(Constitución, Ley 39, Ley 40 y TREBEP) trae {TOTAL_ADMIN} preguntas con su artículo.")
     else:
         comprar = (f'<a class="boton lleno" href="{TIENDA}{slug}">Pack {e(corto)} · {coste.capitalize()}</a>\n'
                    f'  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>')

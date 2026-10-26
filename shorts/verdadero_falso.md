@@ -31,3 +31,18 @@ Aún sin automatizar: falta decidir cómo se genera el vídeo (ver tarea del pan
 19. «Es obligación de los ciudadanos responsabilizarse del uso adecuado de las prestaciones del sistema sanitario.» · VERDADERO · art. 11.3 (los artículos de esta ley se numeran en letra: «once»).
 
 Pendiente: decidir cómo se genera el vídeo (sin tocar aún el Short diario).
+
+## Ley 31/1995 (Prevención de Riesgos Laborales) — comprobadas contra negocio/fuentes/ley31_1995_vigente.txt (26/10/2026)
+
+19. «Se constituye un Comité de Seguridad y Salud en las empresas o centros con 50 o más trabajadores.» · VERDADERO · art. 38.2.
+20. «El Comité de Seguridad y Salud se reúne trimestralmente y siempre que lo solicite alguna de las representaciones.» · VERDADERO · art. 38.3.
+21. «Los Delegados de Prevención son designados por la dirección de la empresa.» · FALSO · art. 35.2 · Son designados por y entre los representantes del personal.
+22. «En las empresas de 50 a 100 trabajadores hay 2 Delegados de Prevención.» · VERDADERO · art. 35.2 · De 101 a 500, son 3.
+23. «El trabajador puede interrumpir su actividad y abandonar el lugar de trabajo si hay riesgo grave e inminente para su vida o su salud.» · VERDADERO · art. 21.2.
+
+## Ley 44/2003 (Ordenación de las profesiones sanitarias) — comprobadas contra negocio/fuentes/ley44_2003_vigente.txt (26/10/2026)
+
+24. «La formación de especialistas en Ciencias de la Salud tiene lugar por el sistema de residencia en centros acreditados.» · VERDADERO · art. 20.2.
+25. «La formación mediante residencia es compatible con cualquier otra actividad profesional.» · FALSO · art. 20.3.a · Es incompatible con cualquier otra actividad profesional, con dedicación a tiempo completo.
+26. «Durante la residencia hay una relación laboral especial entre el servicio de salud o centro y el especialista en formación.» · VERDADERO · art. 20.3.f.
+27. «Los residentes tienen evaluaciones anuales y una evaluación final al término de la formación.» · VERDADERO · art. 20.3.e.

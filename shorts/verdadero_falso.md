@@ -71,3 +71,14 @@ Pendiente: decidir cómo se genera el vídeo (sin tocar aún el Short diario).
 44. «El permiso por fallecimiento de un familiar de primer grado es de tres días hábiles si ocurre en la misma localidad.» · VERDADERO · art. 48.a · Cinco días hábiles si es en distinta localidad.
 45. «Para cuidar a un familiar de primer grado con enfermedad muy grave se puede reducir la jornada hasta un 50 % durante un máximo de tres meses.» · FALSO · art. 48.i · El plazo máximo es de un mes.
 46. «Los empleados públicos se clasifican en funcionarios de carrera, funcionarios interinos, personal laboral y personal eventual.» · VERDADERO · art. 8.2.
+
+## Ley 40/2015 (régimen jurídico del sector público) — comprobadas contra negocio/fuentes/ley40_2015_vigente.txt (27/10/2026)
+
+47. «Los órganos colegiados pueden celebrar sus sesiones a distancia, salvo que su reglamento interno disponga expresa y excepcionalmente lo contrario.» · VERDADERO · art. 17.1.
+48. «Para la válida constitución de un órgano colegiado se requiere la asistencia del Presidente y el Secretario y la de al menos la mitad de sus miembros.» · VERDADERO · art. 17.2.
+49. «En un órgano colegiado se puede acordar un asunto que no figure en el orden del día si lo vota la mayoría de los presentes.» · FALSO · art. 17.4 · Hace falta que asistan todos los miembros y que se declare la urgencia por mayoría.
+50. «Los miembros que votan en contra o se abstienen quedan exentos de la responsabilidad derivada del acuerdo.» · VERDADERO · art. 17.6.
+51. «En la AGE, los miembros del órgano colegiado deben recibir la convocatoria con una antelación mínima de dos días.» · VERDADERO · art. 19.3.a.
+52. «Los convenios no pueden tener por objeto prestaciones propias de los contratos.» · VERDADERO · art. 47.1.
+53. «Firmar un convenio supone ceder la titularidad de la competencia a la otra parte.» · FALSO · art. 48.1 · La suscripción no puede suponer cesión de la titularidad de la competencia.
+54. «Los convenios de la AGE son eficaces una vez inscritos, en el plazo de 5 días hábiles desde su formalización, en el Registro Electrónico estatal de Órganos e Instrumentos de Cooperación.» · VERDADERO · art. 48.8 · Además se publican en el BOE en 10 días hábiles.

@@ -46,3 +46,16 @@ Pendiente: decidir cómo se genera el vídeo (sin tocar aún el Short diario).
 25. «La formación mediante residencia es compatible con cualquier otra actividad profesional.» · FALSO · art. 20.3.a · Es incompatible con cualquier otra actividad profesional, con dedicación a tiempo completo.
 26. «Durante la residencia hay una relación laboral especial entre el servicio de salud o centro y el especialista en formación.» · VERDADERO · art. 20.3.f.
 27. «Los residentes tienen evaluaciones anuales y una evaluación final al término de la formación.» · VERDADERO · art. 20.3.e.
+
+## Constitución Española (1978) — comprobadas contra negocio/fuentes/ce_1978_vigente.txt (27/10/2026)
+
+28. «El Congreso se compone de un mínimo de 300 y un máximo de 400 Diputados.» · VERDADERO · art. 68.1.
+29. «El Congreso es elegido por cinco años.» · FALSO · art. 68.4 · Es elegido por cuatro años.
+30. «Ceuta y Melilla están representadas cada una por un Diputado en el Congreso.» · VERDADERO · art. 68.2 · En el Senado eligen dos cada una (art. 69.4).
+31. «En el Senado, cada provincia elige cuatro Senadores por sufragio universal, libre, igual, directo y secreto.» · VERDADERO · art. 69.2.
+32. «La confianza en la investidura exige siempre mayoría absoluta del Congreso.» · FALSO · art. 99.3 · En la primera votación hace falta mayoría absoluta; 48 horas después basta la mayoría simple.
+33. «Si pasan dos meses desde la primera votación de investidura sin que ningún candidato obtenga la confianza, el Rey disuelve las Cámaras y convoca elecciones.» · VERDADERO · art. 99.5 · Con el refrendo del Presidente del Congreso.
+34. «El estado de alarma lo declara el Gobierno por un plazo máximo de quince días.» · VERDADERO · art. 116.2 · Para prorrogarlo hace falta la autorización del Congreso.
+35. «El estado de excepción puede declararse sin autorización del Congreso.» · FALSO · art. 116.3 · Exige la autorización previa del Congreso; dura como máximo 30 días, prorrogables por otros 30.
+36. «El Tribunal Constitucional se compone de 12 miembros nombrados por el Rey.» · VERDADERO · art. 159.1 · Cuatro a propuesta del Congreso, cuatro del Senado, dos del Gobierno y dos del CGPJ.
+37. «Los miembros del Tribunal Constitucional son designados por nueve años y se renuevan por terceras partes cada tres.» · VERDADERO · art. 159.3.

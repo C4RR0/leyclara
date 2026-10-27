@@ -59,3 +59,15 @@ Pendiente: decidir cómo se genera el vídeo (sin tocar aún el Short diario).
 35. «El estado de excepción puede declararse sin autorización del Congreso.» · FALSO · art. 116.3 · Exige la autorización previa del Congreso; dura como máximo 30 días, prorrogables por otros 30.
 36. «El Tribunal Constitucional se compone de 12 miembros nombrados por el Rey.» · VERDADERO · art. 159.1 · Cuatro a propuesta del Congreso, cuatro del Senado, dos del Gobierno y dos del CGPJ.
 37. «Los miembros del Tribunal Constitucional son designados por nueve años y se renuevan por terceras partes cada tres.» · VERDADERO · art. 159.3.
+
+## TREBEP (RDLeg 5/2015) — comprobadas contra negocio/fuentes/trebep_2015_vigente.txt (27/10/2026)
+
+38. «Para participar en un proceso selectivo hay que tener cumplidos dieciséis años.» · VERDADERO · art. 56.1.c · Y no exceder, en su caso, de la edad máxima de jubilación forzosa.
+39. «Para el permiso por asuntos particulares, el funcionario tiene derecho a seis días al año.» · VERDADERO · art. 48.k.
+40. «El permiso por matrimonio o registro de pareja de hecho es de diez días.» · FALSO · art. 48.l · Son quince días.
+41. «El permiso por traslado de domicilio sin cambio de residencia es de un día.» · VERDADERO · art. 48.b.
+42. «Por lactancia de un hijo menor de doce meses se tiene derecho a una hora de ausencia diaria.» · VERDADERO · art. 48.f · Que se puede dividir en dos fracciones.
+43. «El permiso de lactancia se puede transferir al otro progenitor.» · FALSO · art. 48.f · Es un derecho individual de cada funcionario, sin transferencia posible.
+44. «El permiso por fallecimiento de un familiar de primer grado es de tres días hábiles si ocurre en la misma localidad.» · VERDADERO · art. 48.a · Cinco días hábiles si es en distinta localidad.
+45. «Para cuidar a un familiar de primer grado con enfermedad muy grave se puede reducir la jornada hasta un 50 % durante un máximo de tres meses.» · FALSO · art. 48.i · El plazo máximo es de un mes.
+46. «Los empleados públicos se clasifican en funcionarios de carrera, funcionarios interinos, personal laboral y personal eventual.» · VERDADERO · art. 8.2.

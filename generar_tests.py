@@ -67,7 +67,7 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
              for c in ADMIN}}
 
 
-LANZAMIENTO = "Precios de lanzamiento hasta el 31 de octubre."
+LANZAMIENTO = "🏷️ Oferta hasta el 3 de noviembre: 40 % de descuento en todos los packs con el código GRACIAS40."
 TOTAL_TEST = sum(l[6] for l in LEYES)
 GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
 # leyes que deroga o modifica el proyecto del nuevo Estatuto Marco (página de estatuto_marco.py)

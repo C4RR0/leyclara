@@ -1,4 +1,7 @@
-"""Fin de los precios de lanzamiento (anunciado en la web: hasta el 31/10/2026). Ejecutar el 1/11/2026, una sola vez.
+"""APLAZADO el 27/10/2026: con 0 ventas NO se suben los precios el 1/11 (los patrones de abajo
+ya no cuadran: la web anuncia la oferta GRACIAS40 hasta el 3/11). Revisar cuando haya ventas.
+
+Fin de los precios de lanzamiento (anunciado en la web: hasta el 31/10/2026). Ejecutar el 1/11/2026, una sola vez.
 
 Web: sueltos 6,90 → 9,90 €, Ley 55/2003 8,90 → 12,90 €, pack completo 24,90 → 34,90 €, pack Administración
 17,90 → 24,90 €; quita el aviso de lanzamiento de la portada y de los tests, regenera tests, resúmenes y las 15 muestras PDF.

@@ -2,7 +2,7 @@
 
 Afirmaciones comprobadas contra el texto vigente del BOE (negocio/fuentes/ley41_2002_vigente.txt, 26/10/2026).
 Formato: afirmación · respuesta · artículo · explicación de una línea para el comentario fijado.
-Aún sin automatizar: falta decidir cómo se genera el vídeo (ver tarea del panel).
+Generador: shorts/generar_vf.py <n> (lee este banco; el audio se prueba en el PC o en una Action, no en la nube).
 
 1. «El consentimiento informado es siempre por escrito.» · FALSO · art. 8.2 · Por regla general es verbal; solo es escrito en intervenciones quirúrgicas, procedimientos invasores y los de riesgo notorio y previsible.
 2. «El paciente puede revocar libremente su consentimiento en cualquier momento.» · VERDADERO · art. 8.5 · Se revoca por escrito.

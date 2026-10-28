@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novedades legales: qué ha cambiado en las leyes de Administración | LeyClara</title>
+<meta name="description" content="Reformas recientes de la Constitución y el TREBEP que pueden caer en tu oposición, resumidas y comprobadas con el BOE, con enlace al test de cada ley.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/novedades/">
+<meta property="og:title" content="Novedades legales: qué ha cambiado en las leyes de Administración | LeyClara">
+<meta property="og:description" content="Reformas recientes de la Constitución y el TREBEP que pueden caer en tu oposición, resumidas y comprobadas con el BOE, con enlace al test de cada ley.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/novedades/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235;
+            --ok-fondo:#123524; --mal-fondo:#3a1715; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .cabecera { padding: 36px 0 12px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 8px; }
+  .marcador { position: sticky; top: 0; z-index: 5; background: var(--fondo); border-bottom: 1px solid var(--borde);
+              padding: 10px 0; font-weight: 700; }
+  .marcador .envoltorio { display: flex; justify-content: space-between; gap: 12px; }
+  .pregunta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; margin: 18px 0; background: var(--tarjeta); }
+  .pregunta h2 { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.4; }
+  .pregunta h2 b { color: var(--azul-2); margin-right: 6px; }
+  .opciones { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .opciones button { width: 100%; text-align: left; font: inherit; color: inherit; background: var(--claro);
+                     border: 2px solid transparent; border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+  .opciones button:hover:not(:disabled) { border-color: var(--azul-2); }
+  .opciones button:disabled { cursor: default; }
+  .opciones button.bien { background: var(--ok-fondo); border-color: var(--ok); font-weight: 700; }
+  .opciones button.mal { background: var(--mal-fondo); border-color: var(--mal); }
+  .opciones .letra { font-weight: 800; margin-right: 8px; color: var(--azul-2); }
+  .solucion { display: none; margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--ok); background: var(--claro);
+              border-radius: 0 8px 8px 0; font-size: .95rem; }
+  .pregunta.hecha .solucion { display: block; }
+  .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
+  .final h2 { margin: 0 0 8px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
+  .regalo { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--acento); background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .regalo a { font-weight: 700; color: var(--azul-2); }
+  .canal-aviso { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid #229ed9; background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .canal-aviso a { font-weight: 700; color: var(--azul-2); }
+  p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
+  a.siguiente { font-weight: 700; color: var(--azul-2); }
+  .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
+  .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); margin: 6px 8px 0 0; }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .faq h3 { margin: 18px 0 4px; font-size: 1.05rem; }
+  .faq p { margin: 0; }
+  .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
+             text-decoration: none; font-size: .92rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
+  .tarjeta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: var(--tarjeta); text-decoration: none; display: block; }
+  .tarjeta h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .93rem; }
+  footer { border-top: 1px solid var(--borde); padding: 24px 0 36px; color: var(--suave); font-size: .86rem; margin-top: 30px; }
+  @media (max-width: 520px) { header nav { display: none; } }
+</style>
+<style>.novedad{border-bottom:1px solid var(--borde);padding:18px 0}.novedad h2{margin:0 0 4px}.art{color:var(--ok);font-weight:700;margin:0 0 8px}.enlaces{display:flex;gap:16px;flex-wrap:wrap;align-items:center}</style>
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../">Ley<span>Clara</span></a>
+  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a><a href="../libros/">Libros</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Novedades legales</h1>
+  <p class="intro">Lo que ha cambiado en las leyes de Administración y puede caer en el examen. Cada reforma está comprobada con el texto consolidado del BOE.</p>
+</div></section>
+<main class="envoltorio">
+  <article class="novedad">
+  <h2>Constitución Española</h2>
+  <p class="art">Art. 69.3 (Senado) · en vigor desde el 20/05/2026</p>
+  <p>Formentera pasa a elegir un senador propio: ya no forma una circunscripción conjunta con Ibiza. El art. 69.3 da ahora tres senadores a cada isla mayor (Gran Canaria, Mallorca y Tenerife) y uno a cada una de estas: Ibiza, Formentera, Menorca, Fuerteventura, La Gomera, El Hierro, Lanzarote y La Palma.</p>
+  <p><b>Qué sigue igual:</b> Cuatro senadores por provincia (art. 69.2) y dos por Ceuta y Melilla (art. 69.4).</p>
+  <p class="enlaces"><a class="boton" href="../test/constitucion-espanola/?g=novedades">Hacer el test de esta ley</a>
+  <a href="https://carrosphere.gumroad.com/l/constitucion-espanola?g=novedades" rel="noopener">Pack con la ley actualizada</a></p>
+</article><article class="novedad">
+  <h2>TREBEP (RDL 5/2015)</h2>
+  <p class="art">Art. 49.e (hijo con cáncer o enfermedad grave) · en vigor desde el 23/10/2026</p>
+  <p>Si la persona a cargo tiene gran discapacidad o gran dependencia y necesita cuidados directos, continuos y permanentes, la reducción de jornada puede prorrogarse más allá de los límites de edad mientras persista la necesidad y la convivencia. Ambos progenitores pueden compartir la reducción hasta el máximo del 100 %.</p>
+  <p><b>Qué sigue igual:</b> La regla base: reducción de al menos la mitad de la jornada, con retribuciones íntegras, hasta los 23 años (26 con discapacidad igual o superior al 65 %).</p>
+  <p class="enlaces"><a class="boton" href="../test/trebep/?g=novedades">Hacer el test de esta ley</a>
+  <a href="https://carrosphere.gumroad.com/l/trebep?g=novedades" rel="noopener">Pack con la ley actualizada</a></p>
+</article><article class="novedad">
+  <h2>Ley 39/2015, Procedimiento Administrativo Común</h2>
+  <p class="art">Sin reformas en 2026</p>
+  <p>En el texto consolidado del BOE no figura ninguna modificación de 2026: el pack sigue vigente.</p>
+  
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=novedades">Hacer el test de esta ley</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=novedades" rel="noopener">Pack con la ley actualizada</a></p>
+</article><article class="novedad">
+  <h2>Ley 40/2015, Régimen Jurídico del Sector Público</h2>
+  <p class="art">Sin reformas en 2026</p>
+  <p>En el texto consolidado del BOE no figura ninguna modificación de 2026: el pack sigue vigente.</p>
+  
+  <p class="enlaces"><a class="boton" href="../test/ley-40-2015/?g=novedades">Hacer el test de esta ley</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-40-2015?g=novedades" rel="noopener">Pack con la ley actualizada</a></p>
+</article>
+  <p>¿Quieres la hoja de una página? <a href="../descargas/que-cambio-2026-administracion.pdf">Descargar «Qué cambió en 2026»</a> (gratis). Comprobamos el BOE cada semana: mira <a href="../actualizaciones/">actualizaciones y erratas</a>.</p>
+</main>
+
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario. · 📚 <a href="https://c4rr0.github.io/leyclara/libros/">Libros en Amazon</a></p>
+  <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
+</div></footer>
+<script>
+(function () {
+  function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  contar('visita'); if (g) contar('visita-' + g);
+  // origen de la visita (?g=) guardado mientras navega, para saber qué origen termina tests y pulsa Comprar (20/10)
+  var origen = '';
+  try { if (g) sessionStorage.setItem('leyclara-g', g); origen = sessionStorage.getItem('leyclara-g') || ''; } catch (e) { origen = g; }
+  if (origen) origen = /^tg-/.test(origen) ? 'tg' : ['yt', 'libro', 'pdf'].indexOf(origen) >= 0 ? origen : 'otro';
+  function deOrigen(ev) { if (origen) contar(ev + '-de-' + origen); }
+  window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : /\/libros\//.test(ruta) ? 'libros' : 'otra';
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    m = h.match(/amazon\.es\/dp\/(\w+)/); if (m) { contar('amazon-' + m[1]); contar('amazon-en-' + donde); deOrigen('amazon'); }
+    if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
+    if (a.classList.contains('siguiente')) contar('siguiente-test');
+  });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
+})();
+</script>
+</body>
+</html>

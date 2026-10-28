@@ -86,7 +86,7 @@ def main() -> int:
     <tbody>{"".join(filas)}</tbody>
   </table></div>
   <h2>Qué cambió en 2026</h2>
-  <p><b>PDF gratis de una página</b> con las reformas de 2026 en las leyes de Administración (Constitución, TREBEP y Leyes 39 y 40), comprobadas con el BOE: <a href="../descargas/que-cambio-2026-administracion.pdf">descargar «Qué cambió en 2026»</a>.</p>
+  <p><b>PDF gratis de una página</b> con las reformas de 2026 en las leyes de Administración (Constitución, TREBEP y Leyes 39 y 40), comprobadas con el BOE: <a href="../descargas/que-cambio-2026-administracion.pdf">descargar «Qué cambió en 2026»</a>. Resumen de cada reforma con su test: <a href="../novedades/">novedades legales</a>.</p>
   <h2>Si una ley cambia</h2>
   <p>Revisamos la reforma, actualizamos el pack (ley explicada, esquema, test y fichas) y lo subimos de nuevo. Quien ya lo compró lo encuentra actualizado en su biblioteca de Gumroad, sin pagar nada más.</p>
   <h2>Erratas</h2>

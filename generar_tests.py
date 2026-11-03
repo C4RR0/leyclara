@@ -67,7 +67,10 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
              for c in ADMIN}}
 
 
-LANZAMIENTO = "🏷️ Oferta hasta el 3 de noviembre: 40 % de descuento en todos los packs con el código GRACIAS40."
+LANZAMIENTO = ""  # 4/11/2026: acabó la oferta GRACIAS40
+# Prueba de precio del 4 al 10/11/2026: ¿se vende a precio de impulso? En Gumroad: mínimo 2,88 € + IVA 4 % = 3 €, «paga lo que quieras».
+# Al acabar: quitar el slug de aquí, devolver el precio en Gumroad y regenerar.
+PRUEBA = {"ley-55-2003": "3"}
 TOTAL_TEST = sum(l[6] for l in LEYES)
 GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
 # leyes que deroga o modifica el proyecto del nuevo Estatuto Marco (página de estatuto_marco.py)
@@ -373,6 +376,7 @@ def pagina_ley(ley, todas, tema_pag=None):
         ruta, nombre_tema, qs = tema_pag
     else:
         ruta, qs = f"test/{slug}/", leer(carpeta)
+    precio = PRUEBA.get(slug, precio)
     coste = "gratis" if slug == GRATIS else f"{precio} €"
     regalo = "" if slug == GRATIS else (
         f'<p class="regalo">🎁 ¿Quieres ver un pack completo antes de comprar? El de la '
@@ -466,6 +470,11 @@ def pagina_ley(ley, todas, tema_pag=None):
                    f'  <a class="boton" href="{TIENDA}pack-completo">Las 12 leyes · 24,90 € <span class="ahorro">(sueltas {SUELTAS} €)</span></a>')
         pleno = (f"¡Pleno! Esta ley la llevas bien. Para mantener el nivel en todo el temario, el pack completo trae "
                  f"{TOTAL_TEST} preguntas de las 12 leyes con su artículo.")
+    oferta = oferta_msg = ""
+    if slug in PRUEBA:
+        oferta = (f'<p class="lanzamiento">🏷️ <b>Solo esta semana: el pack {e(de(corto))} por {precio} €</b> '
+                  f'(IVA incluido), o lo que tú quieras pagar a partir de ahí. El resumen, el esquema, las fichas y las {n_pack} preguntas.</p>')
+        oferta_msg = f" Solo esta semana lo tienes por {precio} €."
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
@@ -476,6 +485,7 @@ def pagina_ley(ley, todas, tema_pag=None):
   {regalo}
   <p>{sobre_muestra}. El <b>pack {e(de(corto))}</b> trae la ley explicada y ordenada, esquemas, tablas con los plazos que más caen, fichas de repaso y {n_pack} preguntas tipo test con el artículo de cada respuesta, en PDF y Word.</p>
   {f'<p class="lanzamiento">{LANZAMIENTO}</p>' if LANZAMIENTO and slug not in SIN_TIENDA else ''}
+  {oferta}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
   <a class="boton" href="../../resumen/{slug}/">Resumen y datos clave</a>
   {"" if slug in SIN_TIENDA else '<p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>'}
@@ -509,7 +519,7 @@ def pagina_ley(ley, todas, tema_pag=None):
           var fallos = total - aciertos, msg = document.getElementById('mensaje-final');
           document.getElementById('resultado').textContent = 'Has acertado ' + aciertos + ' de ' + total + (aciertos >= total * 0.8 ? '. ¡Muy bien!' : '. Toca repasar.');
           msg.textContent = fallos > 0
-            ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae {n_pack} preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.'
+            ? 'Has fallado ' + fallos + (fallos === 1 ? ' pregunta' : ' preguntas') + ' de solo ' + total + '. En el examen son ese tipo de detalles (plazos, órganos, artículos) los que deciden la plaza. El pack de esta ley trae {n_pack} preguntas, cada una con su artículo, y fichas para repasar justo lo que falles.{oferta_msg}'
             : '{pleno}';
           msg.hidden = false;
           setTimeout(function () {{ document.getElementById('final').scrollIntoView({{behavior: 'smooth'}}); }}, 1500);
@@ -645,7 +655,7 @@ def pagina_resumen(ley, todas):
   <p>Haz el <b>test online gratis {e(de(corto))}</b> (20 preguntas con la solución y el artículo) o consigue el <b>pack {e(de(corto))}</b>: la ley explicada, esquema, fichas y {n_pack} preguntas tipo test, en PDF y Word.</p>
   {vistas_previas(slug, "../../")}
   <a class="boton lleno" href="../../test/{slug}/">Hacer el test gratis</a>
-  {f'<a class="boton" href="{TELEGRAM}">Pack {e(corto)}: muy pronto · Avísame por Telegram</a>' if slug in SIN_TIENDA else f'<a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {"Gratis" if slug == GRATIS else precio + " €"}</a>'}
+  {f'<a class="boton" href="{TELEGRAM}">Pack {e(corto)}: muy pronto · Avísame por Telegram</a>' if slug in SIN_TIENDA else f'<a class="boton" href="{TIENDA}{slug}">Pack {e(corto)} · {"Gratis" if slug == GRATIS else PRUEBA.get(slug, precio) + " €"}</a>'}
   <a class="boton" href="../../muestras/muestra-{slug}.pdf" download>Muestra en PDF</a>
 </section>""")
     otros = "".join(f'<li><a href="../{l[1]}/">Resumen {e(l[2])} · {e(l[3])}</a></li>' for l in todas if l[1] != slug)

@@ -1,5 +1,5 @@
 {
- "siguiente": 12,
+ "siguiente": 13,
  "publicados": [
   "ley-55-2003:0",
   "ley-41-2002:0",
@@ -12,7 +12,8 @@
   "ley-2-1998-andalucia:0",
   "leyes-12-13-2007-andalucia:0",
   "ley-53-1984:0",
-  "constitucion-espanola:0"
+  "constitucion-espanola:0",
+  "ley-39-2015:0"
  ],
- "ultimo_dia": "2026-11-03"
+ "ultimo_dia": "2026-11-04"
 }

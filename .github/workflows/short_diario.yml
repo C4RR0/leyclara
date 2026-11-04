@@ -109,4 +109,5 @@ jobs:
           git add shorts/quiz_estado.json 2>/dev/null || true
           git add shorts/dato_estado.json 2>/dev/null || true
           git add shorts/vf_estado.json 2>/dev/null || true
+          git add shorts/vf_short.json 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Short publicado (cola de test)" && git pull --rebase --autostash -q && git push)

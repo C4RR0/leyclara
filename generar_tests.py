@@ -68,7 +68,7 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
 
 
 LANZAMIENTO = ""  # 4/11/2026: acabó la oferta GRACIAS40
-# Prueba de precio del 4 al 10/11/2026: ¿se vende a precio de impulso? En Gumroad: mínimo 2,88 € + IVA 4 % = 3 €, «paga lo que quieras».
+# Prueba de precio del 4 al 10/11/2026: ¿se vende a precio de impulso? En Gumroad: mínimo 2,88 € + IVA 4 % = 3 € (precio fijo; el «paga lo que quieras» se quitó el 4/11 porque bloqueaba el botón de compra).
 # Al acabar: quitar el slug de aquí, devolver el precio en Gumroad y regenerar.
 PRUEBA = {"ley-55-2003": "3"}
 TOTAL_TEST = sum(l[6] for l in LEYES)
@@ -473,7 +473,7 @@ def pagina_ley(ley, todas, tema_pag=None):
     oferta = oferta_msg = ""
     if slug in PRUEBA:
         oferta = (f'<p class="lanzamiento">🏷️ <b>Solo esta semana: el pack {e(de(corto))} por {precio} €</b> '
-                  f'(IVA incluido), o lo que tú quieras pagar a partir de ahí. El resumen, el esquema, las fichas y las {n_pack} preguntas.</p>')
+                  f'(IVA incluido). El resumen, el esquema, las fichas y las {n_pack} preguntas.</p>')
         oferta_msg = f" Solo esta semana lo tienes por {precio} €."
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>

@@ -47,7 +47,7 @@ def texto(hoy, ayer, dia):
                       f"Piénsalo: mañana te doy la respuesta con su artículo.\n"
                       f"👉 Test gratis de 20 preguntas: {WEB}{slug}/?g=tg-vf")
     if dia <= FIN_PRUEBA:
-        partes.append(f"🏷️ Solo hasta el 10/11: el pack del Estatuto Marco por 3 € (o lo que quieras pagar) → {PACK}")
+        partes.append(f"🏷️ Solo hasta el 10/11: el pack del Estatuto Marco por 3 € (antes 8,90 €) → {PACK}")
     return "\n\n".join(partes)
 
 

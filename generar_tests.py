@@ -690,7 +690,7 @@ def portada_resumenes(todas):
 if __name__ == "__main__":
     rutas = (["", portada(TODAS)] + [pagina_ley(l, TODAS) for l in TODAS]
              + [pagina_ley(l, TODAS, t) for l in TODAS for t in temas_de(l)]
-             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/", "libros/", "novedades/"])
+             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/", "libros/", "novedades/", "glosario/"])
     def cambiada(r):
         """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""
         f = f"{r}index.html"

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glosario de términos jurídicos para oposiciones de Administración | LeyClara</title>
+<meta name="description" content="15 términos clave de la Ley 39/2015, la Ley 40/2015, el TREBEP y la Constitución explicados en dos líneas, con su artículo y enlace al test de cada ley.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/glosario/">
+<meta property="og:title" content="Glosario de términos jurídicos para oposiciones de Administración | LeyClara">
+<meta property="og:description" content="15 términos clave de la Ley 39/2015, la Ley 40/2015, el TREBEP y la Constitución explicados en dos líneas, con su artículo y enlace al test de cada ley.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/glosario/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235;
+            --ok-fondo:#123524; --mal-fondo:#3a1715; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  .cabecera { padding: 36px 0 12px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 8px; }
+  .marcador { position: sticky; top: 0; z-index: 5; background: var(--fondo); border-bottom: 1px solid var(--borde);
+              padding: 10px 0; font-weight: 700; }
+  .marcador .envoltorio { display: flex; justify-content: space-between; gap: 12px; }
+  .pregunta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; margin: 18px 0; background: var(--tarjeta); }
+  .pregunta h2 { font-size: 1.08rem; margin: 0 0 12px; line-height: 1.4; }
+  .pregunta h2 b { color: var(--azul-2); margin-right: 6px; }
+  .opciones { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .opciones button { width: 100%; text-align: left; font: inherit; color: inherit; background: var(--claro);
+                     border: 2px solid transparent; border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+  .opciones button:hover:not(:disabled) { border-color: var(--azul-2); }
+  .opciones button:disabled { cursor: default; }
+  .opciones button.bien { background: var(--ok-fondo); border-color: var(--ok); font-weight: 700; }
+  .opciones button.mal { background: var(--mal-fondo); border-color: var(--mal); }
+  .opciones .letra { font-weight: 800; margin-right: 8px; color: var(--azul-2); }
+  .solucion { display: none; margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--ok); background: var(--claro);
+              border-radius: 0 8px 8px 0; font-size: .95rem; }
+  .pregunta.hecha .solucion { display: block; }
+  .final { border: 2px solid var(--azul-2); border-radius: 16px; padding: 24px; margin: 30px 0; background: var(--tarjeta); }
+  .mensaje-final { font-size: 1.08rem; font-weight: 600; background: var(--claro); border-left: 4px solid var(--acento); padding: 12px 14px; border-radius: 8px; }
+  .lanzamiento { font-weight: 700; color: var(--azul-2); margin: 14px 0 0; }
+  .final h2 { margin: 0 0 8px; }
+  .por-dentro { background: var(--claro); border: 1px solid var(--borde); border-radius: 16px; padding: 18px 18px 14px; margin: 18px 0 22px; }
+  .por-dentro h3 { margin: 0 0 2px; font-size: 1.05rem; }
+  .por-dentro p { margin: 0 0 14px; color: var(--suave); font-size: .9rem; }
+  .vistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .vistas a { text-decoration: none; color: var(--texto); font-size: .85rem; font-weight: 600; text-align: center; }
+  .vistas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: top;
+                border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.18); margin-bottom: 8px; transition: transform .15s; }
+  .vistas a:hover img { transform: translateY(-3px); }
+  @media (max-width: 560px) {
+    .vistas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+    .vistas::-webkit-scrollbar { display: none; }
+    .vistas a { flex: 0 0 40%; scroll-snap-align: start; }
+  }
+  .ahorro { font-weight: 400; opacity: .8; }
+  .mitad { border: 1px dashed var(--azul-2); border-radius: 12px; padding: 12px 16px; margin: 18px 0; font-size: .95rem; }
+  .mitad a { font-weight: 700; color: var(--azul-2); }
+  .regalo { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid var(--acento); background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .regalo a { font-weight: 700; color: var(--azul-2); }
+  .canal-aviso { margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid #229ed9; background: var(--claro); border-radius: 8px; font-size: .95rem; }
+  .canal-aviso a { font-weight: 700; color: var(--azul-2); }
+  p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
+  a.siguiente { font-weight: 700; color: var(--azul-2); }
+  .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
+  .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
+           border: 2px solid var(--azul); margin: 6px 8px 0 0; }
+  .boton.lleno { background: var(--azul); color: #fff; }
+  .otros { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .faq h3 { margin: 18px 0 4px; font-size: 1.05rem; }
+  .faq p { margin: 0; }
+  .otros a { display: inline-block; border: 1px solid var(--borde); border-radius: 99px; padding: 6px 12px;
+             text-decoration: none; font-size: .92rem; }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 16px; margin: 20px 0 40px; }
+  .tarjeta { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: var(--tarjeta); text-decoration: none; display: block; }
+  .tarjeta h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .93rem; }
+  footer { border-top: 1px solid var(--borde); padding: 24px 0 36px; color: var(--suave); font-size: .86rem; margin-top: 30px; }
+  @media (max-width: 520px) { header nav { display: none; } }
+</style>
+<style>.termino{border-bottom:1px solid var(--borde);padding:18px 0}.termino h2{margin:0 0 4px}.art{color:var(--ok);font-weight:700;margin:0 0 8px}.enlaces{display:flex;gap:16px;flex-wrap:wrap;align-items:center}</style>
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../">Ley<span>Clara</span></a>
+  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a><a href="../libros/">Libros</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Glosario jurídico para opositores</h1>
+  <p class="intro">Quince términos que se repiten en los exámenes de Administración, explicados en dos líneas. Cada definición está comprobada con el texto consolidado del BOE.</p>
+</div></section>
+<main class="envoltorio">
+  <article class="termino">
+  <h2>Silencio administrativo</h2>
+  <p class="art">Ley 39/2015, art. 24</p>
+  <p>Si vence el plazo máximo sin resolución expresa, el interesado puede entender estimada su solicitud, salvo que una norma con rango de ley o de Derecho de la UE diga lo contrario. Es desestimatorio, entre otros, en el derecho de petición.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Interesado</h2>
+  <p class="art">Ley 39/2015, art. 4</p>
+  <p>Quien promueve el procedimiento como titular de derechos o intereses legítimos, quien tiene derechos que pueden verse afectados por la decisión y quien se persona antes de la resolución definitiva por tener intereses legítimos afectados.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Plazos en días hábiles</h2>
+  <p class="art">Ley 39/2015, art. 30</p>
+  <p>Salvo que una ley o el Derecho de la UE diga otra cosa, los plazos por días son hábiles: se excluyen sábados, domingos y festivos. Se cuentan desde el día siguiente a la notificación, publicación o efecto del silencio.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Nulidad de pleno derecho</h2>
+  <p class="art">Ley 39/2015, art. 47</p>
+  <p>Vicio más grave de un acto: lesionar derechos susceptibles de amparo constitucional, órgano manifiestamente incompetente por materia o territorio, contenido imposible, infracción penal o prescindir total y absolutamente del procedimiento.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Anulabilidad</h2>
+  <p class="art">Ley 39/2015, art. 48</p>
+  <p>Cualquier otra infracción del ordenamiento jurídico, incluida la desviación de poder, hace anulable el acto. El defecto de forma solo lo anula si falta un requisito indispensable o causa indefensión.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Caducidad del procedimiento</h2>
+  <p class="art">Ley 39/2015, art. 95</p>
+  <p>Si el interesado paraliza un procedimiento iniciado a su solicitud, la Administración le advierte y, pasados tres meses sin actuar, archiva las actuaciones. La caducidad no produce por sí sola la prescripción de las acciones.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Revisión de oficio</h2>
+  <p class="art">Ley 39/2015, art. 106</p>
+  <p>En cualquier momento, y con dictamen favorable del Consejo de Estado u órgano consultivo equivalente, la Administración declara la nulidad de actos firmes en vía administrativa que incurran en el art. 47.1.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Recurso de alzada</h2>
+  <p class="art">Ley 39/2015, arts. 121 y 122</p>
+  <p>Se interpone ante el órgano superior jerárquico contra actos que no ponen fin a la vía administrativa. Plazo de un mes si el acto es expreso; si no lo es, en cualquier momento desde que se produzcan los efectos del silencio.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Recurso de reposición</h2>
+  <p class="art">Ley 39/2015, art. 124</p>
+  <p>Recurso potestativo ante el mismo órgano que dictó el acto: un mes si es expreso, y un mes para resolverlo. Contra su resolución no cabe volver a interponer reposición.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-39-2015/?g=glosario">Test de Ley 39/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-39-2015?g=glosario" rel="noopener">Pack de Ley 39/2015</a></p>
+</article><article class="termino">
+  <h2>Delegación de competencias</h2>
+  <p class="art">Ley 40/2015, art. 9</p>
+  <p>Un órgano puede delegar el ejercicio de sus competencias en otros órganos de la misma Administración o en organismos vinculados. No cambia la titularidad de la competencia, y hay materias que no se pueden delegar (art. 9.2).</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-40-2015/?g=glosario">Test de Ley 40/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-40-2015?g=glosario" rel="noopener">Pack de Ley 40/2015</a></p>
+</article><article class="termino">
+  <h2>Avocación</h2>
+  <p class="art">Ley 40/2015, art. 10</p>
+  <p>El órgano superior toma para sí un asunto que correspondía a un órgano dependiente, por circunstancias técnicas, económicas, sociales, jurídicas o territoriales. Exige acuerdo motivado y contra él no cabe recurso.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-40-2015/?g=glosario">Test de Ley 40/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-40-2015?g=glosario" rel="noopener">Pack de Ley 40/2015</a></p>
+</article><article class="termino">
+  <h2>Encomienda de gestión</h2>
+  <p class="art">Ley 40/2015, art. 11</p>
+  <p>Encargo de actividades materiales o técnicas a otro órgano o entidad de Derecho Público por razones de eficacia o falta de medios. No cede la titularidad de la competencia ni puede tener por objeto prestaciones propias de los contratos.</p>
+  <p class="enlaces"><a class="boton" href="../test/ley-40-2015/?g=glosario">Test de Ley 40/2015</a>
+  <a href="https://carrosphere.gumroad.com/l/ley-40-2015?g=glosario" rel="noopener">Pack de Ley 40/2015</a></p>
+</article><article class="termino">
+  <h2>Funcionario de carrera</h2>
+  <p class="art">TREBEP, art. 9</p>
+  <p>Quien, por nombramiento legal, se vincula a una Administración con una relación estatutaria regulada por el Derecho Administrativo para servicios profesionales retribuidos de carácter permanente.</p>
+  <p class="enlaces"><a class="boton" href="../test/trebep/?g=glosario">Test de TREBEP</a>
+  <a href="https://carrosphere.gumroad.com/l/trebep?g=glosario" rel="noopener">Pack de TREBEP</a></p>
+</article><article class="termino">
+  <h2>Funcionario interino</h2>
+  <p class="art">TREBEP, art. 10</p>
+  <p>Nombrado con carácter temporal, por necesidad y urgencia, para funciones de funcionario de carrera: plaza vacante (máx. 3 años), sustitución transitoria, programa temporal o exceso de tareas (9 meses en 18).</p>
+  <p class="enlaces"><a class="boton" href="../test/trebep/?g=glosario">Test de TREBEP</a>
+  <a href="https://carrosphere.gumroad.com/l/trebep?g=glosario" rel="noopener">Pack de TREBEP</a></p>
+</article><article class="termino">
+  <h2>Decreto-ley</h2>
+  <p class="art">Constitución, art. 86</p>
+  <p>Disposición legislativa provisional del Gobierno en caso de extraordinaria y urgente necesidad, que no puede afectar a las instituciones básicas, a los derechos del Título I, a las CC. AA. ni al Derecho electoral. El Congreso la convalida en 30 días.</p>
+  <p class="enlaces"><a class="boton" href="../test/constitucion-espanola/?g=glosario">Test de Constitución</a>
+  <a href="https://carrosphere.gumroad.com/l/constitucion-espanola?g=glosario" rel="noopener">Pack de Constitución</a></p>
+</article>
+  <p>Mira también las <a href="../novedades/">novedades legales</a> de las leyes de Administración.</p>
+</main>
+
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+  <p>📲 <a href="https://t.me/leyclara_avisos">Avisos gratis por Telegram</a> cuando el BOE cambie una ley de tu temario. · 📚 <a href="https://c4rr0.github.io/leyclara/libros/">Libros en Amazon</a></p>
+  <p><a href="https://c4rr0.github.io/leyclara/actualizaciones/">Actualizaciones, erratas y quién hace LeyClara</a> · Comprobamos cada semana que las leyes de los packs siguen al día con el BOE.</p>
+</div></footer>
+<script>
+(function () {
+  function contar(n) { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/' + n + '.svg'; } catch (e) {} }
+  var g = (new URLSearchParams(location.search).get('g') || '').replace(/[^a-z0-9-]/gi, '').toLowerCase();
+  contar('visita'); if (g) contar('visita-' + g);
+  // origen de la visita (?g=) guardado mientras navega, para saber qué origen termina tests y pulsa Comprar (20/10)
+  var origen = '';
+  try { if (g) sessionStorage.setItem('leyclara-g', g); origen = sessionStorage.getItem('leyclara-g') || ''; } catch (e) { origen = g; }
+  if (origen) origen = /^tg-/.test(origen) ? 'tg' : ['yt', 'libro', 'pdf'].indexOf(origen) >= 0 ? origen : 'otro';
+  function deOrigen(ev) { if (origen) contar(ev + '-de-' + origen); }
+  window.leyclaraContar = function (n) { contar(n); if (/^test-terminado-/.test(n)) deOrigen('test-terminado'); };
+  // tipo de página, para saber dónde se ve la oferta y desde dónde se pulsa Comprar (embudo, 18/10)
+  var ruta = location.pathname, donde = /\/test\/$/.test(ruta) ? 'portada-test' : /\/test\/[^\/]+\//.test(ruta) ? 'test' : /\/resumen\/[^\/]+\//.test(ruta) ? 'resumen'
+    : /estatuto-marco/.test(ruta) ? 'estatuto' : /\/libros\//.test(ruta) ? 'libros' : 'otra';
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '', m = h.match(/muestras\/(.+)\.pdf$/);
+    if (m) contar('descarga-' + m[1]);
+    if (/\/vistas\//.test(h)) contar('vista-previa-en-' + donde);
+    m = h.match(/gumroad\.com\/l\/([\w-]+)/); if (m) { contar('comprar-' + m[1]); contar('comprar-en-' + donde); deOrigen('comprar'); }
+    m = h.match(/amazon\.es\/dp\/(\w+)/); if (m) { contar('amazon-' + m[1]); contar('amazon-en-' + donde); deOrigen('amazon'); }
+    if (/t\.me\/leyclara_avisos/.test(h)) { contar('telegram-canal-en-' + donde); deOrigen('telegram-canal'); }
+    if (a.classList.contains('siguiente')) contar('siguiente-test');
+  });
+  var fin = document.getElementById('final');
+  if (fin && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { contar('oferta-vista-' + donde); io.disconnect(); }
+    }, {threshold: 0.3});
+    io.observe(fin);
+  }
+})();
+</script>
+</body>
+</html>

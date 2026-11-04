@@ -10,6 +10,7 @@ Uso:
     python vf_telegram.py            publica el de hoy (necesita TELEGRAM_BOT_TOKEN)
     python vf_telegram.py --prueba   solo enseña lo que publicaría
 """
+import html
 import json
 import sys
 from datetime import date, datetime
@@ -39,6 +40,18 @@ def respuesta(a):
     return f"🔎 Respuesta de ayer: «{a['afirmacion']}»\n→ {vf} ({a['articulo']}).{expl}"
 
 
+def cierre():
+    """Test de 10 preguntas con las respuestas ocultas (spoiler) para el mensaje final; HTML de Telegram."""
+    filas = [l.split(" | ") for l in (AQUI / "vf_cierre_ley55.md").read_text(encoding="utf-8").splitlines() if l.count(" | ") == 6]
+    preg, resp = [], []
+    for n, (q, a, b, c, d, ok, art) in enumerate(filas, 1):
+        preg.append(f"{n}. {html.escape(q)}\n   a) {html.escape(a)}\n   b) {html.escape(b)}\n   c) {html.escape(c)}\n   d) {html.escape(d)}")
+        resp.append(f"{n}{ok} ({art})")
+    return ("📝 Para cerrar la semana: 10 preguntas del Estatuto Marco\n\n" + "\n\n".join(preg)
+            + "\n\nRespuestas (toca para verlas): <tg-spoiler>" + " · ".join(resp) + "</tg-spoiler>\n\n"
+            + f"👉 Más test gratis (20 preguntas): {WEB}{LEY}/?g=tg-vf\n📘 Pack completo del Estatuto Marco: {PACK}?g=tg-vf")
+
+
 def texto(hoy, ayer, dia):
     partes = [respuesta(ayer)] if ayer else []
     if hoy:
@@ -64,11 +77,16 @@ def main(prueba: bool) -> None:
         return
     hoy = lista[i][1] if i < len(lista) else None
     ayer = lista[i - 1][1] if i > 0 else None
-    mensaje = texto(hoy, ayer, ahora)
+    datos = {"disable_web_page_preview": True}
+    if hoy is None:  # última jornada: respuesta de ayer + test de cierre (HTML para el spoiler)
+        mensaje = html.escape(respuesta(ayer)) + "\n\n" + cierre()
+        datos["parse_mode"] = "HTML"
+    else:
+        mensaje = texto(hoy, ayer, ahora)
     print(mensaje)
     if prueba:
         return
-    resp = telegram("sendMessage", {"text": mensaje, "disable_web_page_preview": True})
+    resp = telegram("sendMessage", {"text": mensaje, **datos})
     estado.update(siguiente=i + 1, ultimo_dia=ahora.isoformat())
     estado["publicados"].append(lista[i][0] if hoy else "fin")
     ESTADO.write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")

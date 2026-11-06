@@ -6,6 +6,7 @@ Uso: python generar_tests.py   (desde la carpeta web/)
 """
 import html
 import json
+from collections import Counter
 import re
 import subprocess
 from datetime import date
@@ -332,6 +333,35 @@ def temas_de(ley):
     return salida
 
 
+def articulos_top(ley, temas, n=6):
+    """Bloque «artículos que más pregunto» (7/11, SEO: contenido propio de cada ley, calculado del banco real del pack)."""
+    carpeta, slug, corto = ley[0], ley[1], ley[2]
+    try:
+        todas = leer(carpeta, completo=True)
+    except (FileNotFoundError, IndexError, KeyError, ValueError):
+        return ""
+    cuenta = Counter(a for q in todas if (a := articulo(q["explicacion"])) is not None)
+    if len(cuenta) < 4:
+        return ""
+    rangos = {c[0]: (c[1], c[2]) for c in TEMAS.get(carpeta, [])}
+
+    def tema_de(a):
+        for r, nombre, _ in temas:
+            t_slug = r.split("/")[1].removeprefix(slug + "-")
+            if any(d <= a <= h for d, h in rangos.get(t_slug, ("", []))[1]):
+                return r.split("/")[1], nombre
+        return None
+
+    filas = []
+    for a, c in cuenta.most_common(n):
+        t = tema_de(a)
+        enlace = f' · <a href="../{t[0]}/">test de {e(t[1])}</a>' if t else ""
+        filas.append(f"<li><b>Artículo {a}</b>: {c} preguntas{enlace}</li>")
+    return (f'<section class="faq"><h2>Los artículos {e(de(corto))} que más pregunto</h2>'
+            f"<p>De las {len(todas)} preguntas del pack, estos son los artículos con más preguntas. "
+            f"Si vas justo de tiempo, empieza por ellos:</p><ul>{''.join(filas)}</ul></section>")
+
+
 def cabecera_html(titulo, descripcion, ruta, extra_head=""):
     RAIZ = "../../" if ruta.count("/") == 2 else "../"
     return f"""<!doctype html>
@@ -491,6 +521,7 @@ def pagina_ley(ley, todas, tema_pag=None):
   {"" if slug in SIN_TIENDA else '<p class="nota-pago">🔒 Pago seguro a través de <b>Gumroad</b> (tarjeta, Google Pay o PayPal). Precio final con <b>IVA incluido</b>. <b>Garantía de 7 días:</b> si no te sirve, te devolvemos el dinero. Si la página de pago te sale en inglés, es normal: pulsa <b>«Compra esto»</b> (o «I want this!»), escribe tu correo y recibirás el PDF y el Word al momento en tu email.</p>'}
 </section>
 {f'<h2>Test {e(de(corto))} por temas</h2>{chr(10)}<ul class="otros">{por_temas}</ul>' if por_temas else ''}
+{"" if tema_pag else articulos_top(ley, temas)}
 {faq}
 <h2>Más test de legislación</h2>
 <ul class="otros">{otros}</ul>

@@ -2,7 +2,7 @@
 
 Fuente de cada término: glosario.py, comprobado contra el BOE (negocio/fuentes/).
 
-**Gancho (0-3 s, texto en pantalla y voz):** «3 términos de Administración que caen en oposiciones, en 20 segundos.»
+**Gancho (0-3 s, texto en pantalla y voz):** «3 términos de Administración que caen en oposiciones.»
 
 **1 (3-9 s) Silencio administrativo, art. 24 Ley 39/2015:** «Si vence el plazo sin respuesta expresa, el interesado puede entender estimada su solicitud, salvo que una ley diga lo contrario.»
 

@@ -24,7 +24,7 @@ TERMINOS = [
      "El órgano superior toma para sí un asunto de un órgano dependiente, "
      "con acuerdo motivado y sin recurso contra él."),
 ]
-GANCHO = "3 términos de Administración que caen en oposiciones, en 20 segundos."
+GANCHO = "3 términos de Administración que caen en oposiciones."
 CIERRE = "Los 15 términos, en la web: LeyClara, Glosario."
 
 
@@ -48,7 +48,7 @@ def texto_centrado(d, texto, y, tam, color, negrita=True, ancho=g.ANCHO - 140, p
 def f_gancho():
     im, d = marco("Oposiciones de Administración")
     texto_centrado(d, "3 términos que caen en oposiciones", 700, 78, g.ACENTO)
-    texto_centrado(d, "en 20 segundos", 960, 64, g.BLANCO)
+    texto_centrado(d, "y su artículo exacto", 960, 64, g.BLANCO)
     return im
 
 
@@ -66,7 +66,7 @@ def f_cierre():
     texto_centrado(d, "Los 15 términos", 640, 92, g.ACENTO)
     texto_centrado(d, "con su artículo, en la web:", 800, 54, g.BLANCO)
     texto_centrado(d, g.WEB + "/glosario/", 920, 50, g.ACENTO)
-    texto_centrado(d, "(enlace en el comentario fijado)", 1040, 44, g.GRIS, negrita=False)
+    texto_centrado(d, "(enlace en la descripción)", 1040, 44, g.GRIS, negrita=False)
     return im
 
 

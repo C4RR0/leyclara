@@ -1,0 +1,56 @@
+name: Short del glosario (una vez)
+
+# Publica una sola vez el Short con 3 términos del glosario (tarea de Teo, OK de Sergio).
+# publicar_glosario.py guarda el id en shorts/glosario_short.json y no vuelve a publicar.
+on:
+  workflow_dispatch:
+    inputs:
+      prueba:
+        description: "Solo generar el vídeo, sin subirlo"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencias
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts==7.3.1 pillow google-api-python-client google-auth
+      - name: Token del canal
+        env:
+          TOKEN: ${{ secrets.YOUTUBE_TOKEN_LEYCLARA_JSON }}
+        run: |
+          if [ -n "$TOKEN" ]; then printf '%s' "$TOKEN" > shorts/token_leyclara.json; fi
+      - name: Generar y publicar
+        working-directory: shorts
+        run: |
+          ARGS=""
+          if [ "${{ inputs.prueba }}" = "true" ]; then ARGS="--prueba"; fi
+          for i in 1 2 3; do
+            python publicar_glosario.py $ARGS && exit 0
+            echo "Intento $i fallido; reintento en 60 s"; sleep 60
+          done
+          exit 1
+      - name: Guardar vídeo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-glosario
+          path: shorts/salidas/glosario_01.mp4
+          retention-days: 7
+      - name: Guardar estado
+        run: |
+          rm -f shorts/token_leyclara.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add shorts/glosario_short.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Short del glosario publicado" && git pull --rebase --autostash -q && git push)

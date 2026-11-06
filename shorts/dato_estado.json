@@ -1,5 +1,5 @@
 {
- "siguiente": 14,
+ "siguiente": 15,
  "publicados": [
   "ley-55-2003:0",
   "ley-41-2002:0",
@@ -14,7 +14,8 @@
   "ley-53-1984:0",
   "constitucion-espanola:0",
   "ley-39-2015:0",
-  "ley-40-2015:0"
+  "ley-40-2015:0",
+  "trebep:0"
  ],
- "ultimo_dia": "2026-11-05"
+ "ultimo_dia": "2026-11-06"
 }

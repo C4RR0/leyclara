@@ -733,5 +733,7 @@ if __name__ == "__main__":
     (WEB / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                      f"{mapa}\n</urlset>\n", encoding="utf-8")
+    # Copia en texto plano: Search Console marcaba el .xml como «No se ha podido obtener» (fallo de su panel, 7/11)
+    (WEB / "sitemap.txt").write_text("".join(f"{URL}{r}\n" for r in rutas), encoding="utf-8")
     (WEB / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {URL}sitemap.xml\n", encoding="utf-8")
     print(len(rutas), "páginas en el sitemap")

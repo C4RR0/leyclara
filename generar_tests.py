@@ -510,6 +510,7 @@ def pagina_ley(ley, todas, tema_pag=None):
   <p id="mensaje-final" class="mensaje-final" hidden></p>
   {siguiente}
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
+  <p class="canal-aviso">🎁 ¿Te ha servido? <b>Invita a 3 compañeros al canal y llévate una ley completa gratis</b>, la que elijas (con 1 ya tienes un 30 % de descuento). <a href="../../invita/">Cómo funciona</a></p>
   {vistas_previas(slug, "../../")}
   {comprar}
   {regalo}
@@ -582,6 +583,7 @@ def portada(todas):
   <p class="intro">Test online gratis de las leyes que entran en el temario común de casi todas las OPE de los servicios de salud: TCAE, celador, enfermería, técnicos y personal de gestión. Cada respuesta indica el artículo exacto. Sin registro.</p>
   <p class="regalo">🎁 <b>Regalo:</b> el pack completo de la Ley 53/1984 de incompatibilidades (ley explicada, esquema, 80 test y fichas, en PDF y Word) es gratis. <a href="https://carrosphere.gumroad.com/l/ley-53-1984">Descárgalo aquí</a>: solo te pide el correo.</p>
   <p class="canal-aviso">📲 Hago estos tests yo mismo a partir del BOE. En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
+  <p class="canal-aviso">🎁 <b>Invita a 3 compañeros al canal y llévate una ley completa gratis</b>, la que elijas (con 1 ya tienes un 30 % de descuento). <a href="../invita/">Cómo funciona</a></p>
 </div></section>
 <main class="envoltorio"><div class="rejilla">""")
     for l in todas:
@@ -721,7 +723,7 @@ def portada_resumenes(todas):
 if __name__ == "__main__":
     rutas = (["", portada(TODAS)] + [pagina_ley(l, TODAS) for l in TODAS]
              + [pagina_ley(l, TODAS, t) for l in TODAS for t in temas_de(l)]
-             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/", "libros/", "novedades/", "glosario/"])
+             + [portada_resumenes(TODAS)] + [pagina_resumen(l, TODAS) for l in TODAS] + ["actualizaciones/", "nuevo-estatuto-marco/", "libros/", "novedades/", "glosario/", "invita/"])
     def cambiada(r):
         """Fecha del último cambio de la página (hoy si se acaba de regenerar distinta), para el <lastmod>."""
         f = f"{r}index.html"

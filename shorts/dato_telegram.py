@@ -52,9 +52,7 @@ def main(prueba: bool) -> None:
     mensaje = texto(ley, n)
     # 8/11: recordatorio del programa de invitaciones 2 días por semana (martes y sábado), sin saturar el canal
     if datetime.now(ZoneInfo("Europe/Madrid")).weekday() in (1, 5):
-        mensaje += "
-
-🎁 Invita a 3 compañeros al canal y llévate una ley gratis: pide tu enlace a @LeyClaraInvitaBot"
+        mensaje += "\n\n🎁 Invita a 3 compañeros al canal y llévate una ley gratis: pide tu enlace a @LeyClaraInvitaBot"
     print(mensaje)
     if prueba:
         return

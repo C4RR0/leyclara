@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invita a tus compañeros y llévate una ley gratis | LeyClara</title>
+<meta name="description" content="Comparte el canal gratuito de LeyClara en Telegram con tus compañeros de oposición: 1 amigo = 30 % de descuento, 3 amigos = una ley gratis a elegir.">
+<link rel="canonical" href="https://c4rr0.github.io/leyclara/invita/">
+<meta property="og:title" content="Invita a tus compañeros y llévate una ley gratis | LeyClara">
+<meta property="og:description" content="1 amigo = 30 % de descuento. 3 amigos = una ley gratis a elegir. Solo tienes que compartir tu enlace del canal de Telegram.">
+<meta property="og:url" content="https://c4rr0.github.io/leyclara/invita/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
+          --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --acento:#ffd400; --tg:#229ED9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --texto:#e8eef5; --suave:#a7b3c2; --borde:#2c3a4b; --fondo:#0f1620; --tarjeta:#162130; --claro:#142235; --ok-fondo:#123524; }
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { overflow-wrap: anywhere; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         color: var(--texto); background: var(--fondo); line-height: 1.55; }
+  a { color: inherit; }
+  .envoltorio { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--borde); }
+  header .envoltorio { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .marca { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+  .marca span { color: var(--azul-2); }
+  header nav a { margin-left: 16px; text-decoration: none; color: var(--suave); font-size: .95rem; }
+  @media (max-width: 560px) { header nav a:not(:last-child) { display: none; } }
+  .cabecera { padding: 40px 0 18px; background: linear-gradient(180deg, var(--claro), transparent); }
+  h1 { font-size: clamp(1.7rem, 4.6vw, 2.6rem); line-height: 1.12; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .intro { color: var(--suave); margin: 0 0 22px; font-size: 1.08rem; max-width: 640px; }
+  .boton { display: inline-flex; align-items: center; gap: 10px; background: var(--tg); color: #fff; text-decoration: none;
+           font-weight: 700; font-size: 1.05rem; padding: 14px 22px; border-radius: 12px; }
+  .boton:hover { filter: brightness(1.08); }
+  .boton svg { width: 22px; height: 22px; fill: currentColor; }
+  .nota { color: var(--suave); font-size: .9rem; margin: 10px 0 0; }
+  .premios { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 30px 0; }
+  .premio { border: 1px solid var(--borde); border-radius: 16px; padding: 22px; background: var(--tarjeta); }
+  .premio.grande { border: 2px solid var(--azul-2); }
+  .premio .cuantos { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--azul-2); }
+  .premio h2 { margin: 6px 0 6px; font-size: 1.5rem; line-height: 1.15; }
+  .premio p { margin: 0; color: var(--suave); }
+  @media (max-width: 560px) { .premios { grid-template-columns: 1fr; } }
+  h2.seccion { font-size: 1.35rem; margin: 34px 0 14px; }
+  ol.pasos { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: paso; }
+  ol.pasos li { counter-increment: paso; display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start;
+                background: var(--claro); border-radius: 12px; padding: 14px; }
+  ol.pasos li::before { content: counter(paso); width: 40px; height: 40px; border-radius: 50%; background: var(--azul-2); color: #fff;
+                        display: grid; place-items: center; font-weight: 800; }
+  ol.pasos b { display: block; }
+  ol.pasos span { color: var(--suave); font-size: .95rem; }
+  .reglas { border-left: 4px solid var(--acento); background: var(--claro); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 26px 0; }
+  .reglas ul { margin: 6px 0 0; padding-left: 20px; }
+  .reglas li { margin: 4px 0; }
+  details { border: 1px solid var(--borde); border-radius: 12px; padding: 12px 16px; margin: 10px 0; background: var(--tarjeta); }
+  summary { font-weight: 700; cursor: pointer; }
+  details p { color: var(--suave); margin: 8px 0 2px; }
+  .final { text-align: center; padding: 30px 0 46px; }
+  footer { border-top: 1px solid var(--borde); color: var(--suave); font-size: .85rem; padding: 18px 0 30px; }
+</style>
+</head>
+<body>
+<header><div class="envoltorio">
+  <a class="marca" href="../">Ley<span>Clara</span></a>
+  <nav><a href="../test/">Todos los test</a><a href="../resumen/">Resúmenes</a><a href="../#packs">Packs</a></nav>
+</div></header>
+
+<section class="cabecera"><div class="envoltorio">
+  <h1>Invita a tus compañeros y llévate una ley gratis</h1>
+  <p class="intro">El canal de LeyClara en Telegram es gratis: un test cada día y un aviso cuando el BOE cambia una ley de tu temario. Compártelo con tu enlace personal y te lo agradecemos con descuentos y leyes completas.</p>
+  <a class="boton" href="https://t.me/LeyClaraInvitaBot?start=web" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 15.27 9.6 19.3c.36 0 .52-.16.71-.35l1.7-1.63 3.53 2.58c.65.36 1.11.17 1.29-.6l2.33-10.94c.21-.97-.35-1.35-.98-1.11L4.47 12.5c-.94.37-.93.9-.16 1.13l3.52 1.1 8.17-5.15c.38-.25.73-.11.45.14z"/></svg>
+    Conseguir mi enlace en Telegram
+  </a>
+  <p class="nota">Se abre el bot @LeyClaraInvitaBot. Escribe /invitar y te da tu enlace en un minuto.</p>
+</div></section>
+
+<main class="envoltorio">
+  <div class="premios">
+    <div class="premio"><span class="cuantos">1 amigo dentro</span><h2>30 % de descuento</h2><p>En cualquier pack de LeyClara: leyes sueltas, pack de Administración o el pack completo de sanidad.</p></div>
+    <div class="premio grande"><span class="cuantos">3 amigos dentro</span><h2>Una ley gratis</h2><p>La que elijas: Estatuto Marco, Ley 41/2002, TREBEP, Ley 39/2015… El bot te manda el PDF al momento.</p></div>
+  </div>
+
+  <h2 class="seccion">Cómo funciona</h2>
+  <ol class="pasos">
+    <li><div><b>Pide tu enlace al bot</b><span>Abre @LeyClaraInvitaBot y escribe /invitar. El enlace es solo tuyo.</span></div></li>
+    <li><div><b>Compártelo</b><span>Con tus compañeros de academia, en tus grupos de la oposición o con quien esté preparando lo mismo que tú.</span></div></li>
+    <li><div><b>Recibe tus premios</b><span>Cada vez que alguien entra con tu enlace, el bot te avisa. A las 48 h cuenta y te manda el premio solo.</span></div></li>
+  </ol>
+
+  <div class="reglas">
+    <b>Las reglas, claras</b>
+    <ul>
+      <li>Solo cuentan personas que <b>entran en el canal con tu enlace</b> y <b>siguen dentro 48 h</b> después.</li>
+      <li>Cada persona cuenta una sola vez, aunque salga y vuelva a entrar.</li>
+      <li>Invitarte a ti mismo no cuenta. 😉</li>
+      <li>Una ley gratis por persona. Escribe /progreso al bot para ver cuántos llevas.</li>
+    </ul>
+  </div>
+
+  <h2 class="seccion">Preguntas</h2>
+  <details><summary>¿Tengo que pagar algo?</summary><p>No. El canal es gratis y el programa también. Los premios son un regalo por ayudarnos a crecer.</p></details>
+  <details><summary>¿Qué recibe la gente a la que invito?</summary><p>Un test diario de su temario, avisos cuando cambia una ley en el BOE y novedades de la web. Pueden salirse cuando quieran.</p></details>
+  <details><summary>¿Qué hacéis con mis datos?</summary><p>El bot solo guarda tu identificador de Telegram, tu nombre visible y quién ha entrado con tu enlace, para poder contar y mandarte los premios. No los compartimos con nadie.</p></details>
+  <details><summary>¿Cuándo llega el premio?</summary><p>48 horas después de que tu amigo entre (para comprobar que sigue en el canal). El bot revisa cada hora y te escribe en cuanto se cumple.</p></details>
+
+  <div class="final">
+    <a class="boton" href="https://t.me/LeyClaraInvitaBot?start=web" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 15.27 9.6 19.3c.36 0 .52-.16.71-.35l1.7-1.63 3.53 2.58c.65.36 1.11.17 1.29-.6l2.33-10.94c.21-.97-.35-1.35-.98-1.11L4.47 12.5c-.94.37-.93.9-.16 1.13l3.52 1.1 8.17-5.15c.38-.25.73-.11.45.14z"/></svg>
+      Quiero mi enlace
+    </a>
+  </div>
+</main>
+
+<footer><div class="envoltorio">
+  <p>LeyClara · Material de estudio independiente y no oficial, elaborado a partir de la versión consolidada del Boletín Oficial del Estado (BOE). No está vinculado a ninguna administración pública, servicio de salud ni academia. Contamos las visitas de forma anónima y sin cookies.</p>
+</div></footer>
+<script>
+(function () { try { new Image().src = 'https://hits.sh/c4rr0.github.io/leyclara/invita.svg'; } catch (e) {} })();
+</script>
+</body>
+</html>

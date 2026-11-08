@@ -1,5 +1,5 @@
 {
- "siguiente": 32,
+ "siguiente": 37,
  "publicadas": [
   "ley55:1",
   "ley41:1",
@@ -28,7 +28,12 @@
   "ley44:3",
   "ley16:3",
   "ley53:3",
-  "ley2_1998_and:3"
+  "ley2_1998_and:3",
+  "and_igualdad:3",
+  "ley55:4",
+  "ley41:4",
+  "ley14:4",
+  "ley31:4"
  ],
- "ultimo_dia": "2026-11-07"
+ "ultimo_dia": "2026-11-08"
 }

@@ -78,6 +78,10 @@ GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueb
 AFECTADAS_EM = {"ley-55-2003": "la derogaba", "ley-16-2003": "la modificaba", "ley-44-2003": "la modificaba"}
 
 
+# Leyes con términos en /glosario/: cada test enlaza de vuelta (9/11)
+GLOSARIO_SLUGS = {"constitucion-espanola", "ley-39-2015", "ley-40-2015", "trebep"}
+
+
 def aviso_em(slug, raiz):
     if slug not in AFECTADAS_EM:
         return ""
@@ -440,6 +444,8 @@ def pagina_ley(ley, todas, tema_pag=None):
         l_sig = todas[(next(i for i, l in enumerate(todas) if l[1] == slug) + 1) % len(todas)]
         sig = (l_sig[1], f"{l_sig[2]} ({l_sig[3]})")
     siguiente = f'<p class="siguiente">➡️ <a class="siguiente" href="../{sig[0]}/">Siguiente test: {e(sig[1])}</a></p>'
+    glosario_enlace = (f'<p class="glosario-enlace">📖 ¿Dudas con algún término? Mira el <a href="../../glosario/?g=test">glosario jurídico</a> con {e(corto)} y otras leyes de Administración.</p>'
+                       if slug in GLOSARIO_SLUGS else "")
     datos = {"ley": slug, "correctas": [q["correcta"] for q in qs]}
     ld = {"@context": "https://schema.org", "@type": "Quiz", "name": f"Test {corto}: {nombre_tema}" if tema_pag else f"Test {corto} ({tema})",
           "about": {"@type": "Thing", "name": completo}, "educationalLevel": "Oposiciones",
@@ -509,6 +515,7 @@ def pagina_ley(ley, todas, tema_pag=None):
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
   {siguiente}
+  {glosario_enlace}
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>
   <p class="canal-aviso">🎁 ¿Te ha servido? <b>Invita a 3 compañeros al canal y llévate una ley completa gratis</b>, la que elijas (con 1 ya tienes un 30 % de descuento). <a href="../../invita/">Cómo funciona</a></p>
   {vistas_previas(slug, "../../")}

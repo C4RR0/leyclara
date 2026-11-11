@@ -71,7 +71,7 @@ AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
 LANZAMIENTO = ""  # 4/11/2026: acabó la oferta GRACIAS40
 # Prueba de precio del 4 al 10/11/2026: ¿se vende a precio de impulso? En Gumroad: mínimo 2,88 € + IVA 4 % = 3 € (precio fijo; el «paga lo que quieras» se quitó el 4/11 porque bloqueaba el botón de compra).
 # Al acabar: quitar el slug de aquí, devolver el precio en Gumroad y regenerar.
-PRUEBA = {"ley-55-2003": "3"}
+PRUEBA = {}
 TOTAL_TEST = sum(l[6] for l in LEYES)
 GRATIS = "ley-53-1984"  # pack entero regalado (0 € en Gumroad) para que prueben la calidad antes de comprar
 # leyes que deroga o modifica el proyecto del nuevo Estatuto Marco (página de estatuto_marco.py)

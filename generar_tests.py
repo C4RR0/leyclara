@@ -134,6 +134,32 @@ def publico(carpeta):
     return ("oposiciones de la Administración (auxiliar, administrativo, gestión)" if carpeta in ADMIN
             else "oposiciones sanitarias (TCAE, celador, enfermería)")
 
+# Encuesta de un clic al final de cada test (16/11/2026): 177 visitas a Gumroad en 30 días y 0 compras →
+# antes de crear otro producto, preguntar qué ayudaría a aprobar. Cuenta en hits.sh como encuesta-<opción>
+# (ventas/metricas_web.py la lee); un voto por navegador (localStorage).
+ENCUESTA = """<div class="encuesta" id="encuesta">
+    <p><b>Una pregunta rápida</b> (un clic, anónima): ¿qué te ayudaría más a aprobar?</p>
+    <button type="button" data-op="simulacros">⏱️ Simulacros cronometrados como el examen real</button>
+    <button type="button" data-op="convocatoria">🎯 Tests de mi convocatoria concreta (SACYL, SAS, SESCAM…)</button>
+    <button type="button" data-op="explicaciones">💡 Que me expliquen cada fallo, no solo el artículo</button>
+    <button type="button" data-op="gratis">🙂 Con los tests gratis me basta</button>
+    <p class="gracias" hidden>¡Gracias! Con tu respuesta decido qué preparo después. ¿Echas algo en falta? Cuéntamelo en el <a href="https://t.me/leyclara_avisos">canal de Telegram</a>.</p>
+  </div>
+  <script>
+  (function () {
+    var caja = document.getElementById('encuesta'), clave = 'leyclara-encuesta-1611';
+    function gracias() { caja.querySelectorAll('button').forEach(function (b) { b.hidden = true; }); caja.querySelector('.gracias').hidden = false; }
+    try { if (localStorage.getItem(clave)) gracias(); } catch (e) {}
+    caja.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (window.leyclaraContar) leyclaraContar('encuesta-' + b.dataset.op);
+        try { localStorage.setItem(clave, b.dataset.op); } catch (e) {}
+        gracias();
+      });
+    });
+  })();
+  </script>"""
+
 CSS = """
   :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
           --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
@@ -198,6 +224,12 @@ CSS = """
   .canal-aviso a { font-weight: 700; color: var(--azul-2); }
   p.siguiente { margin: 12px 0 0; font-size: 1.05rem; }
   a.siguiente { font-weight: 700; color: var(--azul-2); }
+  .encuesta { margin: 18px 0 6px; padding: 14px 16px; border: 2px solid var(--azul); border-radius: 12px; background: var(--claro); }
+  .encuesta p { margin: 0 0 8px; }
+  .encuesta button { display: block; width: 100%; text-align: left; margin: 6px 0 0; padding: 11px 14px; font: inherit; color: inherit;
+                     border: 1px solid var(--borde); border-radius: 10px; background: var(--tarjeta); cursor: pointer; }
+  .encuesta button:hover { border-color: var(--azul); }
+  .encuesta .gracias a { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
            border: 2px solid var(--azul); margin: 6px 8px 0 0; }
@@ -514,6 +546,7 @@ def pagina_ley(ley, todas, tema_pag=None):
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
+  {ENCUESTA}
   {siguiente}
   {glosario_enlace}
   <p class="canal-aviso">📲 ¿Quieres seguir practicando? En el canal de Telegram pongo <b>un test cada día</b> y aviso cuando cambia alguna ley del temario. <a href="https://t.me/leyclara_avisos">Únete gratis</a></p>

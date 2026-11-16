@@ -1,0 +1,8 @@
+{
+ "question": "¿Qué te ayudaría más a aprobar?",
+ "options": ["⏱️ Simulacros cronometrados como el examen real",
+             "🎯 Tests de mi convocatoria concreta (SACYL, SAS, SESCAM…)",
+             "💡 Que me expliquen cada fallo, no solo el artículo",
+             "🙂 Con los tests gratis me basta"],
+ "is_anonymous": true
+}

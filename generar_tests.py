@@ -160,6 +160,37 @@ ENCUESTA = """<div class="encuesta" id="encuesta">
   })();
   </script>"""
 
+# Prueba de demanda (23/11/2026): la encuesta la ganó «tests de mi convocatoria» (13 de 23). Antes de construir,
+# medir una semana cuánta gente lo pide de verdad. Dice claro que aún no existe y no pide ningún dato.
+# Contadores hits.sh: sacyl-visto y sacyl-quiero (uno por navegador, localStorage).
+CAJA_SACYL = """<div class="encuesta sacyl" id="sacyl">
+    <p><b>¿Te presentas al SACYL?</b> Estoy pensando en preparar tests centrados en sus oposiciones. Todavía no están hechos: si los pedís bastantes, me pongo con ellos.</p>
+    <button type="button">🎯 Quiero los tests de la OPE de SACYL</button>
+    <p class="gracias" hidden>¡Apuntado! Aún no están hechos. Si los pedís bastantes, los preparo y aviso en el <a href="https://t.me/leyclara_avisos">canal de Telegram</a>.</p>
+  </div>
+  <script>
+  (function () {
+    var caja = document.getElementById('sacyl'), boton = caja.querySelector('button'),
+        clave = 'leyclara-sacyl-2311', claveVista = 'leyclara-sacyl-visto-2311';
+    function leido(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function guardar(k) { try { localStorage.setItem(k, '1'); } catch (e) {} }
+    function gracias() { boton.hidden = true; caja.querySelector('.gracias').hidden = false; }
+    if (leido(clave)) gracias();
+    boton.addEventListener('click', function () {
+      if (leido(clave)) { gracias(); return; }
+      if (window.leyclaraContar) leyclaraContar('sacyl-quiero');
+      guardar(clave);
+      gracias();
+    });
+    if ('IntersectionObserver' in window && !leido(claveVista)) {
+      var obs = new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting && window.leyclaraContar) { obs.disconnect(); leyclaraContar('sacyl-visto'); guardar(claveVista); }
+      }, { threshold: 0.6 });
+      obs.observe(caja);
+    }
+  })();
+  </script>"""
+
 CSS = """
   :root { --azul:#1f4e79; --azul-2:#2e6da4; --claro:#eaf2fa; --texto:#1b2430; --suave:#5b6675; --borde:#d8e2ee;
           --fondo:#ffffff; --tarjeta:#ffffff; --ok:#1e7d4f; --ok-fondo:#e3f4ea; --mal:#b3261e; --mal-fondo:#fbe9e7; --acento:#ffd400; }
@@ -229,6 +260,8 @@ CSS = """
   .encuesta button { display: block; width: 100%; text-align: left; margin: 6px 0 0; padding: 11px 14px; font: inherit; color: inherit;
                      border: 1px solid var(--borde); border-radius: 10px; background: var(--tarjeta); cursor: pointer; }
   .encuesta button:hover { border-color: var(--azul); }
+  .encuesta button[hidden] { display: none; }
+  .sacyl button { text-align: center; font-weight: 700; color: #fff; background: var(--azul); border-color: var(--azul); }
   .encuesta .gracias a { font-weight: 700; color: var(--azul-2); }
   .nota-pago { margin: 14px 0 0; font-size: .92rem; color: var(--suave, #555); }
   .boton { display: inline-block; padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none;
@@ -546,6 +579,7 @@ def pagina_ley(ley, todas, tema_pag=None):
     h.append(f"""<section class="final" id="final">
   <h2 id="resultado">¿Qué tal te ha ido?</h2>
   <p id="mensaje-final" class="mensaje-final" hidden></p>
+  {"" if slug in SLUGS_ADMIN else CAJA_SACYL}
   {ENCUESTA}
   {siguiente}
   {glosario_enlace}

@@ -30,7 +30,7 @@ WEB = "c4rr0.github.io/leyclara"
 SLUGS = {"ley14": "ley-14-1986", "ley16": "ley-16-2003", "ley31": "ley-31-1995", "ley41": "ley-41-2002",
          "ley44": "ley-44-2003", "ley55": "ley-55-2003", "lo3_2007": "lo-3-2007", "lo3_2018": "lo-3-2018",
          "ley2_1998_and": "ley-2-1998-andalucia", "and_igualdad": "leyes-12-13-2007-andalucia",
-         "ley53": "ley-53-1984"}
+         "ley53": "ley-53-1984", "permisos_2026": "trebep"}
 
 NOMBRES = {
     "ley14": ("Ley 14/1986", "General de Sanidad"),
@@ -44,6 +44,7 @@ NOMBRES = {
     "ley2_1998_and": ("Ley 2/1998", "Salud de Andalucía"),
     "and_igualdad": ("Leyes 12 y 13/2007", "Igualdad y violencia de género"),
     "ley53": ("Ley 53/1984", "Incompatibilidades"),
+    "permisos_2026": ("TREBEP", "Permisos: novedad del RDL 42/2026"),
 }
 
 AMBITO = {"ley2_1998_and": "la OPE del Servicio Andaluz de Salud (SAS)",
@@ -246,7 +247,7 @@ def generar(carpeta: Path, n: int, salida: Path) -> dict:
     if len(titulo) > 100:                     # YouTube corta a 100: mejor sin hashtag que con medio
         titulo = f"{corto} | Test {ley[0]}"[:100]
     # Leyes autonómicas: solo entran en la OPE de su servicio de salud
-    la = ("las " if ley[0].startswith("Leyes") else "la ") + ley[0]
+    la = ("las " if ley[0].startswith("Leyes") else "el " if ley[0] == "TREBEP" else "la ") + ley[0]
     ambito = AMBITO.get(clave, "las OPE de los servicios de salud (SAS, SERMAS, Sacyl, SESCAM, Osakidetza…)")
     descripcion = (f"Pregunta tipo test de {la} ({ley[1]}), de las que caen en {ambito}.\n\n"
                    f"Respuesta: {letra}) {q['opciones'][q['correcta']]}\n{q['explicacion']}\n\n"

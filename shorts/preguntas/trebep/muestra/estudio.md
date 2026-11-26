@@ -133,7 +133,7 @@ d) Un año.
 10. b) Art. 41.1.c: Audiencia en esos expedientes, sin perjuicio de la audiencia al interesado.
 11. c) Art. 47.2: Menores de doce años.
 12. b) Art. 48.f: No, constituye un derecho individual que no puede transferirse.
-13. b) Art. 49.a: Al menos quince días.
+13. b) Art. 49.2.3.ª: Al menos quince días.
 14. b) Art. 51: Lo establecido en el capítulo V y la legislación laboral correspondiente.
 15. c) Art. 54.11: En la que el ciudadano solicite, siempre que sea oficial en el territorio.
 16. c) Art. 59.1: El dos por ciento.
@@ -144,4 +144,8 @@ d) Un año.
 
 **¿Te ha servido? En el pack completo tienes 204 preguntas como estas, con la ley entera explicada, esquemas y fichas de repaso.**
 
-**El pack completo sale muy pronto. Te aviso por Telegram:** https://t.me/leyclara_avisos
+**Pack completo (6,90 € hasta el 31/10, luego 9,90 €):** https://carrosphere.gumroad.com/l/trebep
+
+**Las 4 leyes de Administración en un solo pack (17,90 € hasta el 31/10, luego 24,90 €):** https://carrosphere.gumroad.com/l/pack-administracion
+
+**Avisos gratis por Telegram cuando cambie una ley de tu temario:** https://t.me/leyclara_avisos

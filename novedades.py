@@ -13,7 +13,13 @@ NOVEDADES = [
      "da ahora tres senadores a cada isla mayor (Gran Canaria, Mallorca y Tenerife) y uno a cada una de estas: Ibiza, "
      "Formentera, Menorca, Fuerteventura, La Gomera, El Hierro, Lanzarote y La Palma.",
      "Cuatro senadores por provincia (art. 69.2) y dos por Ceuta y Melilla (art. 69.4)."),
-    ("trebep", "TREBEP (RDL 5/2015)", "Art. 49.e (hijo con cáncer o enfermedad grave)", "23/10/2026",
+    ("trebep", "TREBEP (RDL 5/2015)", "Arts. 48 y 49 (permisos, Real Decreto-ley 42/2026)", "26/11/2026",
+     "Nacimiento: 20 semanas para cada progenitor (antes 19) y 34 si es monoparental; las semanas de cuidado del menor "
+     "pasan de 2 a 3. Fallecimiento del cónyuge, pareja o familiar de primer grado de consanguinidad: 10 días hábiles, "
+     "que pueden empezar en las 4 semanas siguientes. Nuevo permiso el día de la eutanasia de quien te designó para acompañarle.",
+     "Primer grado de afinidad o segundo grado: 3 días hábiles (5 en otra localidad). La semana extra de nacimiento solo "
+     "se puede pedir desde el 1/3/2027."),
+    ("trebep", "TREBEP (RDL 5/2015)", "Art. 49.1.e (hijo con cáncer o enfermedad grave)", "23/10/2026",
      "Si la persona a cargo tiene gran discapacidad o gran dependencia y necesita cuidados directos, continuos y "
      "permanentes, la reducción de jornada puede prorrogarse más allá de los límites de edad mientras persista la "
      "necesidad y la convivencia. Ambos progenitores pueden compartir la reducción hasta el máximo del 100 %.",

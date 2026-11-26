@@ -20,7 +20,7 @@ LEYES_BOE = [
     ("ley-31-1995", "Ley 31/1995, de Prevención de Riesgos Laborales", ["BOE-A-1995-24292"], "22/06/2026"),
     ("ley-41-2002", "Ley 41/2002, de autonomía del paciente", ["BOE-A-2002-22188"], "18/12/2025"),
     ("ley-44-2003", "Ley 44/2003, de ordenación de las profesiones sanitarias", ["BOE-A-2003-21340"], "24/09/2026"),
-    ("ley-55-2003", "Ley 55/2003, del Estatuto Marco", ["BOE-A-2003-23101"], "18/12/2025"),
+    ("ley-55-2003", "Ley 55/2003, del Estatuto Marco", ["BOE-A-2003-23101"], "25/11/2026"),
     ("lo-3-2007", "Ley Orgánica 3/2007, de igualdad", ["BOE-A-2007-6115"], "19/12/2025"),
     ("lo-3-2018", "Ley Orgánica 3/2018, de protección de datos", ["BOE-A-2018-16673"], "08/10/2026"),
     ("ley-53-1984", "Ley 53/1984, de incompatibilidades", ["BOE-A-1985-151"], "21/11/2026"),
@@ -29,7 +29,7 @@ LEYES_BOE = [
     ("constitucion-espanola", "Constitución Española de 1978", ["BOE-A-1978-31229"], "20/05/2026"),
     ("ley-39-2015", "Ley 39/2015, del Procedimiento Administrativo Común", ["BOE-A-2015-10565"], "25/09/2026"),
     ("ley-40-2015", "Ley 40/2015, de Régimen Jurídico del Sector Público", ["BOE-A-2015-10566"], "20/10/2026"),
-    ("trebep", "TREBEP (RDL 5/2015), Estatuto Básico del Empleado Público", ["BOE-A-2015-11719"], "14/10/2026"),
+    ("trebep", "TREBEP (RDL 5/2015), Estatuto Básico del Empleado Público", ["BOE-A-2015-11719"], "25/11/2026"),
 ]
 
 QUIEN = """<h2>Quién hace LeyClara</h2>

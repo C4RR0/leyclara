@@ -23,7 +23,7 @@ LEYES_BOE = [
     ("ley-55-2003", "Ley 55/2003, del Estatuto Marco", ["BOE-A-2003-23101"], "18/12/2025"),
     ("lo-3-2007", "Ley Orgánica 3/2007, de igualdad", ["BOE-A-2007-6115"], "19/12/2025"),
     ("lo-3-2018", "Ley Orgánica 3/2018, de protección de datos", ["BOE-A-2018-16673"], "08/10/2026"),
-    ("ley-53-1984", "Ley 53/1984, de incompatibilidades", ["BOE-A-1985-151"], "16/12/2025"),
+    ("ley-53-1984", "Ley 53/1984, de incompatibilidades", ["BOE-A-1985-151"], "21/11/2026"),
     ("ley-2-1998-andalucia", "Ley 2/1998, de Salud de Andalucía", ["BOE-A-1998-18720"], "18/12/2025"),
     ("leyes-12-13-2007-andalucia", "Leyes 12/2007 y 13/2007 de Andalucía", ["BOE-A-2008-2492", "BOE-A-2008-2493"], "16/01/2026"),
     ("constitucion-espanola", "Constitución Española de 1978", ["BOE-A-1978-31229"], "20/05/2026"),

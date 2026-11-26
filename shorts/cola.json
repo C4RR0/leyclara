@@ -1,5 +1,5 @@
 {
-"siguiente": 120,
+"siguiente": 121,
 "cola": [
 "ley55:1",
 "ley41:1",
@@ -704,6 +704,10 @@
 {
 "pregunta": "ley53:13",
 "video": "kSdYgR6v_WM"
+},
+{
+"pregunta": "permisos_2026:1",
+"video": "aLqq4e0HohU"
 }
 ]
 }
